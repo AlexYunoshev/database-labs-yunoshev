@@ -15,9 +15,7 @@ namespace lab6_yunoshev
     public partial class MainForm : MaterialForm
     {
 
-       
-            
-            //@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
+        ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
 
 
         string query = @"select med.id, med.medications_name, med.price,
@@ -44,25 +42,20 @@ namespace lab6_yunoshev
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, 
                 MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Pink200, 
                 MaterialSkin.TextShade.WHITE);
-
-            //ConnectedData.ServerName = @"(LocalDB)\MSSQLLocalDB";
-            //ConnectedData.DBName = "yunoshevdb";
-            //ConnectedData.IntegratedSecurity = true;
-            //ConnectedData.InitializeConnection();
-            //ConnectedData.connection.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;";
-            //ConnectedData.connection.Open();
+            
+                
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ConnectedData.SetCommand(query);
+            connection.SetCommand(query);
             int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
+            size = connection.GetRowAndColumnCount();
             int row = size[0];
             int column = size[1];
             ListViewItem item;
             string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
+            data = connection.GetTableData();
 
             for (int i = 0; i < row; i++)
             {

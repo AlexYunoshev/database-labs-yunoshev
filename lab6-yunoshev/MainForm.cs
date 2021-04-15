@@ -18,7 +18,7 @@ namespace lab6_yunoshev
         ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
 
 
-        string query = @"select med.id, med.medications_name, med.price,
+        string selectMedications = @"select med.id, med.medications_name, med.price,
         med.quantity, med.volume,
         medt.type_name,
         uset.type_name,
@@ -39,16 +39,17 @@ namespace lab6_yunoshev
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500, 
-                MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Pink200, 
+            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,
+                MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Pink200,
                 MaterialSkin.TextShade.WHITE);
-            
-                
+
+
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public void PrintMedications()
         {
-            connection.SetCommand(query);
+            ListViewMedications.Items.Clear();
+            connection.SetCommand(selectMedications);
             int[] size = new int[2];
             size = connection.GetRowAndColumnCount();
             int row = size[0];
@@ -67,7 +68,7 @@ namespace lab6_yunoshev
                         double value = Convert.ToDouble(data[i, j]);
                         item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
                     }
-                        
+
                     else
                         item.SubItems.Add(data[i, j]);
                 }
@@ -76,10 +77,31 @@ namespace lab6_yunoshev
             }
         }
 
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            PrintMedications();
+        }
+
         private void ButtonAddMedication_Click(object sender, EventArgs e)
         {
             AddMedications addMedications = new AddMedications();
-            addMedications.ShowDialog();
+            DialogResult status = addMedications.ShowDialog();
+            if (status != DialogResult.Cancel)
+            {
+                string query2 = @"insert into 
+                dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id)
+                values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
+                Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
+                Models.Medications.ManufactureType + ");";
+                connection.SetCommand(query2);
+                int count = connection.AddData();
+                MessageBox.Show(count.ToString());
+                PrintMedications();
+            }
+
+           
+
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Models;
 
 namespace DBManager
 {
@@ -94,6 +95,12 @@ namespace DBManager
             }
             dataReader.Close();
             return data;
+        }
+
+        public int AddData()
+        {
+            int count = command.ExecuteNonQuery();
+            return count;
         }
 
     }

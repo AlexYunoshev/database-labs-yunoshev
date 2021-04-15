@@ -188,6 +188,7 @@ namespace lab6_yunoshev
             this.ComboBoxManufType.Size = new System.Drawing.Size(145, 49);
             this.ComboBoxManufType.StartIndex = -1;
             this.ComboBoxManufType.TabIndex = 6;
+            this.ComboBoxManufType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxManufType_SelectedIndexChanged);
             // 
             // TextBoxPrepTime
             // 
@@ -257,6 +258,7 @@ namespace lab6_yunoshev
             // 
             this.TextBoxComponents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxComponents.Depth = 0;
+            this.TextBoxComponents.Enabled = false;
             this.TextBoxComponents.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxComponents.Hint = "Список смешиваемых компонентов";
             this.TextBoxComponents.Location = new System.Drawing.Point(6, 352);
@@ -286,6 +288,7 @@ namespace lab6_yunoshev
             this.ButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAdd.UseAccentColor = false;
             this.ButtonAdd.UseVisualStyleBackColor = true;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // ButtonReset
             // 

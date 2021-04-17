@@ -23,8 +23,8 @@ namespace Models
         public static string Quantity { get; set; }
         public static string Volume { get; set; }
         public static string PreparationTime { get; set; }
-        public static string FilterTime { get; set; }
-        public static string ListComponents { get; set; }
+        public static string FiltrationTime { get; set; }
+        public static string MixableList { get; set; }
         public static double Price { get; set; }
         public static int MedicationType { get; set; }
         public static int UsesType { get; set; }

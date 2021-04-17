@@ -94,6 +94,10 @@ namespace lab6_yunoshev
                 values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
                 Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
                 Models.Medications.ManufactureType + ");";
+                //string query2 = Commands.InsertIntoMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                //    Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType, 
+                //    Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                //MessageBox.Show(query2);
                 connection.SetCommand(query2);
                 int count = connection.AddData();
                 MessageBox.Show(count.ToString());

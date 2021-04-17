@@ -48,8 +48,8 @@ namespace lab6_yunoshev
 
         private void CheckBoxFilterTime_CheckedChanged(object sender, EventArgs e)
         {
-            if (CheckBoxFilterTime.Checked == true) TextBoxFilterTime.Enabled = true;
-            else TextBoxFilterTime.Enabled = false;
+            if (CheckBoxFilterTime.Checked == true) TextBoxFiltrationTime.Enabled = true;
+            else TextBoxFiltrationTime.Enabled = false;
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
@@ -64,8 +64,8 @@ namespace lab6_yunoshev
             CheckBoxFilterTime.Checked = false;
             CheckBoxPrepTime.Checked = false;
             TextBoxPrepTime.ResetText();
-            TextBoxFilterTime.ResetText();
-            TextBoxComponents.ResetText();
+            TextBoxFiltrationTime.ResetText();
+            TextBoxMixableList.ResetText();
             this.Refresh();
         }
 
@@ -134,9 +134,9 @@ namespace lab6_yunoshev
             if (medicationType == -1 || usesType == -1 || manufactureType == -1 ||
                 TextBoxName.Text.Length == 0 || TextBoxPrice.Text.Length == 0 ||
                 TextBoxQuantity.Text.Length == 0 || TextBoxVolume.Text.Length == 0 ||
-                (TextBoxComponents.Text.Length == 0 && manufactureType == 4) || 
+                (TextBoxMixableList.Text.Length == 0 && manufactureType == 4) || 
                 (TextBoxPrepTime.Text.Length == 0 && CheckBoxPrepTime.Checked == true) || 
-                (TextBoxFilterTime.Text.Length == 0 && CheckBoxFilterTime.Checked == true))
+                (TextBoxFiltrationTime.Text.Length == 0 && CheckBoxFilterTime.Checked == true))
             {
                 MessageBox.Show("Проверьте корректность введенных данных!");
             }
@@ -151,16 +151,16 @@ namespace lab6_yunoshev
                 Models.Medications.UsesType = usesType;
                 Models.Medications.ManufactureType = manufactureType;
                 Models.Medications.PreparationTime = TextBoxPrepTime.Text;
-                Models.Medications.FilterTime = TextBoxFilterTime.Text;
-                Models.Medications.ListComponents = TextBoxComponents.Text;
+                Models.Medications.FiltrationTime = TextBoxFiltrationTime.Text;
+                Models.Medications.MixableList = TextBoxMixableList.Text;
                 this.Close();
             }
         }
 
         private void ComboBoxManufType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ComboBoxManufType.SelectedIndex == 2) TextBoxComponents.Enabled = true;
-            else TextBoxComponents.Enabled = false;
+            if (ComboBoxManufType.SelectedIndex == 2) TextBoxMixableList.Enabled = true;
+            else TextBoxMixableList.Enabled = false;
         }
     }
 }

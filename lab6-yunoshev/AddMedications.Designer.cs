@@ -39,8 +39,8 @@ namespace lab6_yunoshev
             this.TextBoxPrepTime = new MaterialSkin.Controls.MaterialTextBox();
             this.CheckBoxPrepTime = new MaterialSkin.Controls.MaterialCheckbox();
             this.CheckBoxFilterTime = new MaterialSkin.Controls.MaterialCheckbox();
-            this.TextBoxFilterTime = new MaterialSkin.Controls.MaterialTextBox();
-            this.TextBoxComponents = new MaterialSkin.Controls.MaterialTextBox();
+            this.TextBoxFiltrationTime = new MaterialSkin.Controls.MaterialTextBox();
+            this.TextBoxMixableList = new MaterialSkin.Controls.MaterialTextBox();
             this.ButtonAdd = new MaterialSkin.Controls.MaterialButton();
             this.ButtonReset = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
@@ -238,37 +238,37 @@ namespace lab6_yunoshev
             this.CheckBoxFilterTime.UseVisualStyleBackColor = true;
             this.CheckBoxFilterTime.CheckedChanged += new System.EventHandler(this.CheckBoxFilterTime_CheckedChanged);
             // 
-            // TextBoxFilterTime
+            // TextBoxFiltrationTime
             // 
-            this.TextBoxFilterTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxFilterTime.Depth = 0;
-            this.TextBoxFilterTime.Enabled = false;
-            this.TextBoxFilterTime.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxFilterTime.Hint = "ЧЧ:ММ:СС";
-            this.TextBoxFilterTime.Location = new System.Drawing.Point(245, 285);
-            this.TextBoxFilterTime.MaxLength = 8;
-            this.TextBoxFilterTime.MouseState = MaterialSkin.MouseState.OUT;
-            this.TextBoxFilterTime.Multiline = false;
-            this.TextBoxFilterTime.Name = "TextBoxFilterTime";
-            this.TextBoxFilterTime.Size = new System.Drawing.Size(172, 50);
-            this.TextBoxFilterTime.TabIndex = 10;
-            this.TextBoxFilterTime.Text = "";
+            this.TextBoxFiltrationTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxFiltrationTime.Depth = 0;
+            this.TextBoxFiltrationTime.Enabled = false;
+            this.TextBoxFiltrationTime.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxFiltrationTime.Hint = "ЧЧ:ММ:СС";
+            this.TextBoxFiltrationTime.Location = new System.Drawing.Point(245, 285);
+            this.TextBoxFiltrationTime.MaxLength = 8;
+            this.TextBoxFiltrationTime.MouseState = MaterialSkin.MouseState.OUT;
+            this.TextBoxFiltrationTime.Multiline = false;
+            this.TextBoxFiltrationTime.Name = "TextBoxFiltrationTime";
+            this.TextBoxFiltrationTime.Size = new System.Drawing.Size(172, 50);
+            this.TextBoxFiltrationTime.TabIndex = 10;
+            this.TextBoxFiltrationTime.Text = "";
             // 
-            // TextBoxComponents
+            // TextBoxMixableList
             // 
-            this.TextBoxComponents.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxComponents.Depth = 0;
-            this.TextBoxComponents.Enabled = false;
-            this.TextBoxComponents.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxComponents.Hint = "Список смешиваемых компонентов";
-            this.TextBoxComponents.Location = new System.Drawing.Point(6, 352);
-            this.TextBoxComponents.MaxLength = 254;
-            this.TextBoxComponents.MouseState = MaterialSkin.MouseState.OUT;
-            this.TextBoxComponents.Multiline = false;
-            this.TextBoxComponents.Name = "TextBoxComponents";
-            this.TextBoxComponents.Size = new System.Drawing.Size(448, 50);
-            this.TextBoxComponents.TabIndex = 12;
-            this.TextBoxComponents.Text = "";
+            this.TextBoxMixableList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxMixableList.Depth = 0;
+            this.TextBoxMixableList.Enabled = false;
+            this.TextBoxMixableList.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxMixableList.Hint = "Список смешиваемых компонентов";
+            this.TextBoxMixableList.Location = new System.Drawing.Point(6, 352);
+            this.TextBoxMixableList.MaxLength = 254;
+            this.TextBoxMixableList.MouseState = MaterialSkin.MouseState.OUT;
+            this.TextBoxMixableList.Multiline = false;
+            this.TextBoxMixableList.Name = "TextBoxMixableList";
+            this.TextBoxMixableList.Size = new System.Drawing.Size(448, 50);
+            this.TextBoxMixableList.TabIndex = 12;
+            this.TextBoxMixableList.Text = "";
             // 
             // ButtonAdd
             // 
@@ -317,9 +317,9 @@ namespace lab6_yunoshev
             this.ClientSize = new System.Drawing.Size(460, 459);
             this.Controls.Add(this.ButtonReset);
             this.Controls.Add(this.ButtonAdd);
-            this.Controls.Add(this.TextBoxComponents);
+            this.Controls.Add(this.TextBoxMixableList);
             this.Controls.Add(this.CheckBoxFilterTime);
-            this.Controls.Add(this.TextBoxFilterTime);
+            this.Controls.Add(this.TextBoxFiltrationTime);
             this.Controls.Add(this.CheckBoxPrepTime);
             this.Controls.Add(this.TextBoxPrepTime);
             this.Controls.Add(this.ComboBoxManufType);
@@ -353,8 +353,8 @@ namespace lab6_yunoshev
         private MaterialSkin.Controls.MaterialTextBox TextBoxPrepTime;
         private MaterialSkin.Controls.MaterialCheckbox CheckBoxPrepTime;
         private MaterialSkin.Controls.MaterialCheckbox CheckBoxFilterTime;
-        private MaterialSkin.Controls.MaterialTextBox TextBoxFilterTime;
-        private MaterialSkin.Controls.MaterialTextBox TextBoxComponents;
+        private MaterialSkin.Controls.MaterialTextBox TextBoxFiltrationTime;
+        private MaterialSkin.Controls.MaterialTextBox TextBoxMixableList;
         private MaterialSkin.Controls.MaterialButton ButtonAdd;
         private MaterialSkin.Controls.MaterialButton ButtonReset;
     }

@@ -126,6 +126,7 @@ namespace lab6_yunoshev
             this.ButtonEditMedication.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonEditMedication.UseAccentColor = false;
             this.ButtonEditMedication.UseVisualStyleBackColor = true;
+            this.ButtonEditMedication.Click += new System.EventHandler(this.ButtonEditMedication_Click);
             // 
             // ButtonDeleteMedication
             // 

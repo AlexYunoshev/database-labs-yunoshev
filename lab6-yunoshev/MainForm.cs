@@ -16,7 +16,7 @@ namespace lab6_yunoshev
     public partial class MainForm : MaterialForm
     {
 
-        ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
+        static internal ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
         string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public MainForm()
@@ -78,7 +78,7 @@ namespace lab6_yunoshev
                         Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
                 MessageBox.Show(query);
                 connection.SetCommand(query);
-                int count = connection.AddData();
+                int count = connection.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
                 PrintMedications();
             }
@@ -94,10 +94,16 @@ namespace lab6_yunoshev
                 query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
                 MessageBox.Show(query);
                 connection.SetCommand(query);
-                int count = connection.AddData();
+                int count = connection.UpdateData();
                 MessageBox.Show("Удалено: " + count.ToString());
                 PrintMedications();
             }
+        }
+
+        private void ButtonEditMedication_Click(object sender, EventArgs e)
+        {
+            UpdateMedications updateMedications = new UpdateMedications();
+            DialogResult statis = updateMedications.ShowDialog();
         }
     }
 }

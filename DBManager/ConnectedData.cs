@@ -75,6 +75,13 @@ namespace DBManager
             return data;
         }
 
+        public bool CheckExist(out int countOut)
+        {
+            int count = command.ExecuteNonQuery();
+            countOut = count;
+            if (count > 0) return true;
+            else return false;
+        }
 
         public string[,] GetTableData()
         {
@@ -97,7 +104,7 @@ namespace DBManager
             return data;
         }
 
-        public int AddData()
+        public int UpdateData()
         {
             int count = command.ExecuteNonQuery();
             return count;

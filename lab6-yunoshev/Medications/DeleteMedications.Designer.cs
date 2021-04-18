@@ -208,6 +208,7 @@ namespace lab6_yunoshev.Medications
             // 
             this.ButtonDelete.AutoSize = false;
             this.ButtonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonDelete.Depth = 0;
             this.ButtonDelete.DrawShadows = true;
             this.ButtonDelete.HighEmphasis = true;
@@ -228,6 +229,7 @@ namespace lab6_yunoshev.Medications
             // 
             this.ButtonReset.AutoSize = false;
             this.ButtonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonReset.Depth = 0;
             this.ButtonReset.DrawShadows = true;
             this.ButtonReset.HighEmphasis = true;

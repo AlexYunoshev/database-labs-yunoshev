@@ -274,6 +274,7 @@ namespace lab6_yunoshev.Medications
             // 
             this.ButtonAdd.AutoSize = false;
             this.ButtonAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAdd.Depth = 0;
             this.ButtonAdd.DrawShadows = true;
             this.ButtonAdd.HighEmphasis = true;
@@ -294,6 +295,7 @@ namespace lab6_yunoshev.Medications
             // 
             this.ButtonReset.AutoSize = false;
             this.ButtonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonReset.Depth = 0;
             this.ButtonReset.DrawShadows = true;
             this.ButtonReset.HighEmphasis = true;

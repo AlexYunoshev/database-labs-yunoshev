@@ -67,6 +67,14 @@ namespace DBManager
             return cmd;
         }
 
+        public static string SelectMedicationsWhereId(int id)
+        {
+            //string cmd = @"if exists(select * from dbo.medications where id = " + id + ") select 'true' else select 'false'";
+            string cmd = @"select * from dbo.medications where id = " + id;
+            return cmd;
+
+            
+        }
 
         public static string DeleteMedications(int id1 = -1, int id2 = -1, string name = "")
         {

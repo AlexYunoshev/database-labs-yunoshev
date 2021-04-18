@@ -77,15 +77,15 @@ namespace DBManager
             }
             else if (id1 != -1 &&id2 != -1 && name == "")
             {
-                cmd = @"delete from dbo.medications where id > " + id1 + " and id < " + id2 +";";
+                cmd = @"delete from dbo.medications where id >= " + id1 + " and id <= " + id2 +";";
             } 
             else if (name != "" && id1 == -1 && id2 == -1)
             {
-                cmd = @"delete from dbo.medications where name = '" + name + "';";
+                cmd = @"delete from dbo.medications where medications_name = N'" + name + "';";
             }
             else if (name != "" && id1 != -1 && id2 != -1)
             {
-                cmd = @"delete from dbo.medications where id > " + id1 + " and id < " + id2 + " and name = '" + name + "';";
+                cmd = @"delete from dbo.medications where id >= " + id1 + " and id <= " + id2 + " and medications_name = N'" + name + "';";
             }
             return cmd;
         }

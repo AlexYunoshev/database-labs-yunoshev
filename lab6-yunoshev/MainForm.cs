@@ -82,7 +82,7 @@ namespace lab6_yunoshev
                 MessageBox.Show(query);
                 connection.SetCommand(query);
                 int count = connection.AddData();
-                MessageBox.Show(count.ToString());
+                MessageBox.Show("Добавлено: " + count.ToString());
                 PrintMedications();
             }
         }
@@ -98,7 +98,7 @@ namespace lab6_yunoshev
                 MessageBox.Show(query);
                 connection.SetCommand(query);
                 int count = connection.AddData();
-                MessageBox.Show(count.ToString());
+                MessageBox.Show("Удалено: " + count.ToString());
                 PrintMedications();
             }
         }

@@ -106,7 +106,12 @@ namespace lab6_yunoshev.Medications
                 else if (CheckBoxRangeId.Checked == true)
                 {
                     Models.Medications.id1 = Convert.ToInt32(NumericFrom.Value);
-                    Models.Medications.id1 = Convert.ToInt32(NumericTo.Value);
+                    Models.Medications.id2 = Convert.ToInt32(NumericTo.Value);
+                }
+                else
+                {
+                    Models.Medications.id1 = -1;
+                    Models.Medications.id2 = -1;
                 }
                 this.Close();
                 this.DialogResult = DialogResult.OK;

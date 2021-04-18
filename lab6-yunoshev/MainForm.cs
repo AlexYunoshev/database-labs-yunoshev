@@ -76,7 +76,6 @@ namespace lab6_yunoshev
             DialogResult status = addMedications.ShowDialog();
             if (status == DialogResult.OK)
             {
-
                 query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
                         Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
                         Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
@@ -92,6 +91,16 @@ namespace lab6_yunoshev
         {
             DeleteMedications deleteMedications = new DeleteMedications();
             DialogResult status = deleteMedications.ShowDialog();
+
+            if (status == DialogResult.OK)
+            {
+                query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
+                MessageBox.Show(query);
+                connection.SetCommand(query);
+                int count = connection.AddData();
+                MessageBox.Show(count.ToString());
+                PrintMedications();
+            }
         }
     }
 }

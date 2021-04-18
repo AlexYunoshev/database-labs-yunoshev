@@ -87,5 +87,30 @@ namespace lab6_yunoshev.Medications
                     CheckBoxSpecificId.Enabled = true;
             }
         }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if ((CheckBoxSpecificId.Checked == false && CheckBoxRangeId.Checked == false && CheckBoxName.Checked == false) 
+                || (CheckBoxName.Checked == true && TextBoxName.Text == ""))
+            {
+                MessageBox.Show("Проверьте корректность введенных данных!");
+            }
+            else
+            {
+                Models.Medications.Name = TextBoxName.Text;
+                if (CheckBoxSpecificId.Checked == true)
+                {
+                    Models.Medications.id1 = Convert.ToInt32(NumericSpecificId.Value);
+                    Models.Medications.id2 = -1;
+                }
+                else if (CheckBoxRangeId.Checked == true)
+                {
+                    Models.Medications.id1 = Convert.ToInt32(NumericFrom.Value);
+                    Models.Medications.id1 = Convert.ToInt32(NumericTo.Value);
+                }
+                this.Close();
+                this.DialogResult = DialogResult.OK;
+            }
+        }
     }
 }

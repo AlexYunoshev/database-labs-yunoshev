@@ -222,6 +222,7 @@ namespace lab6_yunoshev.Medications
             this.ButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonDelete.UseAccentColor = false;
             this.ButtonDelete.UseVisualStyleBackColor = true;
+            this.ButtonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // ButtonReset
             // 

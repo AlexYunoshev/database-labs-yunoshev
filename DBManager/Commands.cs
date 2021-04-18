@@ -103,7 +103,7 @@ namespace DBManager
             return cmd;
         }
 
-        public static string SelectMedications(MedicationsSortTypes sort)
+        public static string SelectMedications(MedicationsSortTypes sort, string name = "")
         {
             string cmd = @"select med.id, med.medications_name, med.price,
                 med.quantity, med.volume,
@@ -115,6 +115,11 @@ namespace DBManager
                 where med.medications_types_id = medt.id and
                 med.uses_types_id = uset.id and
                 med.manufacture_types_id = mant.id";
+
+            if(name != "")
+            {
+                cmd += " and medications_name = N'" + name + "'";
+            }
             
             if (sort == MedicationsSortTypes.IdDesc)
             {
@@ -135,10 +140,15 @@ namespace DBManager
 
         public static string SelectMedicationsWhereId(int id)
         {
-            //string cmd = @"if exists(select * from dbo.medications where id = " + id + ") select 'true' else select 'false'";
             string cmd = @"select * from dbo.medications where id = " + id;    
             return cmd;    
         }
+
+        //public static string SelectMedicationsWhereName(string name)
+        //{
+        //    string cmd = @"select * from dbo.medications where medications_name = N'" + name + "'";
+        //    return cmd;
+        //}
 
         public static string DeleteMedications(int id1 = -1, int id2 = -1, string name = "")
         {

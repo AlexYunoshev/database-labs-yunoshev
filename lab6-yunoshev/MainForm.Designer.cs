@@ -199,6 +199,7 @@ namespace lab6_yunoshev
             this.TextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxSearch.Depth = 0;
             this.TextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxSearch.Hint = "Введите название лекарства";
             this.TextBoxSearch.Location = new System.Drawing.Point(255, 6);
             this.TextBoxSearch.MaxLength = 50;
             this.TextBoxSearch.MouseState = MaterialSkin.MouseState.OUT;

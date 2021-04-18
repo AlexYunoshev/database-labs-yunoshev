@@ -32,10 +32,11 @@ namespace lab6_yunoshev
                 MaterialSkin.TextShade.WHITE);
         }
 
-        public void PrintMedications(MedicationsSortTypes sort)
+        public void PrintMedications(MedicationsSortTypes sort, string name = "")
         {
             ListViewMedications.Items.Clear();
-            query = Commands.SelectMedications(sort);
+            if (name != "") query = Commands.SelectMedications(sort, name);
+            else query = Commands.SelectMedications(sort);
             ConnectedData.SetCommand(query);
             int[] size = new int[2];
             size = ConnectedData.GetRowAndColumnCount();
@@ -130,7 +131,14 @@ namespace lab6_yunoshev
 
         private void pictureBoxSearch_Click(object sender, EventArgs e)
         {
-
+            if (TextBoxSearch.Text != "")
+            {
+                PrintMedications(MedicationsSortTypes.IdAsc, TextBoxSearch.Text);
+            }
+            else
+            {
+                PrintMedications(MedicationsSortTypes.IdAsc);
+            }
         }
     }
 }

@@ -146,6 +146,7 @@ namespace lab6_yunoshev
             this.ButtonDeleteMedication.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonDeleteMedication.UseAccentColor = false;
             this.ButtonDeleteMedication.UseVisualStyleBackColor = true;
+            this.ButtonDeleteMedication.Click += new System.EventHandler(this.ButtonDeleteMedication_Click);
             // 
             // ButtonAddMedication
             // 

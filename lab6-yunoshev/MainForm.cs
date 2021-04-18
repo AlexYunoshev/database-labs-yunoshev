@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DBManager;
+using lab6_yunoshev.Medications;
 
 namespace lab6_yunoshev
 {
@@ -85,6 +86,12 @@ namespace lab6_yunoshev
                 MessageBox.Show(count.ToString());
                 PrintMedications();
             }
+        }
+
+        private void ButtonDeleteMedication_Click(object sender, EventArgs e)
+        {
+            DeleteMedications deleteMedications = new DeleteMedications();
+            DialogResult status = deleteMedications.ShowDialog();
         }
     }
 }

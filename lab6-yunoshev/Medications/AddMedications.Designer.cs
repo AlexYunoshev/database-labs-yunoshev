@@ -1,5 +1,5 @@
 ﻿
-namespace lab6_yunoshev
+namespace lab6_yunoshev.Medications
 {
     partial class AddMedications
     {
@@ -333,6 +333,7 @@ namespace lab6_yunoshev
             this.MinimizeBox = false;
             this.Name = "AddMedications";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление лекарства";

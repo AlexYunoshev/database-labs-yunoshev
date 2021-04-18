@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using Models;
 
-namespace lab6_yunoshev
+namespace lab6_yunoshev.Medications
 {
     public partial class AddMedications : MaterialForm
     {

@@ -66,5 +66,28 @@ namespace DBManager
             med.manufacture_types_id = mant.id";
             return cmd;
         }
+
+
+        public static string DeleteMedications(int id1 = -1, int id2 = -1, string name = "")
+        {
+            string cmd = "";
+            if (id1 != -1 && id2 == -1 && name == "")
+            {
+                cmd = @"delete from dbo.medications where id = " + id1 + ";";
+            }
+            else if (id1 != -1 &&id2 != -1 && name == "")
+            {
+                cmd = @"delete from dbo.medications where id > " + id1 + " and id < " + id2 +";";
+            } 
+            else if (name != "" && id1 == -1 && id2 == -1)
+            {
+                cmd = @"delete from dbo.medications where name = '" + name + "';";
+            }
+            else if (name != "" && id1 != -1 && id2 != -1)
+            {
+                cmd = @"delete from dbo.medications where id > " + id1 + " and id < " + id2 + " and name = '" + name + "';";
+            }
+            return cmd;
+        }
     }
 }

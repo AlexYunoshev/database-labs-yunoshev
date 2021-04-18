@@ -64,6 +64,8 @@ namespace lab6_yunoshev
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //this.Text = "Аптека                                  Connection_status: ";
+            //this.Text += ConnectedData.connection.State;
             PrintMedications();
         }
 

@@ -57,12 +57,39 @@ namespace DBManager
             return data;
         }
 
-        public static bool CheckExist(out int countOut)
+        public static bool CheckExist()
         {
-            int count = command.ExecuteNonQuery();
-            countOut = count;
-            if (count > 0) return true;
+            dataReader = command.ExecuteReader();
+            string index = "-1";
+            while (dataReader.Read())
+            {
+                    if (dataReader[0].ToString() != "")
+                        index = dataReader[0].ToString();
+            }
+            dataReader.Close();
+            if (index != "-1")
+                return true;
             else return false;
+        }
+
+
+        public static string[] GetRowFromTable()
+        {
+            dataReader = command.ExecuteReader();
+            string[] data = new string[11];
+            while (dataReader.Read())
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    if (dataReader[j].ToString() != "")
+                        data[j] = dataReader[j].ToString();
+                    else
+                        data[j] = "-";
+                }
+            }    
+            dataReader.Close();
+            return data;
+
         }
 
         public static string[,] GetTableData()

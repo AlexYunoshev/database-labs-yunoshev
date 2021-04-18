@@ -17,8 +17,6 @@ namespace DBManager
             connection.Open();
         }
 
-       
-
         public static SqlConnection connection = new SqlConnection();
         public static SqlCommand command;
         public static SqlDataReader dataReader;
@@ -30,10 +28,6 @@ namespace DBManager
         public static string DBName { get; set; }
         public static bool IntegratedSecurity { get; set; } = false;
 
-
-
-    
-
         public static void SetCommand(string query)
         {
             command = new SqlCommand(query, connection);
@@ -43,7 +37,7 @@ namespace DBManager
         {
             dataReader = command.ExecuteReader();
             int row = 0;
-            while(dataReader.Read())
+            while (dataReader.Read())
             {
                 row++;
             }
@@ -63,15 +57,14 @@ namespace DBManager
             string index = "-1";
             while (dataReader.Read())
             {
-                    if (dataReader[0].ToString() != "")
-                        index = dataReader[0].ToString();
+                if (dataReader[0].ToString() != "")
+                    index = dataReader[0].ToString();
             }
             dataReader.Close();
             if (index != "-1")
                 return true;
             else return false;
         }
-
 
         public static string[] GetRowFromTable()
         {
@@ -86,7 +79,7 @@ namespace DBManager
                     else
                         data[j] = "-";
                 }
-            }    
+            }
             dataReader.Close();
             return data;
 
@@ -97,15 +90,14 @@ namespace DBManager
             dataReader = command.ExecuteReader();
             int i = 0;
             string[,] data = new string[row, column];
-            while(dataReader.Read())
+            while (dataReader.Read())
             {
                 for (int j = 0; j < column; j++)
                 {
-                    if(dataReader[j].ToString() != "")
+                    if (dataReader[j].ToString() != "")
                         data[i, j] = dataReader[j].ToString();
                     else
                         data[i, j] = "-";
-
                 }
                 i++;
             }

@@ -97,7 +97,7 @@ namespace DBManager
             "preparation_time = " + prepatationTimeOut + ", " +
             "filtration_time = " + filtrationTimeOut + ", " +
             "mixable_list = " + mixableListOut +
-            "where id = " + id + ";";
+            " where id = " + id + ";";
             
             return cmd;
         }

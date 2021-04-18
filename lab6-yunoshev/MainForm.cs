@@ -105,7 +105,18 @@ namespace lab6_yunoshev
         private void ButtonEditMedication_Click(object sender, EventArgs e)
         {
             UpdateMedications updateMedications = new UpdateMedications();
-            DialogResult statis = updateMedications.ShowDialog();
+            DialogResult status = updateMedications.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                       Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                       Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Обновлено: " + count.ToString());
+                PrintMedications();
+            }
         }
     }
 }

@@ -57,7 +57,9 @@ namespace lab6_yunoshev.Medications
                 ConnectedData.SetCommand(query);
                 data = ConnectedData.GetRowFromTable();
                 TextBoxName.Text = data[1];
-                TextBoxPrice.Text = data[2];
+
+                double price = Convert.ToDouble(data[2]);
+                TextBoxPrice.Text = Math.Round(price, 2).ToString();
                 TextBoxQuantity.Text = data[3];
                 TextBoxVolume.Text = data[4];
 

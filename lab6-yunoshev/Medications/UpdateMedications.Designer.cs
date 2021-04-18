@@ -381,6 +381,7 @@ namespace lab6_yunoshev.Medications
             this.ButtonUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonUpdate.UseAccentColor = false;
             this.ButtonUpdate.UseVisualStyleBackColor = true;
+            this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // UpdateMedications
             // 

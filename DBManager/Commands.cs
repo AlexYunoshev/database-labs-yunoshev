@@ -51,6 +51,56 @@ namespace DBManager
             return cmd;
         }
 
+        public static string UpdateMedications(int id, string Name, double Price, string Quantity, string Volume, int MedicationType, int UsesType, int ManufactureType,
+           string MixableList, string PreparationTime, string FiltrationTime)
+        {
+            string mixableListOut = "";
+            string prepatationTimeOut = "";
+            string filtrationTimeOut = "";
+
+            if (MixableList == "")
+                mixableListOut = "NULL";
+            else
+            {
+                mixableListOut = "N'";
+                mixableListOut += MixableList;
+                mixableListOut += "'";
+            }
+
+            if (PreparationTime == "")
+                prepatationTimeOut = "NULL";
+            else
+            {
+                prepatationTimeOut = "'";
+                prepatationTimeOut += PreparationTime;
+                prepatationTimeOut += "'";
+            }
+
+            if (FiltrationTime == "")
+                filtrationTimeOut = "NULL";
+            else
+            {
+                filtrationTimeOut = "'";
+                filtrationTimeOut += FiltrationTime;
+                filtrationTimeOut += "'";
+
+            }
+
+            string cmd = @"update dbo.medications set
+            medications_name = N'" + Name + "', " +
+            "price = " + Price + ", " +
+            "quantity = N'" + Quantity + "', " +
+            "volume = N'" + Volume + "', " +
+            "medications_types_id = " + MedicationType + ", " +
+            "uses_types_id = " + UsesType + ", " +
+            "manufacture_types_id = " + ManufactureType + ", " +
+            "preparation_time = " + prepatationTimeOut + ", " +
+            "filtration_time = " + filtrationTimeOut + ", " +
+            "mixable_list = " + mixableListOut +
+            "where id = " + id + ";";
+            
+            return cmd;
+        }
 
         public static string SelectMedications()
         {

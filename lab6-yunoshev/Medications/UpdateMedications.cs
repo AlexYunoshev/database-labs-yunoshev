@@ -17,7 +17,9 @@ namespace lab6_yunoshev.Medications
     public partial class UpdateMedications : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-
+        private int medicationType;
+        private int usesType;
+        private int manufactureType;
         public UpdateMedications()
         {
             InitializeComponent();
@@ -40,7 +42,6 @@ namespace lab6_yunoshev.Medications
             bool status = ConnectedData.CheckExist();
             if (status == true)
             {
-                Models.Medications.id1 = id;
                 TextBoxStatusId.Text = "Выбрано";
                 TextBoxStatusId.ForeColor = Color.Green;
                 ButtonUpdate.Enabled = true;
@@ -175,6 +176,93 @@ namespace lab6_yunoshev.Medications
             {
                 TextBoxFiltrationTime.ResetText();
                 TextBoxFiltrationTime.Enabled = false;
+            }
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            switch (ComboBoxMedType.SelectedIndex)
+            {
+                case 0:
+                    medicationType = 1;
+                    break;
+                case 1:
+                    medicationType = 2;
+                    break;
+                case 2:
+                    medicationType = 3;
+                    break;
+                case 3:
+                    medicationType = 4;
+                    break;
+                case 4:
+                    medicationType = 5;
+                    break;
+                case 5:
+                    medicationType = 1002;
+                    break;
+                case 6:
+                    medicationType = 1003;
+                    break;
+                default:
+                    medicationType = -1;
+                    break;
+            }
+
+            switch (ComboBoxUsesType.SelectedIndex)
+            {
+                case 0:
+                    usesType = 1;
+                    break;
+                case 1:
+                    usesType = 2;
+                    break;
+                default:
+                    usesType = -1;
+                    break;
+            }
+
+            switch (ComboBoxManufType.SelectedIndex)
+            {
+                case 0:
+                    manufactureType = 1;
+                    break;
+                case 1:
+                    manufactureType = 2;
+                    break;
+                case 2:
+                    manufactureType = 4;
+                    break;
+                default:
+                    manufactureType = -1;
+                    break;
+            }
+
+            if (medicationType == -1 || usesType == -1 || manufactureType == -1 ||
+                TextBoxName.Text.Length == 0 || TextBoxPrice.Text.Length == 0 ||
+                TextBoxQuantity.Text.Length == 0 || TextBoxVolume.Text.Length == 0 ||
+                (TextBoxMixableList.Text.Length == 0 && manufactureType == 4) ||
+                (TextBoxPrepTime.Text.Length == 0 && CheckBoxPrepTime.Checked == true) ||
+                (TextBoxFiltrationTime.Text.Length == 0 && CheckBoxFilterTime.Checked == true))
+            {
+                MessageBox.Show("Проверьте корректность введенных данных!");
+            }
+
+            else
+            {
+                Models.Medications.Name = TextBoxName.Text;
+                Models.Medications.Price = Convert.ToDouble(TextBoxPrice.Text);
+                Models.Medications.Quantity = TextBoxQuantity.Text;
+                Models.Medications.Volume = TextBoxVolume.Text;
+                Models.Medications.MedicationType = medicationType;
+                Models.Medications.UsesType = usesType;
+                Models.Medications.ManufactureType = manufactureType;
+                Models.Medications.PreparationTime = TextBoxPrepTime.Text;
+                Models.Medications.FiltrationTime = TextBoxFiltrationTime.Text;
+                Models.Medications.MixableList = TextBoxMixableList.Text;
+                Models.Medications.id1 = Convert.ToInt32(NumericId.Value);
+                this.Close();
+                this.DialogResult = DialogResult.OK;
             }
         }
     }

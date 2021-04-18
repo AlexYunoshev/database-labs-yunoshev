@@ -16,8 +16,6 @@ namespace lab6_yunoshev
 {
     public partial class MainForm : MaterialForm
     {
-
-       
         string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public MainForm()

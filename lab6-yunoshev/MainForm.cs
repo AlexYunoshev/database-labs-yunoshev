@@ -18,18 +18,8 @@ namespace lab6_yunoshev
         ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
 
 
-        string selectMedications = @"select med.id, med.medications_name, med.price,
-        med.quantity, med.volume,
-        medt.type_name,
-        uset.type_name,
-        mant.type_name,
-        med.mixable_list, med.preparation_time, med.filtration_time
-        from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
-        where med.medications_types_id = medt.id and
-        med.uses_types_id = uset.id and
-        med.manufacture_types_id = mant.id";
-
-        //string query = "select med.id, med.medications_name, med.price, medt.type_name, uset.type_name, mant.type_name, med.mixable_list, med.prepatation_time, med.filtration_time from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset where med.medications_types_id = medt.id and med.uses_types_id = uset.id and med.manufacture_types_id = mant.id";
+        string query;
+        
 
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public MainForm()
@@ -49,7 +39,8 @@ namespace lab6_yunoshev
         public void PrintMedications()
         {
             ListViewMedications.Items.Clear();
-            connection.SetCommand(selectMedications);
+            query = Commands.SelectMedications();
+            connection.SetCommand(query);
             int[] size = new int[2];
             size = connection.GetRowAndColumnCount();
             int row = size[0];
@@ -95,11 +86,11 @@ namespace lab6_yunoshev
             //values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
             //Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
             //Models.Medications.ManufactureType + ");";
-            string query2 = Commands.InsertIntoMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+            query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
                 Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
                 Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-            MessageBox.Show(query2);
-            connection.SetCommand(query2);
+            MessageBox.Show(query);
+            connection.SetCommand(query);
                 int count = connection.AddData();
                 MessageBox.Show(count.ToString());
                 PrintMedications();

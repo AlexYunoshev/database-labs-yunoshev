@@ -225,7 +225,6 @@ namespace lab6_yunoshev
             this.ComboBoxSort.ItemHeight = 29;
             this.ComboBoxSort.Items.AddRange(new object[] {
             "Без сортировки",
-            "id ↑",
             "id ↓",
             "Название ↑",
             "Название ↓"});
@@ -237,6 +236,7 @@ namespace lab6_yunoshev
             this.ComboBoxSort.StartIndex = 0;
             this.ComboBoxSort.TabIndex = 1;
             this.ComboBoxSort.UseTallSize = false;
+            this.ComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSort_SelectedIndexChanged);
             // 
             // ListViewMedications
             // 

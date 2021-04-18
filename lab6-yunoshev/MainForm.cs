@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DBManager;
 using lab6_yunoshev.Medications;
+using Models;
 
 namespace lab6_yunoshev
 {
@@ -31,10 +32,10 @@ namespace lab6_yunoshev
                 MaterialSkin.TextShade.WHITE);
         }
 
-        public void PrintMedications()
+        public void PrintMedications(MedicationsSortTypes sort)
         {
             ListViewMedications.Items.Clear();
-            query = Commands.SelectMedications();
+            query = Commands.SelectMedications(sort);
             ConnectedData.SetCommand(query);
             int[] size = new int[2];
             size = ConnectedData.GetRowAndColumnCount();
@@ -66,7 +67,7 @@ namespace lab6_yunoshev
         {
             //this.Text = "Аптека                                  Connection_status: ";
             //this.Text += ConnectedData.connection.State;
-            PrintMedications();
+            PrintMedications(MedicationsSortTypes.IdAsc);
         }
 
         private void ButtonAddMedication_Click(object sender, EventArgs e)
@@ -82,7 +83,7 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
-                PrintMedications();
+                PrintMedications(MedicationsSortTypes.IdAsc);
             }
         }
 
@@ -98,7 +99,7 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Удалено: " + count.ToString());
-                PrintMedications();
+                PrintMedications(MedicationsSortTypes.IdAsc);
             }
         }
 
@@ -115,8 +116,16 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Обновлено: " + count.ToString());
-                PrintMedications();
+                PrintMedications(MedicationsSortTypes.IdAsc);
             }
+        }
+
+        private void ComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBoxSort.SelectedIndex == 0) PrintMedications(MedicationsSortTypes.IdAsc);
+            else if (ComboBoxSort.SelectedIndex == 1) PrintMedications(MedicationsSortTypes.IdDesc);
+            else if (ComboBoxSort.SelectedIndex == 2) PrintMedications(MedicationsSortTypes.NameAsc);
+            else if (ComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
         }
     }
 }

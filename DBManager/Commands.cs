@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models;
 
 namespace DBManager
 {
@@ -102,18 +103,33 @@ namespace DBManager
             return cmd;
         }
 
-        public static string SelectMedications()
+        public static string SelectMedications(MedicationsSortTypes sort)
         {
             string cmd = @"select med.id, med.medications_name, med.price,
-            med.quantity, med.volume,
-            medt.type_name,
-            uset.type_name,
-            mant.type_name,
-            med.preparation_time, med.filtration_time, med.mixable_list
-            from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
-            where med.medications_types_id = medt.id and
-            med.uses_types_id = uset.id and
-            med.manufacture_types_id = mant.id";
+                med.quantity, med.volume,
+                medt.type_name,
+                uset.type_name,
+                mant.type_name,
+                med.preparation_time, med.filtration_time, med.mixable_list
+                from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
+                where med.medications_types_id = medt.id and
+                med.uses_types_id = uset.id and
+                med.manufacture_types_id = mant.id";
+            
+            if (sort == MedicationsSortTypes.IdDesc)
+            {
+                cmd += " order by med.id desc";
+            }
+            else if (sort == MedicationsSortTypes.NameAsc)
+            {
+                cmd += " order by med.medications_name asc";
+            }
+
+            else if (sort == MedicationsSortTypes.NameDesc)
+            {
+                cmd += " order by med.medications_name desc";
+            }
+
             return cmd;
         }
 

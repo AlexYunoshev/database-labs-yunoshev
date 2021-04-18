@@ -35,12 +35,12 @@ namespace lab6_yunoshev.Medications
         {
             int id = Convert.ToInt32(NumericId.Value);
             string query = Commands.SelectMedicationsWhereId(id);
-            MessageBox.Show(MainForm.connection.DBName.ToString());
-            MainForm.connection.SetCommand(query);
+            MessageBox.Show(ConnectedData.connection.ConnectionString);
+            ConnectedData.SetCommand(query);
             MessageBox.Show(query);
             int count;
             //bool status = MainForm.connection.CheckExist(out count);
-            count = MainForm.connection.UpdateData();
+            count = ConnectedData.UpdateData();
             MessageBox.Show(count.ToString());
             //if (status == true)
             //{

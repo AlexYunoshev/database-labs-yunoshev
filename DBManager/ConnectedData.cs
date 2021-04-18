@@ -8,56 +8,38 @@ using Models;
 
 namespace DBManager
 {
-    public class ConnectedData
+    public static class ConnectedData
     {
 
-        public ConnectedData(string ConnectionString)
+        static ConnectedData()
         {
-            connection.ConnectionString = ConnectionString;
+            connection.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;";
             connection.Open();
         }
 
-        public ConnectedData(string ServerName, string DBName)
-        {
-            this.ServerName = ServerName;
-            this.DBName = DBName;
-            connection.Open();
-        }
+       
 
-        public ConnectedData(string ServerName, string DBName, bool IntegratedSecurity)
-        {
-            this.ServerName = ServerName;
-            this.DBName = DBName;
-            this.IntegratedSecurity = IntegratedSecurity;
-            connection.Open();
-        }
+        public static SqlConnection connection = new SqlConnection();
+        public static SqlCommand command;
+        public static SqlDataReader dataReader;
 
-        private SqlConnection connection = new SqlConnection();
-        private SqlCommand command;
-        private SqlDataReader dataReader;
+        private static int row = 0;
+        private static int column = 0;
 
-        private int row = 0;
-        private int column = 0;
-
-        public string ServerName { get; set; }
-        public string DBName { get; set; }
-        public bool IntegratedSecurity { get; set; } = false;
+        public static string ServerName { get; set; }
+        public static string DBName { get; set; }
+        public static bool IntegratedSecurity { get; set; } = false;
 
 
 
-        public void InitializeConnection()
-        {
-            connection.ConnectionString = @"server=" + ServerName + ";"
-            + "integrated security=" + IntegratedSecurity + ";"
-            + "database=" + DBName + ";";
-        }
+    
 
-        public void SetCommand(string query)
+        public static void SetCommand(string query)
         {
             command = new SqlCommand(query, connection);
         }
 
-        public int[] GetRowAndColumnCount()
+        public static int[] GetRowAndColumnCount()
         {
             dataReader = command.ExecuteReader();
             int row = 0;
@@ -70,12 +52,12 @@ namespace DBManager
             int[] data = new int[2];
             data[0] = row;
             data[1] = column;
-            this.row = row;
-            this.column = column;
+            ConnectedData.row = row;
+            ConnectedData.column = column;
             return data;
         }
 
-        public bool CheckExist(out int countOut)
+        public static bool CheckExist(out int countOut)
         {
             int count = command.ExecuteNonQuery();
             countOut = count;
@@ -83,7 +65,7 @@ namespace DBManager
             else return false;
         }
 
-        public string[,] GetTableData()
+        public static string[,] GetTableData()
         {
             dataReader = command.ExecuteReader();
             int i = 0;
@@ -104,7 +86,7 @@ namespace DBManager
             return data;
         }
 
-        public int UpdateData()
+        public static int UpdateData()
         {
             int count = command.ExecuteNonQuery();
             return count;

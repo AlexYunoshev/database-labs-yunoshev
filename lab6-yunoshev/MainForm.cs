@@ -16,7 +16,7 @@ namespace lab6_yunoshev
     public partial class MainForm : MaterialForm
     {
 
-        static internal ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
+       
         string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public MainForm()
@@ -35,14 +35,14 @@ namespace lab6_yunoshev
         {
             ListViewMedications.Items.Clear();
             query = Commands.SelectMedications();
-            connection.SetCommand(query);
+            ConnectedData.SetCommand(query);
             int[] size = new int[2];
-            size = connection.GetRowAndColumnCount();
+            size = ConnectedData.GetRowAndColumnCount();
             int row = size[0];
             int column = size[1];
             ListViewItem item;
             string[,] data = new string[row, column];
-            data = connection.GetTableData();
+            data = ConnectedData.GetTableData();
 
             for (int i = 0; i < row; i++)
             {
@@ -77,8 +77,8 @@ namespace lab6_yunoshev
                         Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
                         Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
                 MessageBox.Show(query);
-                connection.SetCommand(query);
-                int count = connection.UpdateData();
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
                 PrintMedications();
             }
@@ -93,8 +93,8 @@ namespace lab6_yunoshev
             {
                 query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
                 MessageBox.Show(query);
-                connection.SetCommand(query);
-                int count = connection.UpdateData();
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
                 MessageBox.Show("Удалено: " + count.ToString());
                 PrintMedications();
             }

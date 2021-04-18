@@ -45,9 +45,9 @@ namespace DBManager
         
             string cmd = @"insert into 
             dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id, 
-            mixable_list, preparation_time, filtration_time)
+            preparation_time, filtration_time, mixable_list)
             values(N'" + Name + "', " + Price + ", N'" + Quantity + "', N'" + Volume + "', " + MedicationType + ", " + UsesType + ", " + ManufactureType
-            + ", " + mixableListOut + ", " + prepatationTimeOut + ", " + filtrationTimeOut + ");";
+            + ", " + prepatationTimeOut + ", " + filtrationTimeOut + ", " + mixableListOut + ");";
             return cmd;
         }
 
@@ -59,7 +59,7 @@ namespace DBManager
             medt.type_name,
             uset.type_name,
             mant.type_name,
-            med.mixable_list, med.preparation_time, med.filtration_time
+            med.preparation_time, med.filtration_time, med.mixable_list
             from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
             where med.medications_types_id = medt.id and
             med.uses_types_id = uset.id and

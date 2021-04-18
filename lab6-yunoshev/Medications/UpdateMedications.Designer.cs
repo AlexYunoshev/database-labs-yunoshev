@@ -81,6 +81,7 @@ namespace lab6_yunoshev.Medications
             this.CheckBoxFilterTime.TabIndex = 23;
             this.CheckBoxFilterTime.Text = "Время фильтрации";
             this.CheckBoxFilterTime.UseVisualStyleBackColor = true;
+            this.CheckBoxFilterTime.CheckedChanged += new System.EventHandler(this.CheckBoxFilterTime_CheckedChanged);
             // 
             // TextBoxFiltrationTime
             // 
@@ -113,6 +114,7 @@ namespace lab6_yunoshev.Medications
             this.CheckBoxPrepTime.TabIndex = 21;
             this.CheckBoxPrepTime.Text = "Время приготовления";
             this.CheckBoxPrepTime.UseVisualStyleBackColor = true;
+            this.CheckBoxPrepTime.CheckedChanged += new System.EventHandler(this.CheckBoxPrepTime_CheckedChanged);
             // 
             // TextBoxPrepTime
             // 
@@ -157,6 +159,7 @@ namespace lab6_yunoshev.Medications
             this.ComboBoxManufType.Size = new System.Drawing.Size(145, 49);
             this.ComboBoxManufType.StartIndex = -1;
             this.ComboBoxManufType.TabIndex = 19;
+            this.ComboBoxManufType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxManufType_SelectedIndexChanged);
             // 
             // ComboBoxUsesType
             // 

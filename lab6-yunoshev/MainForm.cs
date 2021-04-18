@@ -23,7 +23,7 @@ namespace lab6_yunoshev
         medt.type_name,
         uset.type_name,
         mant.type_name,
-        med.mixable_list, med.prepatation_time, med.filtration_time
+        med.mixable_list, med.preparation_time, med.filtration_time
         from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
         where med.medications_types_id = medt.id and
         med.uses_types_id = uset.id and
@@ -87,24 +87,26 @@ namespace lab6_yunoshev
         {
             AddMedications addMedications = new AddMedications();
             DialogResult status = addMedications.ShowDialog();
-            if (status != DialogResult.Cancel)
-            {
-                string query2 = @"insert into 
-                dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id)
-                values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
-                Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
-                Models.Medications.ManufactureType + ");";
-                //string query2 = Commands.InsertIntoMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                //    Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType, 
-                //    Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                //MessageBox.Show(query2);
-                connection.SetCommand(query2);
+            //if (status != DialogResult.Cancel)
+            //{
+            //MessageBox.Show("ab");
+            //string query2 = @"insert into 
+            //dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id)
+            //values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
+            //Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
+            //Models.Medications.ManufactureType + ");";
+            string query2 = Commands.InsertIntoMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+            MessageBox.Show(query2);
+            connection.SetCommand(query2);
                 int count = connection.AddData();
                 MessageBox.Show(count.ToString());
                 PrintMedications();
-            }
+            //}
+            //MessageBox.Show("ab");
 
-           
+
 
         }
     }

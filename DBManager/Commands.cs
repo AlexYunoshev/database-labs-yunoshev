@@ -9,19 +9,45 @@ namespace DBManager
     public static class Commands
     {
         public static string InsertIntoMedications(string Name, double Price, string Quantity, string Volume, int MedicationType, int UsesType, int ManufactureType, 
-            string MixableList = "", string PreparationTime = "", string FiltrationTime = "")
+            string MixableList, string PreparationTime , string FiltrationTime)
         {
-   
-            //if (MixableList != "") list.Add("mixable_list");
-            //if (PreparationTime != DateTime.MinValue) list.Add("prepation_time");
-            //if (FiltrationTime != DateTime.MinValue) list.Add("filtration_time");
-        
+            string mixableListOut = "";
+            string prepatationTimeOut = "";
+            string filtrationTimeOut = "";
 
+            if (MixableList == "") 
+                mixableListOut = "NULL";
+            else
+            {
+                mixableListOut = "N'";
+                mixableListOut += MixableList;
+                mixableListOut += "'";
+            }
+
+            if (PreparationTime == "") 
+                prepatationTimeOut = "NULL";
+            else
+            {
+                prepatationTimeOut = "'";
+                prepatationTimeOut += PreparationTime;
+                prepatationTimeOut += "'";
+            }
+
+            if (FiltrationTime == "")
+                filtrationTimeOut = "NULL";
+            else
+            {
+                filtrationTimeOut = "'";
+                filtrationTimeOut += FiltrationTime;
+                filtrationTimeOut += "'";
+
+            }
+        
             string cmd = @"insert into 
             dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id, 
-            mixable_list, prepation_time, filtration_time)
+            mixable_list, preparation_time, filtration_time)
             values(N'" + Name + "', " + Price + ", N'" + Quantity + "', N'" + Volume + "', " + MedicationType + ", " + UsesType + ", " + ManufactureType
-            + "N'" + MixableList + "', " + PreparationTime + ", " + FiltrationTime + ");";
+            + ", " + mixableListOut + ", " + prepatationTimeOut + ", " + filtrationTimeOut + ");";
             return cmd;
         }
     }

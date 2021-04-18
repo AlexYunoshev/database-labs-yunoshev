@@ -43,13 +43,21 @@ namespace lab6_yunoshev
         private void CheckBoxPrepTime_CheckedChanged(object sender, EventArgs e)
         {
             if (CheckBoxPrepTime.Checked == true) TextBoxPrepTime.Enabled = true;
-            else TextBoxPrepTime.Enabled = false;
+            else {
+                TextBoxPrepTime.Text = "";
+                TextBoxPrepTime.Enabled = false;
+            }
+            
         }
 
         private void CheckBoxFilterTime_CheckedChanged(object sender, EventArgs e)
         {
             if (CheckBoxFilterTime.Checked == true) TextBoxFiltrationTime.Enabled = true;
-            else TextBoxFiltrationTime.Enabled = false;
+            else {
+                TextBoxFiltrationTime.Text = "";
+                TextBoxFiltrationTime.Enabled = false;
+            }
+            
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)

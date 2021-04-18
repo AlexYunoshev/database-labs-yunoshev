@@ -82,7 +82,6 @@ namespace DBManager
             }
             dataReader.Close();
             return data;
-
         }
 
         public static string[,] GetTableData()
@@ -110,7 +109,5 @@ namespace DBManager
             int count = command.ExecuteNonQuery();
             return count;
         }
-
     }
-
 }

@@ -144,12 +144,6 @@ namespace DBManager
             return cmd;    
         }
 
-        //public static string SelectMedicationsWhereName(string name)
-        //{
-        //    string cmd = @"select * from dbo.medications where medications_name = N'" + name + "'";
-        //    return cmd;
-        //}
-
         public static string DeleteMedications(int id1 = -1, int id2 = -1, string name = "")
         {
             string cmd = "";

@@ -18,7 +18,8 @@ namespace Models
         //private static int medicationType;
         //private static int usesType;
         //private static int manufactureType;
-
+        public static int id1 { get; set; }
+        public static int id2 { get; set; }
         public static string Name { get; set; }
         public static string Quantity { get; set; }
         public static string Volume { get; set; }

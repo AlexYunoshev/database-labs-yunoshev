@@ -162,6 +162,7 @@ namespace lab6_yunoshev
                 Models.Medications.FiltrationTime = TextBoxFiltrationTime.Text;
                 Models.Medications.MixableList = TextBoxMixableList.Text;
                 this.Close();
+                this.DialogResult = DialogResult.OK;
             }
         }
 

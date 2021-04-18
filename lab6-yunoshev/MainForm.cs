@@ -16,11 +16,7 @@ namespace lab6_yunoshev
     {
 
         ConnectedData connection = new ConnectedData(@"Data Source = (LocalDB)\MSSQLLocalDB;Initial Catalog = yunoshevdb; Integrated Security = True;");
-
-
-        string query;
-        
-
+        string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public MainForm()
         {
@@ -64,7 +60,6 @@ namespace lab6_yunoshev
                         item.SubItems.Add(data[i, j]);
                 }
                 ListViewMedications.Items.Add(item);
-
             }
         }
 
@@ -78,27 +73,18 @@ namespace lab6_yunoshev
         {
             AddMedications addMedications = new AddMedications();
             DialogResult status = addMedications.ShowDialog();
-            //if (status != DialogResult.Cancel)
-            //{
-            //MessageBox.Show("ab");
-            //string query2 = @"insert into 
-            //dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id)
-            //values(N'" + Models.Medications.Name + "', " + Models.Medications.Price + ", N'" + Models.Medications.Quantity + "', N'" +
-            //Models.Medications.Volume + "', " + Models.Medications.MedicationType + ", " + Models.Medications.UsesType + ", " +
-            //Models.Medications.ManufactureType + ");";
-            query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
-                Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-            MessageBox.Show(query);
-            connection.SetCommand(query);
+            if (status == DialogResult.OK)
+            {
+
+                query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                        Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                        Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                MessageBox.Show(query);
+                connection.SetCommand(query);
                 int count = connection.AddData();
                 MessageBox.Show(count.ToString());
                 PrintMedications();
-            //}
-            //MessageBox.Show("ab");
-
-
-
+            }
         }
     }
 }

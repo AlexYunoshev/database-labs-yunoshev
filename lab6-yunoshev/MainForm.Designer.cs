@@ -36,7 +36,6 @@ namespace lab6_yunoshev
             this.ButtonEditMedication = new MaterialSkin.Controls.MaterialButton();
             this.ButtonDeleteMedication = new MaterialSkin.Controls.MaterialButton();
             this.ButtonAddMedication = new MaterialSkin.Controls.MaterialButton();
-            this.pictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.LabelSearch = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxSearch = new MaterialSkin.Controls.MaterialTextBox();
             this.ComboBoxSort = new MaterialSkin.Controls.MaterialComboBox();
@@ -63,7 +62,6 @@ namespace lab6_yunoshev
             this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
             this.materialTabControl1.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // materialTabControl1
@@ -94,7 +92,6 @@ namespace lab6_yunoshev
             this.tabPageMedications.Controls.Add(this.ButtonEditMedication);
             this.tabPageMedications.Controls.Add(this.ButtonDeleteMedication);
             this.tabPageMedications.Controls.Add(this.ButtonAddMedication);
-            this.tabPageMedications.Controls.Add(this.pictureBoxSearch);
             this.tabPageMedications.Controls.Add(this.LabelSearch);
             this.tabPageMedications.Controls.Add(this.TextBoxSearch);
             this.tabPageMedications.Controls.Add(this.ComboBoxSort);
@@ -170,18 +167,6 @@ namespace lab6_yunoshev
             this.ButtonAddMedication.UseVisualStyleBackColor = true;
             this.ButtonAddMedication.Click += new System.EventHandler(this.ButtonAddMedication_Click);
             // 
-            // pictureBoxSearch
-            // 
-            this.pictureBoxSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxSearch.Image = global::lab6_yunoshev.Properties.Resources.search;
-            this.pictureBoxSearch.Location = new System.Drawing.Point(600, 6);
-            this.pictureBoxSearch.Name = "pictureBoxSearch";
-            this.pictureBoxSearch.Size = new System.Drawing.Size(34, 34);
-            this.pictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSearch.TabIndex = 4;
-            this.pictureBoxSearch.TabStop = false;
-            this.pictureBoxSearch.Click += new System.EventHandler(this.pictureBoxSearch_Click);
-            // 
             // LabelSearch
             // 
             this.LabelSearch.Depth = 0;
@@ -205,10 +190,11 @@ namespace lab6_yunoshev
             this.TextBoxSearch.MouseState = MaterialSkin.MouseState.OUT;
             this.TextBoxSearch.Multiline = false;
             this.TextBoxSearch.Name = "TextBoxSearch";
-            this.TextBoxSearch.Size = new System.Drawing.Size(339, 36);
+            this.TextBoxSearch.Size = new System.Drawing.Size(388, 36);
             this.TextBoxSearch.TabIndex = 2;
             this.TextBoxSearch.Text = "";
             this.TextBoxSearch.UseTallSize = false;
+            this.TextBoxSearch.TextChanged += new System.EventHandler(this.TextBoxSearch_TextChanged);
             // 
             // ComboBoxSort
             // 
@@ -442,7 +428,6 @@ namespace lab6_yunoshev
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.materialTabControl1.ResumeLayout(false);
             this.tabPageMedications.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,7 +459,6 @@ namespace lab6_yunoshev
         private MaterialSkin.Controls.MaterialComboBox ComboBoxSort;
         private MaterialSkin.Controls.MaterialTextBox TextBoxSearch;
         private MaterialSkin.Controls.MaterialLabel LabelSearch;
-        private System.Windows.Forms.PictureBox pictureBoxSearch;
         private MaterialSkin.Controls.MaterialButton ButtonAddMedication;
         private MaterialSkin.Controls.MaterialButton ButtonDeleteMedication;
         private MaterialSkin.Controls.MaterialButton ButtonEditMedication;

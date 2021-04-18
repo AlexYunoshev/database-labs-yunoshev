@@ -118,7 +118,7 @@ namespace DBManager
 
             if(name != "")
             {
-                cmd += " and medications_name = N'" + name + "'";
+                cmd += " and medications_name like N'%" + name + "%'";
             }
             
             if (sort == MedicationsSortTypes.IdDesc)

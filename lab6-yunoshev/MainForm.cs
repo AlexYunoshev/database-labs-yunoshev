@@ -129,7 +129,9 @@ namespace lab6_yunoshev
             else if (ComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
         }
 
-        private void pictureBoxSearch_Click(object sender, EventArgs e)
+
+
+        private void TextBoxSearch_TextChanged(object sender, EventArgs e)
         {
             if (TextBoxSearch.Text != "")
             {

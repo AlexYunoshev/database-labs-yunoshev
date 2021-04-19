@@ -203,7 +203,20 @@ namespace lab6_yunoshev
 
         private void StorehouseFButtonAdd_Click(object sender, EventArgs e)
         {
-             
+            AddStorehouseFields addStorehouseFields = new AddStorehouseFields();
+            DialogResult status = addStorehouseFields.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
+                    Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
+                    Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
+                    Models.StorehouseField.ShelfLife);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
+            }
         }
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)

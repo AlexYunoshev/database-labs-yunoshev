@@ -44,7 +44,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.LabelStatusMId = new MaterialSkin.Controls.MaterialLabel();
             this.ButtonAcceptMId = new MaterialSkin.Controls.MaterialButton();
             this.NumericMId = new System.Windows.Forms.NumericUpDown();
-            this.CheckBoxMId = new MaterialSkin.Controls.MaterialCheckbox();
+            this.LabelMId = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.NumericRId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericMId)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +54,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxStatusRId.ForeColor = System.Drawing.Color.Red;
             this.TextBoxStatusRId.Location = new System.Drawing.Point(208, 199);
             this.TextBoxStatusRId.Name = "TextBoxStatusRId";
+            this.TextBoxStatusRId.ReadOnly = true;
             this.TextBoxStatusRId.Size = new System.Drawing.Size(132, 23);
             this.TextBoxStatusRId.TabIndex = 61;
             this.TextBoxStatusRId.Text = "Не выбрано";
@@ -91,6 +92,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptRId.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAcceptRId.UseAccentColor = false;
             this.ButtonAcceptRId.UseVisualStyleBackColor = true;
+            this.ButtonAcceptRId.Click += new System.EventHandler(this.ButtonAcceptRId_Click);
             // 
             // NumericRId
             // 
@@ -119,7 +121,6 @@ namespace lab6_yunoshev.StorehouseFields
             // 
             this.CheckBoxRId.AutoSize = true;
             this.CheckBoxRId.Depth = 0;
-            this.CheckBoxRId.Enabled = false;
             this.CheckBoxRId.Location = new System.Drawing.Point(6, 157);
             this.CheckBoxRId.Margin = new System.Windows.Forms.Padding(0);
             this.CheckBoxRId.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -130,13 +131,13 @@ namespace lab6_yunoshev.StorehouseFields
             this.CheckBoxRId.TabIndex = 57;
             this.CheckBoxRId.Text = "id запроса на склад";
             this.CheckBoxRId.UseVisualStyleBackColor = true;
+            this.CheckBoxRId.CheckedChanged += new System.EventHandler(this.CheckBoxRId_CheckedChanged);
             // 
             // TextBoxShelfLife
             // 
             this.TextBoxShelfLife.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxShelfLife.Depth = 0;
-            this.TextBoxShelfLife.Enabled = false;
-            this.TextBoxShelfLife.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxShelfLife.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxShelfLife.Hint = "Употребить до ГГГГ-ММ-ДД";
             this.TextBoxShelfLife.Location = new System.Drawing.Point(6, 362);
             this.TextBoxShelfLife.MaxLength = 10;
@@ -151,8 +152,7 @@ namespace lab6_yunoshev.StorehouseFields
             // 
             this.TextBoxManufactureDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxManufactureDate.Depth = 0;
-            this.TextBoxManufactureDate.Enabled = false;
-            this.TextBoxManufactureDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxManufactureDate.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxManufactureDate.Hint = "Дата изготовления ГГГГ-ММ-ДД";
             this.TextBoxManufactureDate.Location = new System.Drawing.Point(6, 306);
             this.TextBoxManufactureDate.MaxLength = 10;
@@ -167,8 +167,7 @@ namespace lab6_yunoshev.StorehouseFields
             // 
             this.TextBoxCriticalQuantity.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxCriticalQuantity.Depth = 0;
-            this.TextBoxCriticalQuantity.Enabled = false;
-            this.TextBoxCriticalQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxCriticalQuantity.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxCriticalQuantity.Hint = "Критическое количество";
             this.TextBoxCriticalQuantity.Location = new System.Drawing.Point(132, 250);
             this.TextBoxCriticalQuantity.MaxLength = 10;
@@ -183,8 +182,7 @@ namespace lab6_yunoshev.StorehouseFields
             // 
             this.TextBoxQuantity.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxQuantity.Depth = 0;
-            this.TextBoxQuantity.Enabled = false;
-            this.TextBoxQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxQuantity.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxQuantity.Hint = "Количество";
             this.TextBoxQuantity.Location = new System.Drawing.Point(6, 250);
             this.TextBoxQuantity.MaxLength = 10;
@@ -214,6 +212,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonReset.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonReset.UseAccentColor = false;
             this.ButtonReset.UseVisualStyleBackColor = true;
+            this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // ButtonAdd
             // 
@@ -234,12 +233,14 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAdd.UseAccentColor = false;
             this.ButtonAdd.UseVisualStyleBackColor = true;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // TextBoxStatusMId
             // 
             this.TextBoxStatusMId.ForeColor = System.Drawing.Color.Red;
             this.TextBoxStatusMId.Location = new System.Drawing.Point(208, 117);
             this.TextBoxStatusMId.Name = "TextBoxStatusMId";
+            this.TextBoxStatusMId.ReadOnly = true;
             this.TextBoxStatusMId.Size = new System.Drawing.Size(132, 23);
             this.TextBoxStatusMId.TabIndex = 68;
             this.TextBoxStatusMId.Text = "Не выбрано";
@@ -264,7 +265,6 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptMId.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAcceptMId.Depth = 0;
             this.ButtonAcceptMId.DrawShadows = true;
-            this.ButtonAcceptMId.Enabled = false;
             this.ButtonAcceptMId.HighEmphasis = true;
             this.ButtonAcceptMId.Icon = null;
             this.ButtonAcceptMId.Location = new System.Drawing.Point(81, 118);
@@ -277,10 +277,10 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptMId.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAcceptMId.UseAccentColor = false;
             this.ButtonAcceptMId.UseVisualStyleBackColor = true;
+            this.ButtonAcceptMId.Click += new System.EventHandler(this.ButtonAcceptMId_Click);
             // 
             // NumericMId
             // 
-            this.NumericMId.Enabled = false;
             this.NumericMId.Location = new System.Drawing.Point(13, 118);
             this.NumericMId.Maximum = new decimal(new int[] {
             999999,
@@ -301,32 +301,28 @@ namespace lab6_yunoshev.StorehouseFields
             0,
             0});
             // 
-            // CheckBoxMId
+            // LabelMId
             // 
-            this.CheckBoxMId.AutoSize = true;
-            this.CheckBoxMId.Depth = 0;
-            this.CheckBoxMId.Enabled = false;
-            this.CheckBoxMId.Location = new System.Drawing.Point(6, 75);
-            this.CheckBoxMId.Margin = new System.Windows.Forms.Padding(0);
-            this.CheckBoxMId.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.CheckBoxMId.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CheckBoxMId.Name = "CheckBoxMId";
-            this.CheckBoxMId.Ripple = true;
-            this.CheckBoxMId.Size = new System.Drawing.Size(184, 37);
-            this.CheckBoxMId.TabIndex = 64;
-            this.CheckBoxMId.Text = "id запроса на склад";
-            this.CheckBoxMId.UseVisualStyleBackColor = true;
+            this.LabelMId.Depth = 0;
+            this.LabelMId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMId.Location = new System.Drawing.Point(13, 82);
+            this.LabelMId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMId.Name = "LabelMId";
+            this.LabelMId.Size = new System.Drawing.Size(177, 20);
+            this.LabelMId.TabIndex = 69;
+            this.LabelMId.Text = "id лекарства";
+            this.LabelMId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddStorehouseFields
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 473);
+            this.Controls.Add(this.LabelMId);
             this.Controls.Add(this.TextBoxStatusMId);
             this.Controls.Add(this.LabelStatusMId);
             this.Controls.Add(this.ButtonAcceptMId);
             this.Controls.Add(this.NumericMId);
-            this.Controls.Add(this.CheckBoxMId);
             this.Controls.Add(this.ButtonReset);
             this.Controls.Add(this.ButtonAdd);
             this.Controls.Add(this.TextBoxStatusRId);
@@ -370,6 +366,6 @@ namespace lab6_yunoshev.StorehouseFields
         private MaterialSkin.Controls.MaterialLabel LabelStatusMId;
         private MaterialSkin.Controls.MaterialButton ButtonAcceptMId;
         private System.Windows.Forms.NumericUpDown NumericMId;
-        private MaterialSkin.Controls.MaterialCheckbox CheckBoxMId;
+        private MaterialSkin.Controls.MaterialLabel LabelMId;
     }
 }

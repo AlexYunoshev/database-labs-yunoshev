@@ -208,19 +208,16 @@ namespace DBManager
             return cmd;
         }
 
+        public static string InsertStorehouseF(int medicationsId, int Quantity, int CriticalQuantity, string StorehouseRequestId, string ManufactureDate, string ShelfLife)
+        {
+            string cmd = @"insert into 
+            dbo.storehouse_fields(medications_id, critical_quantity, storehouse_requests_id, quantity, manufacture_date, shelf_life)
+            values(" + medicationsId + ", " + CriticalQuantity + ", " + StorehouseRequestId + ", " + Quantity + ", '" + ManufactureDate + "', '" + ShelfLife + "')";
+            return cmd;
+        }
+
         public static string UpdateStorehouseF(int id, int Quantity, int CriticalQuantity, string StorehouseRequestId, string ManufactureDate, string ShelfLife)
         {
-            //string storehouseRequestIdOut = "";
-            //if (MixableList == "")
-            //    mixableListOut = "NULL";
-            //else
-            //{
-            //    mixableListOut = "N'";
-            //    mixableListOut += MixableList;
-            //    mixableListOut += "'";
-            //}
-
-
             string cmd = @"update dbo.storehouse_fields set
             quantity = " + Quantity + ", " +
             "critical_quantity = " + CriticalQuantity + ", " + 
@@ -228,7 +225,6 @@ namespace DBManager
             "shelf_life = '" + ShelfLife + "', " + 
             "storehouse_requests_id = " + StorehouseRequestId +
             " where id = " + id + ";";
-
             return cmd;
         }
     }

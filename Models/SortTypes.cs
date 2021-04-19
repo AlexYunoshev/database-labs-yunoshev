@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public enum MedicationsSortTypes
+    public enum SortTypes
     {
         IdAsc,
         IdDesc,

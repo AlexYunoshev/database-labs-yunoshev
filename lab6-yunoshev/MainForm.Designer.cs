@@ -527,7 +527,7 @@ namespace lab6_yunoshev
             // columnHeaderShelfDate
             // 
             this.columnHeaderShelfDate.Text = "Употребить до";
-            this.columnHeaderShelfDate.Width = 135;
+            this.columnHeaderShelfDate.Width = 160;
             // 
             // columnHeaderStorehouseRId
             // 

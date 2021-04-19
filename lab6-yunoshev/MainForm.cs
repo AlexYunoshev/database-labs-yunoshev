@@ -35,10 +35,17 @@ namespace lab6_yunoshev
             this.Text = MainTabControl.TabPages[0].Text;
             //this.Text = "Аптека                                  Connection_status: ";
             //this.Text += ConnectedData.connection.State;
-            PrintMedications(MedicationsSortTypes.IdAsc);
+            MedicationsPrint(SortTypes.IdAsc);
+            StorehouseFPrint(SortTypes.IdAsc);
         }
 
-        public void PrintMedications(MedicationsSortTypes sort, string name = "")
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = MainTabControl.SelectedIndex;
+            this.Text = MainTabControl.TabPages[index].Text;     
+        }
+
+        public void MedicationsPrint(SortTypes sort, string name = "")
         {
             MedicationsListView.Items.Clear();
             if (name != "") query = Commands.SelectMedications(sort, name);
@@ -83,7 +90,7 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
-                PrintMedications(MedicationsSortTypes.IdAsc);
+                MedicationsPrint(SortTypes.IdAsc);
             }
         }
 
@@ -99,7 +106,7 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Удалено: " + count.ToString());
-                PrintMedications(MedicationsSortTypes.IdAsc);
+                MedicationsPrint(SortTypes.IdAsc);
             }
         }
 
@@ -116,34 +123,61 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Обновлено: " + count.ToString());
-                PrintMedications(MedicationsSortTypes.IdAsc);
+                MedicationsPrint(SortTypes.IdAsc);
             }
         }
 
         private void MedicationsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MedicationsComboBoxSort.SelectedIndex == 0) PrintMedications(MedicationsSortTypes.IdAsc);
-            else if (MedicationsComboBoxSort.SelectedIndex == 1) PrintMedications(MedicationsSortTypes.IdDesc);
-            else if (MedicationsComboBoxSort.SelectedIndex == 2) PrintMedications(MedicationsSortTypes.NameAsc);
-            else if (MedicationsComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
+            if (MedicationsComboBoxSort.SelectedIndex == 0) MedicationsPrint(SortTypes.IdAsc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 1) MedicationsPrint(SortTypes.IdDesc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 2) MedicationsPrint(SortTypes.NameAsc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 3) MedicationsPrint(SortTypes.NameDesc);
         }
 
         private void MedicationsTextBoxSearch_TextChanged(object sender, EventArgs e)
         {
             if (MedicationsTextBoxSearch.Text != "")
             {
-                PrintMedications(MedicationsSortTypes.IdAsc, MedicationsTextBoxSearch.Text);
+                MedicationsPrint(SortTypes.IdAsc, MedicationsTextBoxSearch.Text);
             }
             else
             {
-                PrintMedications(MedicationsSortTypes.IdAsc);
+                MedicationsPrint(SortTypes.IdAsc);
             }
         }
 
-        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        public void StorehouseFPrint(SortTypes sort, string name = "")
         {
-            int index = MainTabControl.SelectedIndex;
-            this.Text = MainTabControl.TabPages[index].Text;
+            StorehouseFListView.Items.Clear();
+            if (name != "") query = Commands.SelectStorehouseF(sort, name);
+            else query = Commands.SelectStorehouseF(sort);
+            ConnectedData.SetCommand(query);
+            int[] size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            int row = size[0];
+            int column = size[1];
+            ListViewItem item;
+            string[,] data = new string[row, column];
+            data = ConnectedData.GetTableData();
+
+            for (int i = 0; i < row; i++)
+            {
+                item = new ListViewItem(data[i, 0]);
+
+                for (int j = 1; j < column; j++) 
+                {
+                    if (j == 5 || j == 6)
+                    {
+                        DateTime value = Convert.ToDateTime(data[i, j]);
+                        item.SubItems.Add(value.ToLongDateString());
+                    }
+
+                    else
+                        item.SubItems.Add(data[i, j]);
+                } 
+                StorehouseFListView.Items.Add(item);
+            }
         }
     }
 }

@@ -103,7 +103,7 @@ namespace DBManager
             return cmd;
         }
 
-        public static string SelectMedications(MedicationsSortTypes sort, string name = "")
+        public static string SelectMedications(SortTypes sort, string name = "")
         {
             string cmd = @"select med.id, med.medications_name, med.price,
                 med.quantity, med.volume,
@@ -118,19 +118,19 @@ namespace DBManager
 
             if(name != "")
             {
-                cmd += " and medications_name like N'%" + name + "%'";
+                cmd += " and med.medications_name like N'%" + name + "%'";
             }
             
-            if (sort == MedicationsSortTypes.IdDesc)
+            if (sort == SortTypes.IdDesc)
             {
                 cmd += " order by med.id desc";
             }
-            else if (sort == MedicationsSortTypes.NameAsc)
+            else if (sort == SortTypes.NameAsc)
             {
                 cmd += " order by med.medications_name asc";
             }
 
-            else if (sort == MedicationsSortTypes.NameDesc)
+            else if (sort == SortTypes.NameDesc)
             {
                 cmd += " order by med.medications_name desc";
             }
@@ -163,6 +163,36 @@ namespace DBManager
             {
                 cmd = @"delete from dbo.medications where id >= " + id1 + " and id <= " + id2 + " and medications_name = N'" + name + "';";
             }
+            return cmd;
+        }
+
+        public static string SelectStorehouseF(SortTypes sort, string name = "")
+        {
+            string cmd = @"select sf.id, sf.medications_id, med.medications_name, 
+            sf.quantity, sf.critical_quantity, sf.manufacture_date, 
+            sf.shelf_life, sf.storehouse_requests_id 
+            from dbo.storehouse_fields sf, dbo.medications med
+            where sf.medications_id = med.id ";
+
+            if (name != "")
+            {
+                cmd += " and med.medications_name like N'%" + name + "%'";
+            }
+
+            if (sort == SortTypes.IdDesc)
+            {
+                cmd += " order by sf.id desc";
+            }
+            else if (sort == SortTypes.NameAsc)
+            {
+                cmd += " order by med.medications_name asc";
+            }
+
+            else if (sort == SortTypes.NameDesc)
+            {
+                cmd += " order by med.medications_name desc";
+            }
+
             return cmd;
         }
     }

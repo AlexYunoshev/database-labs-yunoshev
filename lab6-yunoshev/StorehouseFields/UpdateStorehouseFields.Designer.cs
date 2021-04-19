@@ -68,6 +68,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonUpdate.UseAccentColor = false;
             this.ButtonUpdate.UseVisualStyleBackColor = true;
+            this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // TextBoxStatusId
             // 
@@ -171,7 +172,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxShelfLife.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxShelfLife.Hint = "Употребить до ГГГГ-ММ-ДД";
             this.TextBoxShelfLife.Location = new System.Drawing.Point(15, 299);
-            this.TextBoxShelfLife.MaxLength = 8;
+            this.TextBoxShelfLife.MaxLength = 10;
             this.TextBoxShelfLife.MouseState = MaterialSkin.MouseState.OUT;
             this.TextBoxShelfLife.Multiline = false;
             this.TextBoxShelfLife.Name = "TextBoxShelfLife";
@@ -247,6 +248,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptRId.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAcceptRId.UseAccentColor = false;
             this.ButtonAcceptRId.UseVisualStyleBackColor = true;
+            this.ButtonAcceptRId.Click += new System.EventHandler(this.ButtonAcceptRId_Click);
             // 
             // NumericRId
             // 

@@ -17,6 +17,8 @@ namespace lab6_yunoshev.StorehouseFields
     public partial class UpdateStorehouseFields : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+        private string[] data = new string[7];
+        private string[] data2 = new string[4];
         public UpdateStorehouseFields()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace lab6_yunoshev.StorehouseFields
         {
             int id = Convert.ToInt32(NumericId.Value);
             string query = Commands.SelectStorehouseFWhereId(id);
-            string[] data = new string[7];
+            
             ConnectedData.SetCommand(query);
             bool status = ConnectedData.CheckExist();
             if (status == true)
@@ -66,10 +68,14 @@ namespace lab6_yunoshev.StorehouseFields
                     CheckBoxRId.Checked = true;
                     NumericRId.Enabled = true;
                     ButtonAcceptRId.Enabled = true;
+                    TextBoxStatusRId.ForeColor = Color.Green;
+                    TextBoxStatusRId.Text = "Выбрано";
                 }
                 else
                 {
                     CheckBoxRId.Checked = false;
+                    TextBoxStatusRId.ForeColor = Color.Red;
+                    TextBoxStatusRId.Text = "Не выбрано";
                 }
 
                 this.Refresh();
@@ -79,31 +85,16 @@ namespace lab6_yunoshev.StorehouseFields
             {
                 TextBoxStatusId.Text = "Не выбрано";
                 TextBoxStatusId.ForeColor = Color.Red;
-                //TextBoxName.ResetText();
-                //TextBoxPrice.ResetText();
-                //TextBoxQuantity.ResetText();
-                //TextBoxVolume.ResetText();
-                //ComboBoxMedType.SelectedIndex = -1;
-                //ComboBoxUsesType.SelectedIndex = -1;
-                //ComboBoxManufType.SelectedIndex = -1;
-                //CheckBoxFilterTime.Checked = false;
-                //CheckBoxPrepTime.Checked = false;
-                //TextBoxPrepTime.ResetText();
-                //TextBoxFiltrationTime.ResetText();
-                //TextBoxMixableList.ResetText();
-                //ButtonUpdate.Enabled = false;
-                //TextBoxName.Enabled = false;
-                //TextBoxPrice.Enabled = false;
-                //TextBoxQuantity.Enabled = false;
-                //TextBoxVolume.Enabled = false;
-                //ComboBoxMedType.Enabled = false;
-                //ComboBoxUsesType.Enabled = false;
-                //ComboBoxManufType.Enabled = false;
-                //CheckBoxPrepTime.Enabled = false;
-                //CheckBoxFilterTime.Enabled = false;
-                //TextBoxPrepTime.Enabled = false;
-                //TextBoxFiltrationTime.Enabled = false;
-                //TextBoxMixableList.Enabled = false;
+                ButtonUpdate.Enabled = false;
+                TextBoxQuantity.Enabled = false;
+                TextBoxCriticalQuantity.Enabled = false;
+                TextBoxManufactureDate.Enabled = false;
+                TextBoxShelfLife.Enabled = false;
+                CheckBoxRId.Checked = false;
+                CheckBoxRId.Enabled = false;
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+
                 this.Refresh();
                 MessageBox.Show("Записи с таким id не существует!");
             }
@@ -121,6 +112,67 @@ namespace lab6_yunoshev.StorehouseFields
                 NumericRId.Value = 1;
                 NumericRId.Enabled = false;
                 ButtonAcceptRId.Enabled = false;
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+            }
+        }
+
+        private void ButtonAcceptRId_Click(object sender, EventArgs e)
+        {
+            int RId = Convert.ToInt32(NumericRId.Value);
+            string query = Commands.SelectStorehouseRWhereId(RId);
+      
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
+            {
+                
+                data2 = ConnectedData.GetRowFromTable();
+                if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
+                {
+                    TextBoxStatusRId.ForeColor = Color.Green;
+                    TextBoxStatusRId.Text = "Выбрано";
+                }
+                else
+                {
+                    TextBoxStatusRId.ForeColor = Color.Red;
+                    TextBoxStatusRId.Text = "Не выбрано";
+                    MessageBox.Show("Записи с таким id для такого лекарства не существует!");
+                }
+                
+            }
+            else
+            {
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+                MessageBox.Show("Записи с таким id не существует!");
+            }
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (TextBoxQuantity.Text.Length == 0 || TextBoxCriticalQuantity.Text.Length == 0 ||
+                TextBoxManufactureDate.Text.Length == 0 || TextBoxShelfLife.Text.Length == 0 ||
+                (CheckBoxRId.Checked == true && TextBoxStatusRId.Text == "Не выбрано"))
+            {
+                MessageBox.Show("Проверьте корректность введенных данных!");
+            }
+
+            else
+            {
+                Models.StorehouseField.id1 = Convert.ToInt32(NumericId.Value);
+                Models.StorehouseField.Quantity = Convert.ToInt32(TextBoxQuantity.Text);
+                Models.StorehouseField.Critical_quantity = Convert.ToInt32(TextBoxCriticalQuantity.Text);
+                Models.StorehouseField.ManufactureDate = TextBoxManufactureDate.Text;
+                Models.StorehouseField.ShelfLife = TextBoxShelfLife.Text;
+                if (CheckBoxRId.Checked == true)
+                {
+                    Models.StorehouseField.StorehouseRequestsId = NumericRId.Value.ToString();
+                }
+                else Models.StorehouseField.StorehouseRequestsId = "NULL";
+
+                this.Close();
+                this.DialogResult = DialogResult.OK;
             }
         }
     }

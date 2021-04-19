@@ -201,5 +201,35 @@ namespace DBManager
             string cmd = @"select * from dbo.storehouse_fields where id = " + id;
             return cmd;
         }
+
+        public static string SelectStorehouseRWhereId(int id)
+        {
+            string cmd = @"select * from dbo.storehouse_requests where id = " + id;
+            return cmd;
+        }
+
+        public static string UpdateStorehouseF(int id, int Quantity, int CriticalQuantity, string StorehouseRequestId, string ManufactureDate, string ShelfLife)
+        {
+            //string storehouseRequestIdOut = "";
+            //if (MixableList == "")
+            //    mixableListOut = "NULL";
+            //else
+            //{
+            //    mixableListOut = "N'";
+            //    mixableListOut += MixableList;
+            //    mixableListOut += "'";
+            //}
+
+
+            string cmd = @"update dbo.storehouse_fields set
+            quantity = " + Quantity + ", " +
+            "critical_quantity = " + CriticalQuantity + ", " + 
+            "manufacture_date = '" + ManufactureDate + "', " + 
+            "shelf_life = '" + ShelfLife + "', " + 
+            "storehouse_requests_id = " + StorehouseRequestId +
+            " where id = " + id + ";";
+
+            return cmd;
+        }
     }
 }

@@ -8,16 +8,6 @@ namespace Models
 {
     public static class Medications
     {
-        //private static string name;
-        //private static string quantity;
-        //private static string volume;
-        //private static string preparationTime;
-        //private static string filterTime;
-        //private static string listComponents;
-        //private static double price;
-        //private static int medicationType;
-        //private static int usesType;
-        //private static int manufactureType;
         public static int id1 { get; set; }
         public static int id2 { get; set; }
         public static string Name { get; set; }

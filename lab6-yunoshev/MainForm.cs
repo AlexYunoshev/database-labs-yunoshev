@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DBManager;
 using lab6_yunoshev.Medications;
+using lab6_yunoshev.StorehouseFields;
 using Models;
 
 namespace lab6_yunoshev
@@ -198,6 +199,34 @@ namespace lab6_yunoshev
             {
                 StorehouseFPrint(SortTypes.IdAsc);
             }
+        }
+
+        private void StorehouseFButtonAdd_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void StorehouseFButtonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StorehouseFButtonEdit_Click(object sender, EventArgs e)
+        {
+            UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields();
+            DialogResult status = updateStorehouseFields.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                //query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                //       Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                //       Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Обновлено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
+            }
+
         }
     }
 }

@@ -368,6 +368,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonEdit.UseAccentColor = false;
             this.StorehouseFButtonEdit.UseVisualStyleBackColor = true;
+            this.StorehouseFButtonEdit.Click += new System.EventHandler(this.StorehouseFButtonEdit_Click);
             // 
             // StorehouseFButtonDelete
             // 
@@ -388,6 +389,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonDelete.UseAccentColor = false;
             this.StorehouseFButtonDelete.UseVisualStyleBackColor = true;
+            this.StorehouseFButtonDelete.Click += new System.EventHandler(this.StorehouseFButtonDelete_Click);
             // 
             // StorehouseFButtonAdd
             // 
@@ -408,6 +410,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonAdd.UseAccentColor = false;
             this.StorehouseFButtonAdd.UseVisualStyleBackColor = true;
+            this.StorehouseFButtonAdd.Click += new System.EventHandler(this.StorehouseFButtonAdd_Click);
             // 
             // StorehouseFLabelSearch
             // 

@@ -59,14 +59,6 @@ namespace lab6_yunoshev
             this.StorehouseFTextBoxSearch = new MaterialSkin.Controls.MaterialTextBox();
             this.StorehouseFComboBoxSort = new MaterialSkin.Controls.MaterialComboBox();
             this.StorehouseFListView = new MaterialSkin.Controls.MaterialListView();
-            this.tabPageInventory = new System.Windows.Forms.TabPage();
-            this.tabPagePatients = new System.Windows.Forms.TabPage();
-            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
-            this.tabPagePrescriptons = new System.Windows.Forms.TabPage();
-            this.tabPageOrders = new System.Windows.Forms.TabPage();
-            this.tabPageSettings = new System.Windows.Forms.TabPage();
-            this.tabPageInformation = new System.Windows.Forms.TabPage();
-            this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
             this.columnHeaderId = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMedicationsId = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMedicationsName = new System.Windows.Forms.ColumnHeader();
@@ -75,6 +67,14 @@ namespace lab6_yunoshev
             this.columnHeaderManufactureDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderShelfDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderStorehouseRId = new System.Windows.Forms.ColumnHeader();
+            this.tabPageInventory = new System.Windows.Forms.TabPage();
+            this.tabPagePatients = new System.Windows.Forms.TabPage();
+            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
+            this.tabPagePrescriptons = new System.Windows.Forms.TabPage();
+            this.tabPageOrders = new System.Windows.Forms.TabPage();
+            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.tabPageInformation = new System.Windows.Forms.TabPage();
+            this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
             this.MainTabControl.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
             this.tabPageStorehouse.SuspendLayout();
@@ -495,6 +495,45 @@ namespace lab6_yunoshev
             this.StorehouseFListView.UseCompatibleStateImageBehavior = false;
             this.StorehouseFListView.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeaderId
+            // 
+            this.columnHeaderId.Text = "id";
+            // 
+            // columnHeaderMedicationsId
+            // 
+            this.columnHeaderMedicationsId.Text = "id лекарства";
+            this.columnHeaderMedicationsId.Width = 120;
+            // 
+            // columnHeaderMedicationsName
+            // 
+            this.columnHeaderMedicationsName.Text = "Название лекарства";
+            this.columnHeaderMedicationsName.Width = 170;
+            // 
+            // columnHeaderQuantity
+            // 
+            this.columnHeaderQuantity.Text = "Кол-во";
+            this.columnHeaderQuantity.Width = 80;
+            // 
+            // columnHeaderCriticalQuantity
+            // 
+            this.columnHeaderCriticalQuantity.Text = "Критическое кол-во";
+            this.columnHeaderCriticalQuantity.Width = 170;
+            // 
+            // columnHeaderManufactureDate
+            // 
+            this.columnHeaderManufactureDate.Text = "Дата изготовления";
+            this.columnHeaderManufactureDate.Width = 160;
+            // 
+            // columnHeaderShelfDate
+            // 
+            this.columnHeaderShelfDate.Text = "Употребить до";
+            this.columnHeaderShelfDate.Width = 135;
+            // 
+            // columnHeaderStorehouseRId
+            // 
+            this.columnHeaderStorehouseRId.Text = "id запроса на склад";
+            this.columnHeaderStorehouseRId.Width = 165;
+            // 
             // tabPageInventory
             // 
             this.tabPageInventory.BackColor = System.Drawing.Color.White;
@@ -579,46 +618,6 @@ namespace lab6_yunoshev
             this.imageListIconsMenu.Images.SetKeyName(6, "inventory.png");
             this.imageListIconsMenu.Images.SetKeyName(7, "information.png");
             this.imageListIconsMenu.Images.SetKeyName(8, "settings.png");
-            // 
-            // columnHeaderId
-            // 
-            this.columnHeaderId.Text = "id записи";
-            this.columnHeaderId.Width = 100;
-            // 
-            // columnHeaderMedicationsId
-            // 
-            this.columnHeaderMedicationsId.Text = "id лекарства";
-            this.columnHeaderMedicationsId.Width = 120;
-            // 
-            // columnHeaderMedicationsName
-            // 
-            this.columnHeaderMedicationsName.Text = "Название лекарства";
-            this.columnHeaderMedicationsName.Width = 170;
-            // 
-            // columnHeaderQuantity
-            // 
-            this.columnHeaderQuantity.Text = "Кол-во";
-            this.columnHeaderQuantity.Width = 80;
-            // 
-            // columnHeaderCriticalQuantity
-            // 
-            this.columnHeaderCriticalQuantity.Text = "Критическое кол-во";
-            this.columnHeaderCriticalQuantity.Width = 170;
-            // 
-            // columnHeaderManufactureDate
-            // 
-            this.columnHeaderManufactureDate.Text = "Дата изготовления";
-            this.columnHeaderManufactureDate.Width = 160;
-            // 
-            // columnHeaderShelfDate
-            // 
-            this.columnHeaderShelfDate.Text = "Употребить до";
-            this.columnHeaderShelfDate.Width = 135;
-            // 
-            // columnHeaderStorehouseRId
-            // 
-            this.columnHeaderStorehouseRId.Text = "id запроса на склад";
-            this.columnHeaderStorehouseRId.Width = 165;
             // 
             // MainForm
             // 

@@ -195,5 +195,11 @@ namespace DBManager
 
             return cmd;
         }
+
+        public static string SelectStorehouseFWhereId(int id)
+        {
+            string cmd = @"select * from dbo.storehouse_fields where id = " + id;
+            return cmd;
+        }
     }
 }

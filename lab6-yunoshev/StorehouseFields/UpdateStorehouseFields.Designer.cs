@@ -35,17 +35,17 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptId = new MaterialSkin.Controls.MaterialButton();
             this.LabelId = new MaterialSkin.Controls.MaterialLabel();
             this.NumericId = new System.Windows.Forms.NumericUpDown();
-            this.CheckBoxFilterTime = new MaterialSkin.Controls.MaterialCheckbox();
-            this.TextBoxFiltrationTime = new MaterialSkin.Controls.MaterialTextBox();
-            this.TextBoxVolume = new MaterialSkin.Controls.MaterialTextBox();
+            this.CheckBoxRId = new MaterialSkin.Controls.MaterialCheckbox();
+            this.TextBoxShelfLife = new MaterialSkin.Controls.MaterialTextBox();
+            this.TextBoxManufactureDate = new MaterialSkin.Controls.MaterialTextBox();
+            this.TextBoxCriticalQuantity = new MaterialSkin.Controls.MaterialTextBox();
             this.TextBoxQuantity = new MaterialSkin.Controls.MaterialTextBox();
-            this.TextBoxPrice = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.ButtonAcceptRId = new MaterialSkin.Controls.MaterialButton();
+            this.NumericRId = new System.Windows.Forms.NumericUpDown();
+            this.TextBoxStatusRId = new System.Windows.Forms.TextBox();
+            this.LabelStatusRId = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.NumericId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericRId)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonUpdate
@@ -110,6 +110,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ButtonAcceptId.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonAcceptId.UseAccentColor = false;
             this.ButtonAcceptId.UseVisualStyleBackColor = true;
+            this.ButtonAcceptId.Click += new System.EventHandler(this.ButtonAcceptId_Click);
             // 
             // LabelId
             // 
@@ -145,170 +146,173 @@ namespace lab6_yunoshev.StorehouseFields
             0,
             0});
             // 
-            // CheckBoxFilterTime
+            // CheckBoxRId
             // 
-            this.CheckBoxFilterTime.AutoSize = true;
-            this.CheckBoxFilterTime.Depth = 0;
-            this.CheckBoxFilterTime.Enabled = false;
-            this.CheckBoxFilterTime.Location = new System.Drawing.Point(20, 352);
-            this.CheckBoxFilterTime.Margin = new System.Windows.Forms.Padding(0);
-            this.CheckBoxFilterTime.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.CheckBoxFilterTime.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CheckBoxFilterTime.Name = "CheckBoxFilterTime";
-            this.CheckBoxFilterTime.Ripple = true;
-            this.CheckBoxFilterTime.Size = new System.Drawing.Size(184, 37);
-            this.CheckBoxFilterTime.TabIndex = 41;
-            this.CheckBoxFilterTime.Text = "id запроса на склад";
-            this.CheckBoxFilterTime.UseVisualStyleBackColor = true;
+            this.CheckBoxRId.AutoSize = true;
+            this.CheckBoxRId.Depth = 0;
+            this.CheckBoxRId.Enabled = false;
+            this.CheckBoxRId.Location = new System.Drawing.Point(20, 352);
+            this.CheckBoxRId.Margin = new System.Windows.Forms.Padding(0);
+            this.CheckBoxRId.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.CheckBoxRId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CheckBoxRId.Name = "CheckBoxRId";
+            this.CheckBoxRId.Ripple = true;
+            this.CheckBoxRId.Size = new System.Drawing.Size(184, 37);
+            this.CheckBoxRId.TabIndex = 41;
+            this.CheckBoxRId.Text = "id запроса на склад";
+            this.CheckBoxRId.UseVisualStyleBackColor = true;
+            this.CheckBoxRId.CheckedChanged += new System.EventHandler(this.CheckBoxRId_CheckedChanged);
             // 
-            // TextBoxFiltrationTime
+            // TextBoxShelfLife
             // 
-            this.TextBoxFiltrationTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxFiltrationTime.Depth = 0;
-            this.TextBoxFiltrationTime.Enabled = false;
-            this.TextBoxFiltrationTime.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxFiltrationTime.Hint = "Употребить до ГГГГ:ММ:ДД";
-            this.TextBoxFiltrationTime.Location = new System.Drawing.Point(15, 299);
-            this.TextBoxFiltrationTime.MaxLength = 8;
-            this.TextBoxFiltrationTime.MouseState = MaterialSkin.MouseState.OUT;
-            this.TextBoxFiltrationTime.Multiline = false;
-            this.TextBoxFiltrationTime.Name = "TextBoxFiltrationTime";
-            this.TextBoxFiltrationTime.Size = new System.Drawing.Size(339, 50);
-            this.TextBoxFiltrationTime.TabIndex = 40;
-            this.TextBoxFiltrationTime.Text = "";
+            this.TextBoxShelfLife.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxShelfLife.Depth = 0;
+            this.TextBoxShelfLife.Enabled = false;
+            this.TextBoxShelfLife.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxShelfLife.Hint = "Употребить до ГГГГ:ММ:ДД";
+            this.TextBoxShelfLife.Location = new System.Drawing.Point(15, 299);
+            this.TextBoxShelfLife.MaxLength = 8;
+            this.TextBoxShelfLife.MouseState = MaterialSkin.MouseState.OUT;
+            this.TextBoxShelfLife.Multiline = false;
+            this.TextBoxShelfLife.Name = "TextBoxShelfLife";
+            this.TextBoxShelfLife.Size = new System.Drawing.Size(339, 50);
+            this.TextBoxShelfLife.TabIndex = 40;
+            this.TextBoxShelfLife.Text = "";
             // 
-            // TextBoxVolume
+            // TextBoxManufactureDate
             // 
-            this.TextBoxVolume.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxVolume.Depth = 0;
-            this.TextBoxVolume.Enabled = false;
-            this.TextBoxVolume.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxVolume.Hint = "Дата изготовления ГГГГ:ММ:ДД";
-            this.TextBoxVolume.Location = new System.Drawing.Point(15, 243);
-            this.TextBoxVolume.MaxLength = 10;
-            this.TextBoxVolume.MouseState = MaterialSkin.MouseState.OUT;
-            this.TextBoxVolume.Multiline = false;
-            this.TextBoxVolume.Name = "TextBoxVolume";
-            this.TextBoxVolume.Size = new System.Drawing.Size(339, 50);
-            this.TextBoxVolume.TabIndex = 34;
-            this.TextBoxVolume.Text = "";
+            this.TextBoxManufactureDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxManufactureDate.Depth = 0;
+            this.TextBoxManufactureDate.Enabled = false;
+            this.TextBoxManufactureDate.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxManufactureDate.Hint = "Дата изготовления ГГГГ:ММ:ДД";
+            this.TextBoxManufactureDate.Location = new System.Drawing.Point(15, 243);
+            this.TextBoxManufactureDate.MaxLength = 10;
+            this.TextBoxManufactureDate.MouseState = MaterialSkin.MouseState.OUT;
+            this.TextBoxManufactureDate.Multiline = false;
+            this.TextBoxManufactureDate.Name = "TextBoxManufactureDate";
+            this.TextBoxManufactureDate.Size = new System.Drawing.Size(339, 50);
+            this.TextBoxManufactureDate.TabIndex = 34;
+            this.TextBoxManufactureDate.Text = "";
+            // 
+            // TextBoxCriticalQuantity
+            // 
+            this.TextBoxCriticalQuantity.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCriticalQuantity.Depth = 0;
+            this.TextBoxCriticalQuantity.Enabled = false;
+            this.TextBoxCriticalQuantity.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxCriticalQuantity.Hint = "Критическое количество";
+            this.TextBoxCriticalQuantity.Location = new System.Drawing.Point(141, 187);
+            this.TextBoxCriticalQuantity.MaxLength = 10;
+            this.TextBoxCriticalQuantity.MouseState = MaterialSkin.MouseState.OUT;
+            this.TextBoxCriticalQuantity.Multiline = false;
+            this.TextBoxCriticalQuantity.Name = "TextBoxCriticalQuantity";
+            this.TextBoxCriticalQuantity.Size = new System.Drawing.Size(213, 50);
+            this.TextBoxCriticalQuantity.TabIndex = 33;
+            this.TextBoxCriticalQuantity.Text = "";
             // 
             // TextBoxQuantity
             // 
             this.TextBoxQuantity.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxQuantity.Depth = 0;
             this.TextBoxQuantity.Enabled = false;
-            this.TextBoxQuantity.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxQuantity.Hint = "Критическое количество";
-            this.TextBoxQuantity.Location = new System.Drawing.Point(141, 187);
+            this.TextBoxQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxQuantity.Hint = "Количество";
+            this.TextBoxQuantity.Location = new System.Drawing.Point(15, 187);
             this.TextBoxQuantity.MaxLength = 10;
             this.TextBoxQuantity.MouseState = MaterialSkin.MouseState.OUT;
             this.TextBoxQuantity.Multiline = false;
             this.TextBoxQuantity.Name = "TextBoxQuantity";
-            this.TextBoxQuantity.Size = new System.Drawing.Size(213, 50);
-            this.TextBoxQuantity.TabIndex = 33;
+            this.TextBoxQuantity.Size = new System.Drawing.Size(120, 50);
+            this.TextBoxQuantity.TabIndex = 32;
             this.TextBoxQuantity.Text = "";
             // 
-            // TextBoxPrice
+            // ButtonAcceptRId
             // 
-            this.TextBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxPrice.Depth = 0;
-            this.TextBoxPrice.Enabled = false;
-            this.TextBoxPrice.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxPrice.Hint = "Количество";
-            this.TextBoxPrice.Location = new System.Drawing.Point(15, 187);
-            this.TextBoxPrice.MaxLength = 10;
-            this.TextBoxPrice.MouseState = MaterialSkin.MouseState.OUT;
-            this.TextBoxPrice.Multiline = false;
-            this.TextBoxPrice.Name = "TextBoxPrice";
-            this.TextBoxPrice.Size = new System.Drawing.Size(120, 50);
-            this.TextBoxPrice.TabIndex = 32;
-            this.TextBoxPrice.Text = "";
+            this.ButtonAcceptRId.AutoSize = false;
+            this.ButtonAcceptRId.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonAcceptRId.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonAcceptRId.Depth = 0;
+            this.ButtonAcceptRId.DrawShadows = true;
+            this.ButtonAcceptRId.Enabled = false;
+            this.ButtonAcceptRId.HighEmphasis = true;
+            this.ButtonAcceptRId.Icon = null;
+            this.ButtonAcceptRId.Location = new System.Drawing.Point(95, 395);
+            this.ButtonAcceptRId.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.ButtonAcceptRId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ButtonAcceptRId.Name = "ButtonAcceptRId";
+            this.ButtonAcceptRId.Size = new System.Drawing.Size(109, 23);
+            this.ButtonAcceptRId.TabIndex = 50;
+            this.ButtonAcceptRId.Text = "ОК";
+            this.ButtonAcceptRId.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.ButtonAcceptRId.UseAccentColor = false;
+            this.ButtonAcceptRId.UseVisualStyleBackColor = true;
             // 
-            // materialButton1
+            // NumericRId
             // 
-            this.materialButton1.AutoSize = false;
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.DrawShadows = true;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(95, 395);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.Size = new System.Drawing.Size(109, 23);
-            this.materialButton1.TabIndex = 50;
-            this.materialButton1.Text = "ОК";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(27, 395);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.NumericRId.Enabled = false;
+            this.NumericRId.Location = new System.Drawing.Point(27, 395);
+            this.NumericRId.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.NumericRId.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(61, 23);
-            this.numericUpDown1.TabIndex = 49;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.NumericRId.Name = "NumericRId";
+            this.NumericRId.Size = new System.Drawing.Size(61, 23);
+            this.NumericRId.TabIndex = 49;
+            this.NumericRId.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // textBox1
+            // TextBoxStatusRId
             // 
-            this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(222, 394);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 23);
-            this.textBox1.TabIndex = 52;
-            this.textBox1.Text = "Не выбрано";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBoxStatusRId.ForeColor = System.Drawing.Color.Red;
+            this.TextBoxStatusRId.Location = new System.Drawing.Point(222, 394);
+            this.TextBoxStatusRId.Name = "TextBoxStatusRId";
+            this.TextBoxStatusRId.Size = new System.Drawing.Size(132, 23);
+            this.TextBoxStatusRId.TabIndex = 52;
+            this.TextBoxStatusRId.Text = "Не выбрано";
+            this.TextBoxStatusRId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // materialLabel1
+            // LabelStatusRId
             // 
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(222, 359);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(132, 20);
-            this.materialLabel1.TabIndex = 51;
-            this.materialLabel1.Text = "Статус ID";
-            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelStatusRId.Depth = 0;
+            this.LabelStatusRId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelStatusRId.Location = new System.Drawing.Point(222, 359);
+            this.LabelStatusRId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelStatusRId.Name = "LabelStatusRId";
+            this.LabelStatusRId.Size = new System.Drawing.Size(132, 20);
+            this.LabelStatusRId.TabIndex = 51;
+            this.LabelStatusRId.Text = "Статус ID";
+            this.LabelStatusRId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UpdateStorehouseFields
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 431);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.materialLabel1);
-            this.Controls.Add(this.materialButton1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.TextBoxStatusRId);
+            this.Controls.Add(this.LabelStatusRId);
+            this.Controls.Add(this.ButtonAcceptRId);
+            this.Controls.Add(this.NumericRId);
             this.Controls.Add(this.ButtonUpdate);
             this.Controls.Add(this.TextBoxStatusId);
             this.Controls.Add(this.LabelStatusId);
             this.Controls.Add(this.ButtonAcceptId);
             this.Controls.Add(this.LabelId);
             this.Controls.Add(this.NumericId);
-            this.Controls.Add(this.CheckBoxFilterTime);
-            this.Controls.Add(this.TextBoxFiltrationTime);
-            this.Controls.Add(this.TextBoxVolume);
+            this.Controls.Add(this.CheckBoxRId);
+            this.Controls.Add(this.TextBoxShelfLife);
+            this.Controls.Add(this.TextBoxManufactureDate);
+            this.Controls.Add(this.TextBoxCriticalQuantity);
             this.Controls.Add(this.TextBoxQuantity);
-            this.Controls.Add(this.TextBoxPrice);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UpdateStorehouseFields";
@@ -317,7 +321,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.Sizable = false;
             this.Text = "Изменение записи";
             ((System.ComponentModel.ISupportInitialize)(this.NumericId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericRId)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,14 +335,14 @@ namespace lab6_yunoshev.StorehouseFields
         private MaterialSkin.Controls.MaterialButton ButtonAcceptId;
         private MaterialSkin.Controls.MaterialLabel LabelId;
         private System.Windows.Forms.NumericUpDown NumericId;
-        private MaterialSkin.Controls.MaterialCheckbox CheckBoxFilterTime;
-        private MaterialSkin.Controls.MaterialTextBox TextBoxFiltrationTime;
-        private MaterialSkin.Controls.MaterialTextBox TextBoxVolume;
+        private MaterialSkin.Controls.MaterialCheckbox CheckBoxRId;
+        private MaterialSkin.Controls.MaterialTextBox TextBoxShelfLife;
+        private MaterialSkin.Controls.MaterialTextBox TextBoxManufactureDate;
+        private MaterialSkin.Controls.MaterialTextBox TextBoxCriticalQuantity;
         private MaterialSkin.Controls.MaterialTextBox TextBoxQuantity;
-        private MaterialSkin.Controls.MaterialTextBox TextBoxPrice;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialButton ButtonAcceptRId;
+        private System.Windows.Forms.NumericUpDown NumericRId;
+        private System.Windows.Forms.TextBox TextBoxStatusRId;
+        private MaterialSkin.Controls.MaterialLabel LabelStatusRId;
     }
 }

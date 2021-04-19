@@ -11,6 +11,7 @@ namespace Models
         public static int id1 { get; set; }
         public static int id2 { get; set; }
         public static int Medications_id { get; set; }
+        public static string MedicationsName { get; set; }
         public static int Critical_quantity { get; set; }
         public static int Quantity { get; set; }
         public static string StorehouseRequestsId { get; set; }

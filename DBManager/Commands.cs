@@ -227,5 +227,27 @@ namespace DBManager
             " where id = " + id + ";";
             return cmd;
         }
+
+        public static string DeleteStorehouseF(int id1 = -1, int id2 = -1, string name = "")
+        {
+            string cmd = "";
+            if (id1 != -1 && id2 == -1 && name == "")
+            {
+                cmd = @"delete from dbo.storehouse_fields where id = " + id1 + ";";
+            }
+            else if (id1 != -1 && id2 != -1 && name == "")
+            {
+                cmd = @"delete from dbo.storehouse_fields where id >= " + id1 + " and id <= " + id2 + ";";
+            }
+            else if (name != "" && id1 == -1 && id2 == -1)
+            {  
+                cmd = @"delete from dbo.storehouse_fields where medications_id = (select id from dbo.medications where medications_name = N'" + name + "')";
+            }
+            else if (name != "" && id1 != -1 && id2 != -1)
+            {
+                cmd = @"delete from dbo.storehouse_fields where id >= " + id1 + " and id <= " + id2 + " and medications_id = (select id from dbo.medications where medications_name = N'" + name + "')";
+            }
+            return cmd;
+        }
     }
 }

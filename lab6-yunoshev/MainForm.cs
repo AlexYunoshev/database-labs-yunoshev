@@ -221,7 +221,18 @@ namespace lab6_yunoshev
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)
         {
+            DeleteStorehouseFields deleteStorehouseFields = new DeleteStorehouseFields();
+            DialogResult status = deleteStorehouseFields.ShowDialog();
 
+            if (status == DialogResult.OK)
+            {
+                query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Удалено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
+            }
         }
 
         private void StorehouseFButtonEdit_Click(object sender, EventArgs e)

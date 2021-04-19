@@ -31,7 +31,7 @@ namespace lab6_yunoshev
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.StorehouseFListView = new MaterialSkin.Controls.MaterialTabControl();
+            this.MainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMedications = new System.Windows.Forms.TabPage();
             this.MedicationsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonDelete = new MaterialSkin.Controls.MaterialButton();
@@ -58,18 +58,7 @@ namespace lab6_yunoshev
             this.StorehouseFLabelSearch = new MaterialSkin.Controls.MaterialLabel();
             this.StorehouseFTextBoxSearch = new MaterialSkin.Controls.MaterialTextBox();
             this.StorehouseFComboBoxSort = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
+            this.StorehouseFListView = new MaterialSkin.Controls.MaterialListView();
             this.tabPageInventory = new System.Windows.Forms.TabPage();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
@@ -78,33 +67,41 @@ namespace lab6_yunoshev
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
             this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
-            this.StorehouseFListView.SuspendLayout();
+            this.columnHeaderId = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMedicationsId = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMedicationsName = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderQuantity = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderCriticalQuantity = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderManufactureDate = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderShelfDate = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderStorehouseRId = new System.Windows.Forms.ColumnHeader();
+            this.MainTabControl.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
             this.tabPageStorehouse.SuspendLayout();
             this.SuspendLayout();
             // 
-            // StorehouseFListView
+            // MainTabControl
             // 
-            this.StorehouseFListView.Controls.Add(this.tabPageMedications);
-            this.StorehouseFListView.Controls.Add(this.tabPageStorehouse);
-            this.StorehouseFListView.Controls.Add(this.tabPageInventory);
-            this.StorehouseFListView.Controls.Add(this.tabPagePatients);
-            this.StorehouseFListView.Controls.Add(this.tabPageDiagnoses);
-            this.StorehouseFListView.Controls.Add(this.tabPagePrescriptons);
-            this.StorehouseFListView.Controls.Add(this.tabPageOrders);
-            this.StorehouseFListView.Controls.Add(this.tabPageSettings);
-            this.StorehouseFListView.Controls.Add(this.tabPageInformation);
-            this.StorehouseFListView.Depth = 0;
-            this.StorehouseFListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StorehouseFListView.ImageList = this.imageListIconsMenu;
-            this.StorehouseFListView.Location = new System.Drawing.Point(3, 3);
-            this.StorehouseFListView.MouseState = MaterialSkin.MouseState.HOVER;
-            this.StorehouseFListView.Multiline = true;
-            this.StorehouseFListView.Name = "StorehouseFListView";
-            this.StorehouseFListView.SelectedIndex = 0;
-            this.StorehouseFListView.Size = new System.Drawing.Size(1274, 714);
-            this.StorehouseFListView.TabIndex = 0;
-            this.StorehouseFListView.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
+            this.MainTabControl.Controls.Add(this.tabPageMedications);
+            this.MainTabControl.Controls.Add(this.tabPageStorehouse);
+            this.MainTabControl.Controls.Add(this.tabPageInventory);
+            this.MainTabControl.Controls.Add(this.tabPagePatients);
+            this.MainTabControl.Controls.Add(this.tabPageDiagnoses);
+            this.MainTabControl.Controls.Add(this.tabPagePrescriptons);
+            this.MainTabControl.Controls.Add(this.tabPageOrders);
+            this.MainTabControl.Controls.Add(this.tabPageSettings);
+            this.MainTabControl.Controls.Add(this.tabPageInformation);
+            this.MainTabControl.Depth = 0;
+            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTabControl.ImageList = this.imageListIconsMenu;
+            this.MainTabControl.Location = new System.Drawing.Point(3, 3);
+            this.MainTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MainTabControl.Multiline = true;
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.Size = new System.Drawing.Size(1274, 714);
+            this.MainTabControl.TabIndex = 0;
+            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // tabPageMedications
             // 
@@ -344,7 +341,7 @@ namespace lab6_yunoshev
             this.tabPageStorehouse.Controls.Add(this.StorehouseFLabelSearch);
             this.tabPageStorehouse.Controls.Add(this.StorehouseFTextBoxSearch);
             this.tabPageStorehouse.Controls.Add(this.StorehouseFComboBoxSort);
-            this.tabPageStorehouse.Controls.Add(this.materialListView1);
+            this.tabPageStorehouse.Controls.Add(this.StorehouseFListView);
             this.tabPageStorehouse.ImageKey = "storehouse.png";
             this.tabPageStorehouse.Location = new System.Drawing.Point(4, 39);
             this.tabPageStorehouse.Name = "tabPageStorehouse";
@@ -367,7 +364,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonEdit.Name = "StorehouseFButtonEdit";
             this.StorehouseFButtonEdit.Size = new System.Drawing.Size(175, 35);
             this.StorehouseFButtonEdit.TabIndex = 14;
-            this.StorehouseFButtonEdit.Text = "Изменить лекарство";
+            this.StorehouseFButtonEdit.Text = "Изменить запись";
             this.StorehouseFButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonEdit.UseAccentColor = false;
             this.StorehouseFButtonEdit.UseVisualStyleBackColor = true;
@@ -387,7 +384,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonDelete.Name = "StorehouseFButtonDelete";
             this.StorehouseFButtonDelete.Size = new System.Drawing.Size(175, 35);
             this.StorehouseFButtonDelete.TabIndex = 13;
-            this.StorehouseFButtonDelete.Text = "Удалить лекарство";
+            this.StorehouseFButtonDelete.Text = "Удалить запись";
             this.StorehouseFButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonDelete.UseAccentColor = false;
             this.StorehouseFButtonDelete.UseVisualStyleBackColor = true;
@@ -407,7 +404,7 @@ namespace lab6_yunoshev
             this.StorehouseFButtonAdd.Name = "StorehouseFButtonAdd";
             this.StorehouseFButtonAdd.Size = new System.Drawing.Size(175, 35);
             this.StorehouseFButtonAdd.TabIndex = 12;
-            this.StorehouseFButtonAdd.Text = "Добавить лекарство";
+            this.StorehouseFButtonAdd.Text = "Добавить запись";
             this.StorehouseFButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.StorehouseFButtonAdd.UseAccentColor = false;
             this.StorehouseFButtonAdd.UseVisualStyleBackColor = true;
@@ -428,7 +425,7 @@ namespace lab6_yunoshev
             // 
             this.StorehouseFTextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StorehouseFTextBoxSearch.Depth = 0;
-            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StorehouseFTextBoxSearch.Hint = "Введите название лекарства";
             this.StorehouseFTextBoxSearch.Location = new System.Drawing.Point(255, 6);
             this.StorehouseFTextBoxSearch.MaxLength = 50;
@@ -469,94 +466,34 @@ namespace lab6_yunoshev
             this.StorehouseFComboBoxSort.TabIndex = 9;
             this.StorehouseFComboBoxSort.UseTallSize = false;
             // 
-            // materialListView1
+            // StorehouseFListView
             // 
-            this.materialListView1.AutoSizeTable = false;
-            this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.materialListView1.Depth = 0;
-            this.materialListView1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HideSelection = false;
-            this.materialListView1.Location = new System.Drawing.Point(3, 49);
-            this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(1260, 601);
-            this.materialListView1.TabIndex = 8;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "id";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Название лекарства";
-            this.columnHeader2.Width = 180;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Цена";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader4.Width = 100;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Кол-во";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader5.Width = 80;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Объем";
-            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader6.Width = 105;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Тип лекарства";
-            this.columnHeader7.Width = 150;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Тип применения";
-            this.columnHeader8.Width = 190;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Тип изготовления";
-            this.columnHeader9.Width = 180;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Время приготовления";
-            this.columnHeader10.Width = 180;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Время фильтрации";
-            this.columnHeader11.Width = 180;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Список смешиваемых компонентов";
-            this.columnHeader12.Width = 400;
+            this.StorehouseFListView.AutoSizeTable = false;
+            this.StorehouseFListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.StorehouseFListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StorehouseFListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderId,
+            this.columnHeaderMedicationsId,
+            this.columnHeaderMedicationsName,
+            this.columnHeaderQuantity,
+            this.columnHeaderCriticalQuantity,
+            this.columnHeaderManufactureDate,
+            this.columnHeaderShelfDate,
+            this.columnHeaderStorehouseRId});
+            this.StorehouseFListView.Depth = 0;
+            this.StorehouseFListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StorehouseFListView.FullRowSelect = true;
+            this.StorehouseFListView.HideSelection = false;
+            this.StorehouseFListView.Location = new System.Drawing.Point(3, 49);
+            this.StorehouseFListView.MinimumSize = new System.Drawing.Size(200, 100);
+            this.StorehouseFListView.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.StorehouseFListView.MouseState = MaterialSkin.MouseState.OUT;
+            this.StorehouseFListView.Name = "StorehouseFListView";
+            this.StorehouseFListView.OwnerDraw = true;
+            this.StorehouseFListView.Size = new System.Drawing.Size(1260, 601);
+            this.StorehouseFListView.TabIndex = 8;
+            this.StorehouseFListView.UseCompatibleStateImageBehavior = false;
+            this.StorehouseFListView.View = System.Windows.Forms.View.Details;
             // 
             // tabPageInventory
             // 
@@ -643,14 +580,54 @@ namespace lab6_yunoshev
             this.imageListIconsMenu.Images.SetKeyName(7, "information.png");
             this.imageListIconsMenu.Images.SetKeyName(8, "settings.png");
             // 
+            // columnHeaderId
+            // 
+            this.columnHeaderId.Text = "id записи";
+            this.columnHeaderId.Width = 100;
+            // 
+            // columnHeaderMedicationsId
+            // 
+            this.columnHeaderMedicationsId.Text = "id лекарства";
+            this.columnHeaderMedicationsId.Width = 120;
+            // 
+            // columnHeaderMedicationsName
+            // 
+            this.columnHeaderMedicationsName.Text = "Название лекарства";
+            this.columnHeaderMedicationsName.Width = 170;
+            // 
+            // columnHeaderQuantity
+            // 
+            this.columnHeaderQuantity.Text = "Кол-во";
+            this.columnHeaderQuantity.Width = 80;
+            // 
+            // columnHeaderCriticalQuantity
+            // 
+            this.columnHeaderCriticalQuantity.Text = "Критическое кол-во";
+            this.columnHeaderCriticalQuantity.Width = 170;
+            // 
+            // columnHeaderManufactureDate
+            // 
+            this.columnHeaderManufactureDate.Text = "Дата изготовления";
+            this.columnHeaderManufactureDate.Width = 160;
+            // 
+            // columnHeaderShelfDate
+            // 
+            this.columnHeaderShelfDate.Text = "Употребить до";
+            this.columnHeaderShelfDate.Width = 135;
+            // 
+            // columnHeaderStorehouseRId
+            // 
+            this.columnHeaderStorehouseRId.Text = "id запроса на склад";
+            this.columnHeaderStorehouseRId.Width = 165;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.StorehouseFListView);
+            this.Controls.Add(this.MainTabControl);
             this.DrawerShowIconsWhenHidden = true;
-            this.DrawerTabControl = this.StorehouseFListView;
+            this.DrawerTabControl = this.MainTabControl;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1280, 720);
@@ -659,7 +636,7 @@ namespace lab6_yunoshev
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аптека";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.StorehouseFListView.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.tabPageMedications.ResumeLayout(false);
             this.tabPageStorehouse.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -668,7 +645,7 @@ namespace lab6_yunoshev
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTabControl StorehouseFListView;
+        private MaterialSkin.Controls.MaterialTabControl MainTabControl;
         private System.Windows.Forms.TabPage tabPageMedications;
         private System.Windows.Forms.ImageList imageListIconsMenu;
         private System.Windows.Forms.TabPage tabPagePatients;
@@ -704,17 +681,14 @@ namespace lab6_yunoshev
         private MaterialSkin.Controls.MaterialLabel StorehouseFLabelSearch;
         private MaterialSkin.Controls.MaterialTextBox StorehouseFTextBoxSearch;
         private MaterialSkin.Controls.MaterialComboBox StorehouseFComboBoxSort;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private MaterialSkin.Controls.MaterialListView StorehouseFListView;
+        private System.Windows.Forms.ColumnHeader columnHeaderId;
+        private System.Windows.Forms.ColumnHeader columnHeaderMedicationsId;
+        private System.Windows.Forms.ColumnHeader columnHeaderMedicationsName;
+        private System.Windows.Forms.ColumnHeader columnHeaderQuantity;
+        private System.Windows.Forms.ColumnHeader columnHeaderCriticalQuantity;
+        private System.Windows.Forms.ColumnHeader columnHeaderManufactureDate;
+        private System.Windows.Forms.ColumnHeader columnHeaderShelfDate;
+        private System.Windows.Forms.ColumnHeader columnHeaderStorehouseRId;
     }
 }

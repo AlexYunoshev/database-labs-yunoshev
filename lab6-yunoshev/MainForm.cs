@@ -179,5 +179,25 @@ namespace lab6_yunoshev
                 StorehouseFListView.Items.Add(item);
             }
         }
+
+        private void StorehouseFComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (StorehouseFComboBoxSort.SelectedIndex == 0) StorehouseFPrint(SortTypes.IdAsc);
+            else if (StorehouseFComboBoxSort.SelectedIndex == 1) StorehouseFPrint(SortTypes.IdDesc);
+            else if (StorehouseFComboBoxSort.SelectedIndex == 2) StorehouseFPrint(SortTypes.NameAsc);
+            else if (StorehouseFComboBoxSort.SelectedIndex == 3) StorehouseFPrint(SortTypes.NameDesc);
+        }
+
+        private void StorehouseFTextBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (StorehouseFTextBoxSearch.Text != "")
+            {
+                StorehouseFPrint(SortTypes.IdAsc, StorehouseFTextBoxSearch.Text);
+            }
+            else
+            {
+                StorehouseFPrint(SortTypes.IdAsc);
+            }
+        }
     }
 }

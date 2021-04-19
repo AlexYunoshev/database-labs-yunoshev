@@ -436,6 +436,7 @@ namespace lab6_yunoshev
             this.StorehouseFTextBoxSearch.TabIndex = 10;
             this.StorehouseFTextBoxSearch.Text = "";
             this.StorehouseFTextBoxSearch.UseTallSize = false;
+            this.StorehouseFTextBoxSearch.TextChanged += new System.EventHandler(this.StorehouseFTextBoxSearch_TextChanged);
             // 
             // StorehouseFComboBoxSort
             // 
@@ -465,6 +466,7 @@ namespace lab6_yunoshev
             this.StorehouseFComboBoxSort.StartIndex = 0;
             this.StorehouseFComboBoxSort.TabIndex = 9;
             this.StorehouseFComboBoxSort.UseTallSize = false;
+            this.StorehouseFComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.StorehouseFComboBoxSort_SelectedIndexChanged);
             // 
             // StorehouseFListView
             // 

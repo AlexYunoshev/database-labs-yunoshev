@@ -203,7 +203,7 @@ namespace lab6_yunoshev
 
         private void StorehouseFButtonAdd_Click(object sender, EventArgs e)
         {
-            
+             
         }
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)

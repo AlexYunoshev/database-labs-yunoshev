@@ -14,13 +14,6 @@ namespace lab6_yunoshev.Medications
 {
     public partial class AddMedications : MaterialForm
     {
-        //private string name;
-        //private string quantity;
-        //private string volume;
-        //private string preparationTime;
-        //private string filterTime;
-        //private string listComponents;
-        //private double price;
         private int medicationType;
         private int usesType;
         private int manufactureType;

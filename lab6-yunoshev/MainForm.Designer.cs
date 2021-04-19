@@ -31,7 +31,7 @@ namespace lab6_yunoshev
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.MainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMedications = new System.Windows.Forms.TabPage();
             this.ButtonEditMedication = new MaterialSkin.Controls.MaterialButton();
             this.ButtonDeleteMedication = new MaterialSkin.Controls.MaterialButton();
@@ -60,31 +60,32 @@ namespace lab6_yunoshev
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
             this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
-            this.materialTabControl1.SuspendLayout();
+            this.MainTabControl.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
             this.SuspendLayout();
             // 
-            // materialTabControl1
+            // MainTabControl
             // 
-            this.materialTabControl1.Controls.Add(this.tabPageMedications);
-            this.materialTabControl1.Controls.Add(this.tabPageStorehouse);
-            this.materialTabControl1.Controls.Add(this.tabPageInventory);
-            this.materialTabControl1.Controls.Add(this.tabPagePatients);
-            this.materialTabControl1.Controls.Add(this.tabPageDiagnoses);
-            this.materialTabControl1.Controls.Add(this.tabPagePrescriptons);
-            this.materialTabControl1.Controls.Add(this.tabPageOrders);
-            this.materialTabControl1.Controls.Add(this.tabPageSettings);
-            this.materialTabControl1.Controls.Add(this.tabPageInformation);
-            this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTabControl1.ImageList = this.imageListIconsMenu;
-            this.materialTabControl1.Location = new System.Drawing.Point(3, 3);
-            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabControl1.Multiline = true;
-            this.materialTabControl1.Name = "materialTabControl1";
-            this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1274, 714);
-            this.materialTabControl1.TabIndex = 0;
+            this.MainTabControl.Controls.Add(this.tabPageMedications);
+            this.MainTabControl.Controls.Add(this.tabPageStorehouse);
+            this.MainTabControl.Controls.Add(this.tabPageInventory);
+            this.MainTabControl.Controls.Add(this.tabPagePatients);
+            this.MainTabControl.Controls.Add(this.tabPageDiagnoses);
+            this.MainTabControl.Controls.Add(this.tabPagePrescriptons);
+            this.MainTabControl.Controls.Add(this.tabPageOrders);
+            this.MainTabControl.Controls.Add(this.tabPageSettings);
+            this.MainTabControl.Controls.Add(this.tabPageInformation);
+            this.MainTabControl.Depth = 0;
+            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTabControl.ImageList = this.imageListIconsMenu;
+            this.MainTabControl.Location = new System.Drawing.Point(3, 3);
+            this.MainTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MainTabControl.Multiline = true;
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.Size = new System.Drawing.Size(1274, 714);
+            this.MainTabControl.TabIndex = 0;
+            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // tabPageMedications
             // 
@@ -415,9 +416,9 @@ namespace lab6_yunoshev
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.materialTabControl1);
+            this.Controls.Add(this.MainTabControl);
             this.DrawerShowIconsWhenHidden = true;
-            this.DrawerTabControl = this.materialTabControl1;
+            this.DrawerTabControl = this.MainTabControl;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1280, 720);
@@ -426,7 +427,7 @@ namespace lab6_yunoshev
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аптека";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.materialTabControl1.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.tabPageMedications.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -434,7 +435,7 @@ namespace lab6_yunoshev
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private MaterialSkin.Controls.MaterialTabControl MainTabControl;
         private System.Windows.Forms.TabPage tabPageMedications;
         private System.Windows.Forms.ImageList imageListIconsMenu;
         private System.Windows.Forms.TabPage tabPagePatients;

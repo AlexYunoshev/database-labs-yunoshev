@@ -30,6 +30,14 @@ namespace lab6_yunoshev
                 MaterialSkin.TextShade.WHITE);
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.Text = MainTabControl.TabPages[0].Text;
+            //this.Text = "Аптека                                  Connection_status: ";
+            //this.Text += ConnectedData.connection.State;
+            PrintMedications(MedicationsSortTypes.IdAsc);
+        }
+
         public void PrintMedications(MedicationsSortTypes sort, string name = "")
         {
             ListViewMedications.Items.Clear();
@@ -62,12 +70,7 @@ namespace lab6_yunoshev
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            //this.Text = "Аптека                                  Connection_status: ";
-            //this.Text += ConnectedData.connection.State;
-            PrintMedications(MedicationsSortTypes.IdAsc);
-        }
+     
 
         private void ButtonAddMedication_Click(object sender, EventArgs e)
         {
@@ -139,6 +142,12 @@ namespace lab6_yunoshev
             {
                 PrintMedications(MedicationsSortTypes.IdAsc);
             }
+        }
+
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = MainTabControl.SelectedIndex;
+            this.Text = MainTabControl.TabPages[index].Text;
         }
     }
 }

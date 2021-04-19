@@ -169,7 +169,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxShelfLife.Depth = 0;
             this.TextBoxShelfLife.Enabled = false;
             this.TextBoxShelfLife.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxShelfLife.Hint = "Употребить до ГГГГ:ММ:ДД";
+            this.TextBoxShelfLife.Hint = "Употребить до ГГГГ-ММ-ДД";
             this.TextBoxShelfLife.Location = new System.Drawing.Point(15, 299);
             this.TextBoxShelfLife.MaxLength = 8;
             this.TextBoxShelfLife.MouseState = MaterialSkin.MouseState.OUT;
@@ -185,7 +185,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxManufactureDate.Depth = 0;
             this.TextBoxManufactureDate.Enabled = false;
             this.TextBoxManufactureDate.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxManufactureDate.Hint = "Дата изготовления ГГГГ:ММ:ДД";
+            this.TextBoxManufactureDate.Hint = "Дата изготовления ГГГГ-ММ-ДД";
             this.TextBoxManufactureDate.Location = new System.Drawing.Point(15, 243);
             this.TextBoxManufactureDate.MaxLength = 10;
             this.TextBoxManufactureDate.MouseState = MaterialSkin.MouseState.OUT;
@@ -216,7 +216,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxQuantity.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxQuantity.Depth = 0;
             this.TextBoxQuantity.Enabled = false;
-            this.TextBoxQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxQuantity.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxQuantity.Hint = "Количество";
             this.TextBoxQuantity.Location = new System.Drawing.Point(15, 187);
             this.TextBoxQuantity.MaxLength = 10;

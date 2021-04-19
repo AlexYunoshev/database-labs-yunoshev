@@ -48,28 +48,29 @@ namespace lab6_yunoshev.StorehouseFields
                 TextBoxManufactureDate.Enabled = true;
                 TextBoxShelfLife.Enabled = true;
                 CheckBoxRId.Enabled = true;
-                NumericRId.Enabled = true;
-                ButtonAcceptRId.Enabled = true;
-
+               
                 ConnectedData.SetCommand(query);
                 data = ConnectedData.GetRowFromTable();
 
                 TextBoxQuantity.Text = data[4];
                 TextBoxCriticalQuantity.Text = data[2];
-                TextBoxManufactureDate.Text = data[5];
-                TextBoxShelfLife.Text = data[6];
+
+                DateTime manufactureDate = Convert.ToDateTime(data[5]);
+                DateTime shelfLife = Convert.ToDateTime(data[6]);
+                TextBoxManufactureDate.Text = manufactureDate.ToShortDateString();
+                TextBoxShelfLife.Text = shelfLife.ToShortDateString();
+
                 if (data[3] != "-")
                 {
                     NumericRId.Value = Convert.ToInt32(data[3]);
                     CheckBoxRId.Checked = true;
+                    NumericRId.Enabled = true;
+                    ButtonAcceptRId.Enabled = true;
                 }
                 else
                 {
                     CheckBoxRId.Checked = false;
                 }
-                    
-
-
 
                 this.Refresh();
 
@@ -113,11 +114,13 @@ namespace lab6_yunoshev.StorehouseFields
             if (CheckBoxRId.Checked == true)
             {
                 NumericRId.Enabled = true;
+                ButtonAcceptRId.Enabled = true;
             }
             else
             {
                 NumericRId.Value = 1;
                 NumericRId.Enabled = false;
+                ButtonAcceptRId.Enabled = false;
             }
         }
     }

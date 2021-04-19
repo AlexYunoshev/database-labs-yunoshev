@@ -171,7 +171,7 @@ namespace lab6_yunoshev
                     if (j == 5 || j == 6)
                     {
                         DateTime value = Convert.ToDateTime(data[i, j]);
-                        item.SubItems.Add(value.ToLongDateString());
+                        item.SubItems.Add(value.ToShortDateString());
                     }
 
                     else

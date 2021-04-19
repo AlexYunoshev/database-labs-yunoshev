@@ -356,6 +356,7 @@ namespace lab6_yunoshev.Medications
             this.TextBoxStatusId.ForeColor = System.Drawing.Color.Red;
             this.TextBoxStatusId.Location = new System.Drawing.Point(157, 100);
             this.TextBoxStatusId.Name = "TextBoxStatusId";
+            this.TextBoxStatusId.ReadOnly = true;
             this.TextBoxStatusId.Size = new System.Drawing.Size(95, 23);
             this.TextBoxStatusId.TabIndex = 29;
             this.TextBoxStatusId.Text = "Не выбрано";

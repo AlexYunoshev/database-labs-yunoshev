@@ -75,6 +75,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxStatusId.ForeColor = System.Drawing.Color.Red;
             this.TextBoxStatusId.Location = new System.Drawing.Point(15, 150);
             this.TextBoxStatusId.Name = "TextBoxStatusId";
+            this.TextBoxStatusId.ReadOnly = true;
             this.TextBoxStatusId.Size = new System.Drawing.Size(120, 23);
             this.TextBoxStatusId.TabIndex = 47;
             this.TextBoxStatusId.Text = "Не выбрано";
@@ -278,6 +279,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxStatusRId.ForeColor = System.Drawing.Color.Red;
             this.TextBoxStatusRId.Location = new System.Drawing.Point(222, 394);
             this.TextBoxStatusRId.Name = "TextBoxStatusRId";
+            this.TextBoxStatusRId.ReadOnly = true;
             this.TextBoxStatusRId.Size = new System.Drawing.Size(132, 23);
             this.TextBoxStatusRId.TabIndex = 52;
             this.TextBoxStatusRId.Text = "Не выбрано";

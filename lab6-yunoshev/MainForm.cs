@@ -32,7 +32,7 @@ namespace lab6_yunoshev
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = MainTabControl.TabPages[0].Text;
+            this.Text = StorehouseFListView.TabPages[0].Text;
             //this.Text = "Аптека                                  Connection_status: ";
             //this.Text += ConnectedData.connection.State;
             PrintMedications(MedicationsSortTypes.IdAsc);
@@ -40,7 +40,7 @@ namespace lab6_yunoshev
 
         public void PrintMedications(MedicationsSortTypes sort, string name = "")
         {
-            ListViewMedications.Items.Clear();
+            MedicationsListView.Items.Clear();
             if (name != "") query = Commands.SelectMedications(sort, name);
             else query = Commands.SelectMedications(sort);
             ConnectedData.SetCommand(query);
@@ -66,7 +66,7 @@ namespace lab6_yunoshev
                     else
                         item.SubItems.Add(data[i, j]);
                 }
-                ListViewMedications.Items.Add(item);
+                MedicationsListView.Items.Add(item);
             }
         }
 
@@ -124,19 +124,19 @@ namespace lab6_yunoshev
 
         private void ComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ComboBoxSort.SelectedIndex == 0) PrintMedications(MedicationsSortTypes.IdAsc);
-            else if (ComboBoxSort.SelectedIndex == 1) PrintMedications(MedicationsSortTypes.IdDesc);
-            else if (ComboBoxSort.SelectedIndex == 2) PrintMedications(MedicationsSortTypes.NameAsc);
-            else if (ComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
+            if (MedicationsComboBoxSort.SelectedIndex == 0) PrintMedications(MedicationsSortTypes.IdAsc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 1) PrintMedications(MedicationsSortTypes.IdDesc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 2) PrintMedications(MedicationsSortTypes.NameAsc);
+            else if (MedicationsComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
         }
 
 
 
         private void TextBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            if (TextBoxSearch.Text != "")
+            if (MedicationsTextBoxSearch.Text != "")
             {
-                PrintMedications(MedicationsSortTypes.IdAsc, TextBoxSearch.Text);
+                PrintMedications(MedicationsSortTypes.IdAsc, MedicationsTextBoxSearch.Text);
             }
             else
             {
@@ -146,8 +146,8 @@ namespace lab6_yunoshev
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = MainTabControl.SelectedIndex;
-            this.Text = MainTabControl.TabPages[index].Text;
+            int index = StorehouseFListView.SelectedIndex;
+            this.Text = StorehouseFListView.TabPages[index].Text;
         }
     }
 }

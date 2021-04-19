@@ -68,8 +68,9 @@ namespace DBManager
 
         public static string[] GetRowFromTable()
         {
+            int[] count = GetRowAndColumnCount();
             dataReader = command.ExecuteReader();
-            string[] data = new string[11];
+            string[] data = new string[count[1]];
             while (dataReader.Read())
             {
                 for (int j = 0; j < column; j++)

@@ -32,7 +32,7 @@ namespace lab6_yunoshev
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = MainTabControl.TabPages[0].Text;
+            this.Text = StorehouseFListView.TabPages[0].Text;
             //this.Text = "Аптека                                  Connection_status: ";
             //this.Text += ConnectedData.connection.State;
             PrintMedications(MedicationsSortTypes.IdAsc);
@@ -146,8 +146,8 @@ namespace lab6_yunoshev
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = MainTabControl.SelectedIndex;
-            this.Text = MainTabControl.TabPages[index].Text;
+            int index = StorehouseFListView.SelectedIndex;
+            this.Text = StorehouseFListView.TabPages[index].Text;
         }
     }
 }

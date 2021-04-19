@@ -140,7 +140,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonEdit.UseAccentColor = false;
             this.MedicationsButtonEdit.UseVisualStyleBackColor = true;
-            this.MedicationsButtonEdit.Click += new System.EventHandler(this.ButtonEditMedication_Click);
+            this.MedicationsButtonEdit.Click += new System.EventHandler(this.MedicationButtonEdit_Click);
             // 
             // MedicationsButtonDelete
             // 
@@ -161,7 +161,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonDelete.UseAccentColor = false;
             this.MedicationsButtonDelete.UseVisualStyleBackColor = true;
-            this.MedicationsButtonDelete.Click += new System.EventHandler(this.ButtonDeleteMedication_Click);
+            this.MedicationsButtonDelete.Click += new System.EventHandler(this.MedicationButtonDelete_Click);
             // 
             // MedicationsButtonAdd
             // 
@@ -182,7 +182,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonAdd.UseAccentColor = false;
             this.MedicationsButtonAdd.UseVisualStyleBackColor = true;
-            this.MedicationsButtonAdd.Click += new System.EventHandler(this.ButtonAddMedication_Click);
+            this.MedicationsButtonAdd.Click += new System.EventHandler(this.MedicationButtonAdd_Click);
             // 
             // MedicationsLabelSearch
             // 
@@ -211,7 +211,7 @@ namespace lab6_yunoshev
             this.MedicationsTextBoxSearch.TabIndex = 2;
             this.MedicationsTextBoxSearch.Text = "";
             this.MedicationsTextBoxSearch.UseTallSize = false;
-            this.MedicationsTextBoxSearch.TextChanged += new System.EventHandler(this.TextBoxSearch_TextChanged);
+            this.MedicationsTextBoxSearch.TextChanged += new System.EventHandler(this.MedicationsTextBoxSearch_TextChanged);
             // 
             // MedicationsComboBoxSort
             // 
@@ -241,7 +241,7 @@ namespace lab6_yunoshev
             this.MedicationsComboBoxSort.StartIndex = 0;
             this.MedicationsComboBoxSort.TabIndex = 1;
             this.MedicationsComboBoxSort.UseTallSize = false;
-            this.MedicationsComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSort_SelectedIndexChanged);
+            this.MedicationsComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.MedicationsComboBoxSort_SelectedIndexChanged);
             // 
             // MedicationsListView
             // 

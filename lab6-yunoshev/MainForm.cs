@@ -70,9 +70,7 @@ namespace lab6_yunoshev
             }
         }
 
-     
-
-        private void ButtonAddMedication_Click(object sender, EventArgs e)
+        private void MedicationButtonAdd_Click(object sender, EventArgs e)
         {
             AddMedications addMedications = new AddMedications();
             DialogResult status = addMedications.ShowDialog();
@@ -89,7 +87,7 @@ namespace lab6_yunoshev
             }
         }
 
-        private void ButtonDeleteMedication_Click(object sender, EventArgs e)
+        private void MedicationButtonDelete_Click(object sender, EventArgs e)
         {
             DeleteMedications deleteMedications = new DeleteMedications();
             DialogResult status = deleteMedications.ShowDialog();
@@ -105,7 +103,7 @@ namespace lab6_yunoshev
             }
         }
 
-        private void ButtonEditMedication_Click(object sender, EventArgs e)
+        private void MedicationButtonEdit_Click(object sender, EventArgs e)
         {
             UpdateMedications updateMedications = new UpdateMedications();
             DialogResult status = updateMedications.ShowDialog();
@@ -122,7 +120,7 @@ namespace lab6_yunoshev
             }
         }
 
-        private void ComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        private void MedicationsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MedicationsComboBoxSort.SelectedIndex == 0) PrintMedications(MedicationsSortTypes.IdAsc);
             else if (MedicationsComboBoxSort.SelectedIndex == 1) PrintMedications(MedicationsSortTypes.IdDesc);
@@ -130,9 +128,7 @@ namespace lab6_yunoshev
             else if (MedicationsComboBoxSort.SelectedIndex == 3) PrintMedications(MedicationsSortTypes.NameDesc);
         }
 
-
-
-        private void TextBoxSearch_TextChanged(object sender, EventArgs e)
+        private void MedicationsTextBoxSearch_TextChanged(object sender, EventArgs e)
         {
             if (MedicationsTextBoxSearch.Text != "")
             {

@@ -31,7 +31,7 @@ namespace lab6_yunoshev
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.StorehouseFListView = new MaterialSkin.Controls.MaterialTabControl();
+            this.MainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMedications = new System.Windows.Forms.TabPage();
             this.MedicationsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonDelete = new MaterialSkin.Controls.MaterialButton();
@@ -41,16 +41,13 @@ namespace lab6_yunoshev
             this.MedicationsComboBoxSort = new MaterialSkin.Controls.MaterialComboBox();
             this.MedicationsListView = new MaterialSkin.Controls.MaterialListView();
             this.columnId = new System.Windows.Forms.ColumnHeader();
+            this.columnMedicationsId = new System.Windows.Forms.ColumnHeader();
             this.columnMedicationsName = new System.Windows.Forms.ColumnHeader();
-            this.columnPrice = new System.Windows.Forms.ColumnHeader();
             this.columnQuantity = new System.Windows.Forms.ColumnHeader();
-            this.columnVolume = new System.Windows.Forms.ColumnHeader();
-            this.columnMedicationsType = new System.Windows.Forms.ColumnHeader();
-            this.columnUsesType = new System.Windows.Forms.ColumnHeader();
-            this.columnManufactureType = new System.Windows.Forms.ColumnHeader();
-            this.columnPreparationTime = new System.Windows.Forms.ColumnHeader();
-            this.columnFiltrationTime = new System.Windows.Forms.ColumnHeader();
-            this.columnMixableList = new System.Windows.Forms.ColumnHeader();
+            this.columnCriticalQuantity = new System.Windows.Forms.ColumnHeader();
+            this.columnManufactureDate = new System.Windows.Forms.ColumnHeader();
+            this.columnShelfDate = new System.Windows.Forms.ColumnHeader();
+            this.columnStorehouseRId = new System.Windows.Forms.ColumnHeader();
             this.tabPageStorehouse = new System.Windows.Forms.TabPage();
             this.StorehouseFButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.StorehouseFButtonDelete = new MaterialSkin.Controls.MaterialButton();
@@ -78,33 +75,33 @@ namespace lab6_yunoshev
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
             this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
-            this.StorehouseFListView.SuspendLayout();
+            this.MainTabControl.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
             this.tabPageStorehouse.SuspendLayout();
             this.SuspendLayout();
             // 
-            // StorehouseFListView
+            // MainTabControl
             // 
-            this.StorehouseFListView.Controls.Add(this.tabPageMedications);
-            this.StorehouseFListView.Controls.Add(this.tabPageStorehouse);
-            this.StorehouseFListView.Controls.Add(this.tabPageInventory);
-            this.StorehouseFListView.Controls.Add(this.tabPagePatients);
-            this.StorehouseFListView.Controls.Add(this.tabPageDiagnoses);
-            this.StorehouseFListView.Controls.Add(this.tabPagePrescriptons);
-            this.StorehouseFListView.Controls.Add(this.tabPageOrders);
-            this.StorehouseFListView.Controls.Add(this.tabPageSettings);
-            this.StorehouseFListView.Controls.Add(this.tabPageInformation);
-            this.StorehouseFListView.Depth = 0;
-            this.StorehouseFListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StorehouseFListView.ImageList = this.imageListIconsMenu;
-            this.StorehouseFListView.Location = new System.Drawing.Point(3, 3);
-            this.StorehouseFListView.MouseState = MaterialSkin.MouseState.HOVER;
-            this.StorehouseFListView.Multiline = true;
-            this.StorehouseFListView.Name = "StorehouseFListView";
-            this.StorehouseFListView.SelectedIndex = 0;
-            this.StorehouseFListView.Size = new System.Drawing.Size(1274, 714);
-            this.StorehouseFListView.TabIndex = 0;
-            this.StorehouseFListView.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
+            this.MainTabControl.Controls.Add(this.tabPageMedications);
+            this.MainTabControl.Controls.Add(this.tabPageStorehouse);
+            this.MainTabControl.Controls.Add(this.tabPageInventory);
+            this.MainTabControl.Controls.Add(this.tabPagePatients);
+            this.MainTabControl.Controls.Add(this.tabPageDiagnoses);
+            this.MainTabControl.Controls.Add(this.tabPagePrescriptons);
+            this.MainTabControl.Controls.Add(this.tabPageOrders);
+            this.MainTabControl.Controls.Add(this.tabPageSettings);
+            this.MainTabControl.Controls.Add(this.tabPageInformation);
+            this.MainTabControl.Depth = 0;
+            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTabControl.ImageList = this.imageListIconsMenu;
+            this.MainTabControl.Location = new System.Drawing.Point(3, 3);
+            this.MainTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.MainTabControl.Multiline = true;
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.Size = new System.Drawing.Size(1274, 714);
+            this.MainTabControl.TabIndex = 0;
+            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // tabPageMedications
             // 
@@ -139,7 +136,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonEdit.Name = "MedicationsButtonEdit";
             this.MedicationsButtonEdit.Size = new System.Drawing.Size(175, 35);
             this.MedicationsButtonEdit.TabIndex = 7;
-            this.MedicationsButtonEdit.Text = "Изменить лекарство";
+            this.MedicationsButtonEdit.Text = "Изменить запись";
             this.MedicationsButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonEdit.UseAccentColor = false;
             this.MedicationsButtonEdit.UseVisualStyleBackColor = true;
@@ -160,7 +157,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonDelete.Name = "MedicationsButtonDelete";
             this.MedicationsButtonDelete.Size = new System.Drawing.Size(175, 35);
             this.MedicationsButtonDelete.TabIndex = 6;
-            this.MedicationsButtonDelete.Text = "Удалить лекарство";
+            this.MedicationsButtonDelete.Text = "Удалить запись";
             this.MedicationsButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonDelete.UseAccentColor = false;
             this.MedicationsButtonDelete.UseVisualStyleBackColor = true;
@@ -181,7 +178,7 @@ namespace lab6_yunoshev
             this.MedicationsButtonAdd.Name = "MedicationsButtonAdd";
             this.MedicationsButtonAdd.Size = new System.Drawing.Size(175, 35);
             this.MedicationsButtonAdd.TabIndex = 5;
-            this.MedicationsButtonAdd.Text = "Добавить лекарство";
+            this.MedicationsButtonAdd.Text = "Добавить запись";
             this.MedicationsButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.MedicationsButtonAdd.UseAccentColor = false;
             this.MedicationsButtonAdd.UseVisualStyleBackColor = true;
@@ -253,16 +250,13 @@ namespace lab6_yunoshev
             this.MedicationsListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MedicationsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnId,
+            this.columnMedicationsId,
             this.columnMedicationsName,
-            this.columnPrice,
             this.columnQuantity,
-            this.columnVolume,
-            this.columnMedicationsType,
-            this.columnUsesType,
-            this.columnManufactureType,
-            this.columnPreparationTime,
-            this.columnFiltrationTime,
-            this.columnMixableList});
+            this.columnCriticalQuantity,
+            this.columnManufactureDate,
+            this.columnShelfDate,
+            this.columnStorehouseRId});
             this.MedicationsListView.Depth = 0;
             this.MedicationsListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MedicationsListView.FullRowSelect = true;
@@ -282,16 +276,15 @@ namespace lab6_yunoshev
             // 
             this.columnId.Text = "id";
             // 
+            // columnMedicationsId
+            // 
+            this.columnMedicationsId.Text = "id лекарства";
+            this.columnMedicationsId.Width = 120;
+            // 
             // columnMedicationsName
             // 
             this.columnMedicationsName.Text = "Название лекарства";
             this.columnMedicationsName.Width = 180;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.Text = "Цена";
-            this.columnPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnPrice.Width = 100;
             // 
             // columnQuantity
             // 
@@ -299,41 +292,27 @@ namespace lab6_yunoshev
             this.columnQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnQuantity.Width = 80;
             // 
-            // columnVolume
+            // columnCriticalQuantity
             // 
-            this.columnVolume.Text = "Объем";
-            this.columnVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnVolume.Width = 105;
+            this.columnCriticalQuantity.Text = "Критическое кол-во";
+            this.columnCriticalQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnCriticalQuantity.Width = 180;
             // 
-            // columnMedicationsType
+            // columnManufactureDate
             // 
-            this.columnMedicationsType.Text = "Тип лекарства";
-            this.columnMedicationsType.Width = 150;
+            this.columnManufactureDate.Text = "Дата изготовления";
+            this.columnManufactureDate.Width = 160;
             // 
-            // columnUsesType
+            // columnShelfDate
             // 
-            this.columnUsesType.Text = "Тип применения";
-            this.columnUsesType.Width = 190;
+            this.columnShelfDate.Text = "Годно до";
+            this.columnShelfDate.Width = 100;
             // 
-            // columnManufactureType
+            // columnStorehouseRId
             // 
-            this.columnManufactureType.Text = "Тип изготовления";
-            this.columnManufactureType.Width = 180;
-            // 
-            // columnPreparationTime
-            // 
-            this.columnPreparationTime.Text = "Время приготовления";
-            this.columnPreparationTime.Width = 180;
-            // 
-            // columnFiltrationTime
-            // 
-            this.columnFiltrationTime.Text = "Время фильтрации";
-            this.columnFiltrationTime.Width = 180;
-            // 
-            // columnMixableList
-            // 
-            this.columnMixableList.Text = "Список смешиваемых компонентов";
-            this.columnMixableList.Width = 400;
+            this.columnStorehouseRId.Text = "id запроса на склад";
+            this.columnStorehouseRId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnStorehouseRId.Width = 175;
             // 
             // tabPageStorehouse
             // 
@@ -428,7 +407,7 @@ namespace lab6_yunoshev
             // 
             this.StorehouseFTextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StorehouseFTextBoxSearch.Depth = 0;
-            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StorehouseFTextBoxSearch.Hint = "Введите название лекарства";
             this.StorehouseFTextBoxSearch.Location = new System.Drawing.Point(255, 6);
             this.StorehouseFTextBoxSearch.MaxLength = 50;
@@ -648,9 +627,9 @@ namespace lab6_yunoshev
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.StorehouseFListView);
+            this.Controls.Add(this.MainTabControl);
             this.DrawerShowIconsWhenHidden = true;
-            this.DrawerTabControl = this.StorehouseFListView;
+            this.DrawerTabControl = this.MainTabControl;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1280, 720);
@@ -659,7 +638,7 @@ namespace lab6_yunoshev
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аптека";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.StorehouseFListView.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.tabPageMedications.ResumeLayout(false);
             this.tabPageStorehouse.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -668,7 +647,7 @@ namespace lab6_yunoshev
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTabControl StorehouseFListView;
+        private MaterialSkin.Controls.MaterialTabControl MainTabControl;
         private System.Windows.Forms.TabPage tabPageMedications;
         private System.Windows.Forms.ImageList imageListIconsMenu;
         private System.Windows.Forms.TabPage tabPagePatients;
@@ -683,13 +662,9 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader columnId;
         private System.Windows.Forms.ColumnHeader columnMedicationsName;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnPrice;
-        private System.Windows.Forms.ColumnHeader columnMedicationsType;
-        private System.Windows.Forms.ColumnHeader columnUsesType;
-        private System.Windows.Forms.ColumnHeader columnManufactureType;
-        private System.Windows.Forms.ColumnHeader columnPreparationTime;
-        private System.Windows.Forms.ColumnHeader columnFiltrationTime;
-        private System.Windows.Forms.ColumnHeader columnMixableList;
+        private System.Windows.Forms.ColumnHeader columnCriticalQuantity;
+        private System.Windows.Forms.ColumnHeader columnManufactureDate;
+        private System.Windows.Forms.ColumnHeader columnShelfDate;
         private MaterialSkin.Controls.MaterialComboBox MedicationsComboBoxSort;
         private MaterialSkin.Controls.MaterialTextBox MedicationsTextBoxSearch;
         private MaterialSkin.Controls.MaterialLabel MedicationsLabelSearch;
@@ -697,7 +672,7 @@ namespace lab6_yunoshev
         private MaterialSkin.Controls.MaterialButton MedicationsButtonDelete;
         private MaterialSkin.Controls.MaterialButton MedicationsButtonEdit;
         private System.Windows.Forms.ColumnHeader columnQuantity;
-        private System.Windows.Forms.ColumnHeader columnVolume;
+        private System.Windows.Forms.ColumnHeader columnStorehouseRId;
         private MaterialSkin.Controls.MaterialButton StorehouseFButtonEdit;
         private MaterialSkin.Controls.MaterialButton StorehouseFButtonDelete;
         private MaterialSkin.Controls.MaterialButton StorehouseFButtonAdd;
@@ -716,5 +691,6 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnMedicationsId;
     }
 }

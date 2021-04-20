@@ -19,8 +19,11 @@ namespace lab6_yunoshev.Prescriptions
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         private string[] dataPrescription = new string[5];
         private string[] dataPatient = new string[5];
-        private string[] dataDiagnoses = new string[2];
-        private string[] dataMedications = new string[3];
+        private string[,] dataDiagnoses;
+        private string[,] dataMedications;
+
+        private static List<int> diagnosesId = new List<int>();
+        private static Dictionary<int, int> medicationsId = new Dictionary<int, int>();
 
         private int pId;
 
@@ -36,6 +39,49 @@ namespace lab6_yunoshev.Prescriptions
                 MaterialSkin.TextShade.WHITE);
             TextBoxStatusId.ForeColor = Color.Red;
             TextBoxStatusPId.ForeColor = Color.Red;
+        }
+
+        private void InitializeDGVs(int id)
+        {
+            string query = Commands.SelectPrescriptionsDiagnosesWhereId(id);
+            ConnectedData.SetCommand(query);
+            int[] size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            int row = size[0];
+            int column = size[1];
+
+            dataDiagnoses = new string[row, column];
+            dataDiagnoses = ConnectedData.GetTableData();
+
+            DGVDiagnoses.RowCount = row + 1;
+
+            for (int i = 0; i < row; i++)
+            {
+                diagnosesId.Add(Convert.ToInt32(dataDiagnoses[i, 1]));
+                DGVDiagnoses[0, i].Value = Convert.ToInt32(dataDiagnoses[i, 1]);
+            }
+
+
+
+            query = Commands.SelectPrescriptionsMedicationsWhereId(id);
+            ConnectedData.SetCommand(query);
+            size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            row = size[0];
+            column = size[1];
+
+            dataMedications = new string[row, column];
+            dataMedications = ConnectedData.GetTableData();
+
+            DGVMedications.RowCount = row + 1;
+
+            for (int i = 0; i < row; i++)
+            {
+                medicationsId.Add(Convert.ToInt32(dataMedications[i, 1]), Convert.ToInt32(dataMedications[i, 2]));
+                DGVMedications[0, i].Value = Convert.ToInt32(dataMedications[i, 1]);
+                DGVMedications[1, i].Value = Convert.ToInt32(dataMedications[i, 2]);
+            }
+
         }
 
         private void ButtonAcceptId_Click(object sender, EventArgs e)
@@ -77,6 +123,8 @@ namespace lab6_yunoshev.Prescriptions
                 ConnectedData.SetCommand(query2);
                 dataPatient = ConnectedData.GetRowFromTable();
                 TextBoxPName.Text = dataPatient[1];
+
+                InitializeDGVs(id);
                 this.Refresh();
 
             }

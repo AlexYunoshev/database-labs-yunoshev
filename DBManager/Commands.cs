@@ -381,7 +381,7 @@ namespace DBManager
 
         public static string SelectPrescriptionsDiagnosesWhereId(int id)
         {
-            string cmd = @"select DISTINCT p.id, d.diagnosis 
+            string cmd = @"select DISTINCT p.id, d.id 
             from dbo.diagnoses_prescriptions dp, dbo.diagnoses d, dbo.prescriptions p
             where dp.prescriptions_id = p.id and dp.diagnoses_id = d.id and p.id = " + id + " order by p.id asc";
 
@@ -390,7 +390,7 @@ namespace DBManager
 
         public static string SelectPrescriptionsMedicationsWhereId(int id)
         {
-            string cmd = @"select DISTINCT p.id, m.medications_name, pm.quantity 
+            string cmd = @"select DISTINCT p.id, m.id, pm.quantity 
             from dbo.prescriptions_medications pm, dbo.medications m, dbo.prescriptions p
             where pm.prescriptions_id = p.id and pm.medications_id = m.id and p.id = " + id + " order by p.id asc";
 

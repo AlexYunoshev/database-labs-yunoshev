@@ -328,7 +328,19 @@ namespace DBManager
             foreach (var a in DiagnosesId)
             {
                 cmd += @"insert into dbo.diagnoses_prescriptions(diagnoses_id, prescriptions_id)
-                values(" + a + ", " + id + ");";
+                values(" + a + ", " + id + ");\n";
+            }
+            return cmd;
+        }
+
+        public static string InsertPrescriptionsMedications(Dictionary<int, int> MedicationsId, int id)
+        {
+            string cmd = @"";
+
+            foreach (KeyValuePair<int, int> a in MedicationsId)
+            {
+                cmd += @"insert into dbo.prescriptions_medications(prescriptions_id, medications_id, quantity)
+                values(" + id + ", " + a.Key + ", " + a.Value + ");\n";
             }
             return cmd;
         }

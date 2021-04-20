@@ -19,7 +19,6 @@ namespace lab6_yunoshev.StorehouseFields
 
         private string[] data = new string[4];
 
-
         public AddStorehouseFields()
         {
             InitializeComponent();
@@ -33,9 +32,6 @@ namespace lab6_yunoshev.StorehouseFields
             TextBoxStatusMId.ForeColor = Color.Red;
             TextBoxStatusRId.ForeColor = Color.Red;
         }
-
-      
-       
 
         private void CheckBoxRId_CheckedChanged(object sender, EventArgs e)
         {

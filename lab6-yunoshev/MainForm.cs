@@ -413,8 +413,6 @@ namespace lab6_yunoshev
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
 
-
-
                 string[] data = new string[1];
                 query = Commands.SelectLastId("dbo.prescriptions");
                 MessageBox.Show("2\n" + query);
@@ -428,13 +426,11 @@ namespace lab6_yunoshev
                 count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
 
-
                 query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
                 MessageBox.Show("4\n" + query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
-
 
                 PrescriptionsPrint(SortTypes.IdAsc);
             }

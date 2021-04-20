@@ -250,7 +250,6 @@ namespace DBManager
             return cmd;
         }
 
-
         public static string SelectPrescriptions(SortTypes sort, string name = "")
         {
             string cmd = @"select pres.id, pres.patient_id, p.full_name, pres.doctor_full_name, 

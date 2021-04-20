@@ -34,8 +34,6 @@ namespace lab6_yunoshev
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.Text = MainTabControl.TabPages[0].Text;
-            //this.Text = "Аптека                                  Connection_status: ";
-            //this.Text += ConnectedData.connection.State;
             MedicationsPrint(SortTypes.IdAsc);
             StorehouseFPrint(SortTypes.IdAsc);
             PrescriptionsPrint(SortTypes.IdAsc);
@@ -298,7 +296,6 @@ namespace lab6_yunoshev
             }
     
         }
-
 
         public Dictionary<int, string> GetPrescriptionsDiagnoses()
         {

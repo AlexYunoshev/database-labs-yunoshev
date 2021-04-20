@@ -60,30 +60,17 @@ namespace lab6_yunoshev.Prescriptions
                 {
                     if (DGVDiagnoses[0, i].Value != null)
                     {
-                        try
-                        {
-                            Models.Prescriptions.diagnosesId.Add(Convert.ToInt32(DGVDiagnoses[0, i].Value));
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Вы пытаетесь ввести данные в неправильном формате!!!");
-                        }
+                        try { Models.Prescriptions.diagnosesId.Add(Convert.ToInt32(DGVDiagnoses[0, i].Value)); }
+                        catch { }
                     }
-
                 }
 
                 for (int i = 0; i < mRow; i++)
                 {
-                    if (DGVMedications[0, i].Value != null && DGVMedications[2, i].Value != null)
+                    if (DGVMedications[0, i].Value != null && DGVMedications[1, i].Value != null)
                     {
-                        try
-                        {
-                            Models.Prescriptions.medicationsId.Add(Convert.ToInt32(DGVMedications[0, i].Value), Convert.ToInt32(DGVMedications[2, i].Value));
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Вы пытаетесь ввести данные в неправильном формате!!!");
-                        }
+                        try { Models.Prescriptions.medicationsId.Add(Convert.ToInt32(DGVMedications[0, i].Value), Convert.ToInt32(DGVMedications[1, i].Value)); }
+                        catch {}
                     }
                 }
 
@@ -93,9 +80,7 @@ namespace lab6_yunoshev.Prescriptions
                 Models.Prescriptions.patientId = Convert.ToInt32(NumericPId.Value);
                 this.Close();
                 this.DialogResult = DialogResult.OK;
-            }
-
-            
+            }   
         }
 
         private void DGVDiagnoses_CellEndEdit(object sender, DataGridViewCellEventArgs e)

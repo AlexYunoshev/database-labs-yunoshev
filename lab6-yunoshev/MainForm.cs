@@ -408,10 +408,34 @@ namespace lab6_yunoshev
                     Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp, 
                     Models.Prescriptions.patientId, Models.Prescriptions.diagnosesId, 
                     Models.Prescriptions.medicationsId);
-                MessageBox.Show(query);
+                MessageBox.Show("1\n" + query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Добавлено: " + count.ToString());
+
+
+
+                string[] data = new string[1];
+                query = Commands.SelectLastId("dbo.prescriptions");
+                MessageBox.Show("2\n" + query);
+                ConnectedData.SetCommand(query);
+                data = ConnectedData.GetRowFromTable();
+                int id = Convert.ToInt32(data[0]);
+
+                query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
+                MessageBox.Show("3\n" + query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено: " + count.ToString());
+
+
+                query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
+                MessageBox.Show("4\n" + query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено: " + count.ToString());
+
+
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
         }

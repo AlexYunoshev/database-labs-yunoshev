@@ -41,11 +41,9 @@ namespace lab6_yunoshev.Prescriptions
             this.TextBoxPName = new MaterialSkin.Controls.MaterialTextBox();
             this.CheckBoxDStamp = new MaterialSkin.Controls.MaterialCheckbox();
             this.DGVDiagnoses = new System.Windows.Forms.DataGridView();
-            this.ColumnDiagnosisId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDiagnosisName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGVMedications = new System.Windows.Forms.DataGridView();
+            this.ColumnDiagnosisId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMedicationsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMedicationsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMedicationsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.NumericPId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVDiagnoses)).BeginInit();
@@ -139,11 +137,11 @@ namespace lab6_yunoshev.Prescriptions
             this.ButtonReset.DrawShadows = true;
             this.ButtonReset.HighEmphasis = true;
             this.ButtonReset.Icon = null;
-            this.ButtonReset.Location = new System.Drawing.Point(167, 541);
+            this.ButtonReset.Location = new System.Drawing.Point(167, 404);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ButtonReset.MouseState = MaterialSkin.MouseState.HOVER;
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(170, 36);
+            this.ButtonReset.Size = new System.Drawing.Size(234, 36);
             this.ButtonReset.TabIndex = 80;
             this.ButtonReset.Text = "Сбросить всё";
             this.ButtonReset.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -160,11 +158,11 @@ namespace lab6_yunoshev.Prescriptions
             this.ButtonAdd.DrawShadows = true;
             this.ButtonAdd.HighEmphasis = true;
             this.ButtonAdd.Icon = null;
-            this.ButtonAdd.Location = new System.Drawing.Point(10, 541);
+            this.ButtonAdd.Location = new System.Drawing.Point(10, 404);
             this.ButtonAdd.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ButtonAdd.MouseState = MaterialSkin.MouseState.HOVER;
             this.ButtonAdd.Name = "ButtonAdd";
-            this.ButtonAdd.Size = new System.Drawing.Size(149, 36);
+            this.ButtonAdd.Size = new System.Drawing.Size(143, 36);
             this.ButtonAdd.TabIndex = 79;
             this.ButtonAdd.Text = "Добавить";
             this.ButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -194,11 +192,11 @@ namespace lab6_yunoshev.Prescriptions
             this.TextBoxDName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxDName.Hint = "Имя доктора";
             this.TextBoxDName.Location = new System.Drawing.Point(10, 182);
-            this.TextBoxDName.MaxLength = 10;
+            this.TextBoxDName.MaxLength = 254;
             this.TextBoxDName.MouseState = MaterialSkin.MouseState.OUT;
             this.TextBoxDName.Multiline = false;
             this.TextBoxDName.Name = "TextBoxDName";
-            this.TextBoxDName.Size = new System.Drawing.Size(327, 50);
+            this.TextBoxDName.Size = new System.Drawing.Size(391, 50);
             this.TextBoxDName.TabIndex = 71;
             this.TextBoxDName.Text = "";
             // 
@@ -209,12 +207,12 @@ namespace lab6_yunoshev.Prescriptions
             this.TextBoxPName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxPName.Hint = "Имя пациента";
             this.TextBoxPName.Location = new System.Drawing.Point(10, 126);
-            this.TextBoxPName.MaxLength = 10;
+            this.TextBoxPName.MaxLength = 254;
             this.TextBoxPName.MouseState = MaterialSkin.MouseState.OUT;
             this.TextBoxPName.Multiline = false;
             this.TextBoxPName.Name = "TextBoxPName";
             this.TextBoxPName.ReadOnly = true;
-            this.TextBoxPName.Size = new System.Drawing.Size(327, 50);
+            this.TextBoxPName.Size = new System.Drawing.Size(391, 50);
             this.TextBoxPName.TabIndex = 70;
             this.TextBoxPName.Text = "";
             // 
@@ -237,53 +235,36 @@ namespace lab6_yunoshev.Prescriptions
             // 
             this.DGVDiagnoses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVDiagnoses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnDiagnosisId,
-            this.ColumnDiagnosisName});
+            this.ColumnDiagnosisId});
             this.DGVDiagnoses.Location = new System.Drawing.Point(10, 275);
             this.DGVDiagnoses.Name = "DGVDiagnoses";
             this.DGVDiagnoses.RowTemplate.Height = 25;
-            this.DGVDiagnoses.Size = new System.Drawing.Size(327, 120);
+            this.DGVDiagnoses.Size = new System.Drawing.Size(143, 120);
             this.DGVDiagnoses.TabIndex = 87;
             this.DGVDiagnoses.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDiagnoses_CellEndEdit);
-            // 
-            // ColumnDiagnosisId
-            // 
-            this.ColumnDiagnosisId.HeaderText = "id диагноза";
-            this.ColumnDiagnosisId.Name = "ColumnDiagnosisId";
-            // 
-            // ColumnDiagnosisName
-            // 
-            this.ColumnDiagnosisName.HeaderText = "Диагноз";
-            this.ColumnDiagnosisName.Name = "ColumnDiagnosisName";
-            this.ColumnDiagnosisName.ReadOnly = true;
-            this.ColumnDiagnosisName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnDiagnosisName.Width = 184;
             // 
             // DGVMedications
             // 
             this.DGVMedications.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVMedications.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnMedicationsId,
-            this.ColumnMedicationsName,
             this.ColumnMedicationsCount});
-            this.DGVMedications.Location = new System.Drawing.Point(10, 412);
+            this.DGVMedications.Location = new System.Drawing.Point(167, 275);
             this.DGVMedications.Name = "DGVMedications";
             this.DGVMedications.RowTemplate.Height = 25;
-            this.DGVMedications.Size = new System.Drawing.Size(327, 120);
+            this.DGVMedications.Size = new System.Drawing.Size(234, 120);
             this.DGVMedications.TabIndex = 88;
             this.DGVMedications.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMedications_CellEndEdit);
+            // 
+            // ColumnDiagnosisId
+            // 
+            this.ColumnDiagnosisId.HeaderText = "id диагноза";
+            this.ColumnDiagnosisId.Name = "ColumnDiagnosisId";
             // 
             // ColumnMedicationsId
             // 
             this.ColumnMedicationsId.HeaderText = "id лекарства";
             this.ColumnMedicationsId.Name = "ColumnMedicationsId";
-            // 
-            // ColumnMedicationsName
-            // 
-            this.ColumnMedicationsName.HeaderText = "Лекарство";
-            this.ColumnMedicationsName.Name = "ColumnMedicationsName";
-            this.ColumnMedicationsName.ReadOnly = true;
-            this.ColumnMedicationsName.Width = 94;
             // 
             // ColumnMedicationsCount
             // 
@@ -295,7 +276,7 @@ namespace lab6_yunoshev.Prescriptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 592);
+            this.ClientSize = new System.Drawing.Size(415, 458);
             this.Controls.Add(this.DGVMedications);
             this.Controls.Add(this.DGVDiagnoses);
             this.Controls.Add(this.CheckBoxDStamp);
@@ -341,9 +322,7 @@ namespace lab6_yunoshev.Prescriptions
         private System.Windows.Forms.DataGridView DGVDiagnoses;
         private System.Windows.Forms.DataGridView DGVMedications;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDiagnosisId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDiagnosisName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMedicationsId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMedicationsName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMedicationsCount;
     }
 }

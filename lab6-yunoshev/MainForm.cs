@@ -87,10 +87,10 @@ namespace lab6_yunoshev
                 query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
                         Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
                         Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено: " + count.ToString());
+                //MessageBox.Show("Добавлено: " + count.ToString());
                 MedicationsPrint(SortTypes.IdAsc);
             }
         }
@@ -103,10 +103,10 @@ namespace lab6_yunoshev
             if (status == DialogResult.OK)
             {
                 query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Удалено: " + count.ToString());
+                //MessageBox.Show("Удалено: " + count.ToString());
                 MedicationsPrint(SortTypes.IdAsc);
             }
         }
@@ -120,10 +120,10 @@ namespace lab6_yunoshev
                 query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
                        Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
                        Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Обновлено: " + count.ToString());
+                //MessageBox.Show("Обновлено: " + count.ToString());
                 MedicationsPrint(SortTypes.IdAsc);
             }
         }
@@ -211,10 +211,10 @@ namespace lab6_yunoshev
                     Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
                     Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
                     Models.StorehouseField.ShelfLife);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено: " + count.ToString());
+                //MessageBox.Show("Добавлено: " + count.ToString());
                 StorehouseFPrint(SortTypes.IdAsc);
             }
         }
@@ -227,10 +227,10 @@ namespace lab6_yunoshev
             if (status == DialogResult.OK)
             {
                 query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Удалено: " + count.ToString());
+                //MessageBox.Show("Удалено: " + count.ToString());
                 StorehouseFPrint(SortTypes.IdAsc);
             }
         }
@@ -244,10 +244,10 @@ namespace lab6_yunoshev
                 query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity, 
                         Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId, 
                         Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Обновлено: " + count.ToString());
+                //MessageBox.Show("Обновлено: " + count.ToString());
                 StorehouseFPrint(SortTypes.IdAsc);
             }
         }
@@ -269,7 +269,6 @@ namespace lab6_yunoshev
             Dictionary<int, string> list = GetPrescriptionsDiagnoses();
             Dictionary<int, string> list2 = GetPrescriptionsMedications();
             
-
             for (int i = 0; i < row; i++)
             {
                 item = new ListViewItem(data[i, 0]);
@@ -300,7 +299,6 @@ namespace lab6_yunoshev
 
                 PrescriptionsListView.Items.Add(item);
             }
-    
         }
 
         public Dictionary<int, string> GetPrescriptionsDiagnoses()
@@ -406,29 +404,29 @@ namespace lab6_yunoshev
                 query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName, 
                     Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp, 
                     Models.Prescriptions.patientId);
-                MessageBox.Show("1\n" + query);
+                //MessageBox.Show("1\n" + query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено: " + count.ToString());
+                //MessageBox.Show("Добавлено: " + count.ToString());
 
                 string[] data = new string[1];
                 query = Commands.SelectLastId("dbo.prescriptions");
-                MessageBox.Show("2\n" + query);
+                //MessageBox.Show("2\n" + query);
                 ConnectedData.SetCommand(query);
                 data = ConnectedData.GetRowFromTable();
                 int id = Convert.ToInt32(data[0]);
 
                 query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
-                MessageBox.Show("3\n" + query);
+                //MessageBox.Show("3\n" + query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено: " + count.ToString());
+                //MessageBox.Show("Добавлено: " + count.ToString());
 
                 query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
-                MessageBox.Show("4\n" + query);
+                //MessageBox.Show("4\n" + query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено: " + count.ToString());
+                //MessageBox.Show("Добавлено: " + count.ToString());
 
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
@@ -442,10 +440,10 @@ namespace lab6_yunoshev
             if (status == DialogResult.OK)
             {
                 query = Commands.DeletePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.id2, Models.Prescriptions.patientName);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Удалено: " + count.ToString());
+                //MessageBox.Show("Удалено: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
         }
@@ -459,39 +457,37 @@ namespace lab6_yunoshev
                 query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
                     Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
                     Models.Prescriptions.patientId);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Обновлено основ: " + count.ToString());
+                //MessageBox.Show("Обновлено основ: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
 
                 query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Удалено диагнозов: " + count.ToString());
+                //MessageBox.Show("Удалено диагнозов: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
 
                 query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Удалено лекарств: " + count.ToString());
+                //MessageBox.Show("Удалено лекарств: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
 
-
-
                 query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
-                MessageBox.Show("3\n" + query);
+                //MessageBox.Show("3\n" + query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено диагнозов: " + count.ToString());
+                //MessageBox.Show("Добавлено диагнозов: " + count.ToString());
 
                 query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
-                MessageBox.Show("4\n" + query);
+                //MessageBox.Show("4\n" + query);
                 ConnectedData.SetCommand(query);
                 count = ConnectedData.UpdateData();
-                MessageBox.Show("Добавлено лекарств: " + count.ToString());
+                //MessageBox.Show("Добавлено лекарств: " + count.ToString());
 
                 PrescriptionsPrint(SortTypes.IdAsc);
             }

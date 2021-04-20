@@ -298,5 +298,14 @@ namespace DBManager
 
             return cmd;
         }
+
+        public static string SelectPrescriptionsMedications()
+        {
+            string cmd = @"select  DISTINCT p.id, m.medications_name, pm.quantity 
+            from dbo.prescriptions_medications pm, dbo.medications m, dbo.prescriptions p
+            where pm.prescriptions_id = p.id and pm.medications_id = m.id order by p.id asc";
+
+            return cmd;
+        }
     }
 }

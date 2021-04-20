@@ -269,6 +269,8 @@ namespace lab6_yunoshev
             data = ConnectedData.GetTableData();
 
             Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+            Dictionary<int, string> list2 = GetPrescriptionsMedications();
+            
 
             for (int i = 0; i < row; i++)
             {
@@ -290,6 +292,7 @@ namespace lab6_yunoshev
 
               
                 item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
+                item.SubItems.Add(list2[Convert.ToInt32(data[i, 0])]);
 
                 PrescriptionsListView.Items.Add(item);
             }
@@ -313,26 +316,6 @@ namespace lab6_yunoshev
             int key = Convert.ToInt32(data[0, 0]);
             string str = "";
 
-            //int i = 0;
-            //while (i < row)
-            //{
-            //    if (Convert.ToInt32(data[i, 0]) == key)
-            //    {
-            //        str += data[i, 1] + ", ";
-            //        i++;
-            //    }
-            //    else
-            //    {
-
-            //        str = str.Remove(str.Length - 2);
-            //        list.Add(key, str);
-            //        str = "";
-            //        i++;
-            //        key = i;
-            //    }
-            //}
-
-
             for (int i = 0; i < row; i++)
             {
                 if (Convert.ToInt32(data[i, 0]) == key)
@@ -344,10 +327,47 @@ namespace lab6_yunoshev
                     str = str.Remove(str.Length - 2);
                     list.Add(key, str);
                     str = "";
-                    key = i;
-                    str += data[i, 1] + "  ";
+                    key = Convert.ToInt32(data[i, 0]);
+                    str += data[i, 1] + ", ";
                 }
             }
+            str = str.Remove(str.Length - 2);
+            list.Add(key, str);
+            return list;
+        }
+
+        public Dictionary<int, string> GetPrescriptionsMedications()
+        {
+            query = Commands.SelectPrescriptionsMedications();
+            ConnectedData.SetCommand(query);
+            int[] size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            int row = size[0];
+            int column = size[1];
+            Dictionary<int, string> list = new Dictionary<int, string>();
+
+            string[,] data = new string[row, column];
+            data = ConnectedData.GetTableData();
+
+            int key = Convert.ToInt32(data[0, 0]);
+            string str = "";
+
+            for (int i = 0; i < row; i++)
+            {
+                if (Convert.ToInt32(data[i, 0]) == key)
+                {
+                    str += data[i, 1] + " " + data[i, 2] + "шт, ";
+                }
+                else
+                {
+                    str = str.Remove(str.Length - 2);
+                    list.Add(key, str);
+                    str = "";
+                    key = Convert.ToInt32(data[i, 0]);
+                    str += data[i, 1] + " " + data[i, 2] + "шт, ";
+                }
+            }
+            str = str.Remove(str.Length - 2);
             list.Add(key, str);
             return list;
         }

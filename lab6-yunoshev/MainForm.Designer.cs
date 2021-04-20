@@ -85,6 +85,7 @@ namespace lab6_yunoshev
             this.headerPrescriptionsDoctorSignature = new System.Windows.Forms.ColumnHeader();
             this.headerPrescriptionsDoctorStamp = new System.Windows.Forms.ColumnHeader();
             this.headerPrescriptionsDiagnoses = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsMedications = new System.Windows.Forms.ColumnHeader();
             this.tabPageOrders = new System.Windows.Forms.TabPage();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
@@ -734,7 +735,8 @@ namespace lab6_yunoshev
             this.headerPrescriptionsDoctorName,
             this.headerPrescriptionsDoctorSignature,
             this.headerPrescriptionsDoctorStamp,
-            this.headerPrescriptionsDiagnoses});
+            this.headerPrescriptionsDiagnoses,
+            this.headerPrescriptionsMedications});
             this.PrescriptionsListView.Depth = 0;
             this.PrescriptionsListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PrescriptionsListView.FullRowSelect = true;
@@ -782,7 +784,12 @@ namespace lab6_yunoshev
             // headerPrescriptionsDiagnoses
             // 
             this.headerPrescriptionsDiagnoses.Text = "Список диагнозов";
-            this.headerPrescriptionsDiagnoses.Width = 400;
+            this.headerPrescriptionsDiagnoses.Width = 210;
+            // 
+            // headerPrescriptionsMedications
+            // 
+            this.headerPrescriptionsMedications.Text = "Список лекарств";
+            this.headerPrescriptionsMedications.Width = 600;
             // 
             // tabPageOrders
             // 
@@ -915,5 +922,6 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorSignature;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorStamp;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDiagnoses;
+        private System.Windows.Forms.ColumnHeader headerPrescriptionsMedications;
     }
 }

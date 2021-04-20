@@ -67,9 +67,6 @@ namespace lab6_yunoshev
             this.columnHeaderManufactureDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderShelfDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderStorehouseRId = new System.Windows.Forms.ColumnHeader();
-            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
-            this.tabPageInventory = new System.Windows.Forms.TabPage();
-            this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.tabPagePrescriptons = new System.Windows.Forms.TabPage();
             this.PrescriptionsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.PrescriptionsButtonDelete = new MaterialSkin.Controls.MaterialButton();
@@ -86,6 +83,9 @@ namespace lab6_yunoshev
             this.headerPrescriptionsDoctorStamp = new System.Windows.Forms.ColumnHeader();
             this.headerPrescriptionsDiagnoses = new System.Windows.Forms.ColumnHeader();
             this.headerPrescriptionsMedications = new System.Windows.Forms.ColumnHeader();
+            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
+            this.tabPageInventory = new System.Windows.Forms.TabPage();
+            this.tabPagePatients = new System.Windows.Forms.TabPage();
             this.tabPageOrders = new System.Windows.Forms.TabPage();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
@@ -100,10 +100,10 @@ namespace lab6_yunoshev
             // 
             this.MainTabControl.Controls.Add(this.tabPageMedications);
             this.MainTabControl.Controls.Add(this.tabPageStorehouse);
+            this.MainTabControl.Controls.Add(this.tabPagePrescriptons);
             this.MainTabControl.Controls.Add(this.tabPageDiagnoses);
             this.MainTabControl.Controls.Add(this.tabPageInventory);
             this.MainTabControl.Controls.Add(this.tabPagePatients);
-            this.MainTabControl.Controls.Add(this.tabPagePrescriptons);
             this.MainTabControl.Controls.Add(this.tabPageOrders);
             this.MainTabControl.Controls.Add(this.tabPageSettings);
             this.MainTabControl.Controls.Add(this.tabPageInformation);
@@ -555,36 +555,6 @@ namespace lab6_yunoshev
             this.columnHeaderStorehouseRId.Text = "id запроса на склад";
             this.columnHeaderStorehouseRId.Width = 165;
             // 
-            // tabPageDiagnoses
-            // 
-            this.tabPageDiagnoses.BackColor = System.Drawing.Color.White;
-            this.tabPageDiagnoses.ImageKey = "diagnoses.png";
-            this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
-            this.tabPageDiagnoses.Name = "tabPageDiagnoses";
-            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 671);
-            this.tabPageDiagnoses.TabIndex = 5;
-            this.tabPageDiagnoses.Text = "Диагнозы";
-            // 
-            // tabPageInventory
-            // 
-            this.tabPageInventory.BackColor = System.Drawing.Color.White;
-            this.tabPageInventory.ImageKey = "inventory.png";
-            this.tabPageInventory.Location = new System.Drawing.Point(4, 39);
-            this.tabPageInventory.Name = "tabPageInventory";
-            this.tabPageInventory.Size = new System.Drawing.Size(1266, 671);
-            this.tabPageInventory.TabIndex = 6;
-            this.tabPageInventory.Text = "Инвентаризация";
-            // 
-            // tabPagePatients
-            // 
-            this.tabPagePatients.BackColor = System.Drawing.Color.White;
-            this.tabPagePatients.ImageKey = "patient.png";
-            this.tabPagePatients.Location = new System.Drawing.Point(4, 39);
-            this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Size = new System.Drawing.Size(1266, 671);
-            this.tabPagePatients.TabIndex = 1;
-            this.tabPagePatients.Text = "Пациенты";
-            // 
             // tabPagePrescriptons
             // 
             this.tabPagePrescriptons.BackColor = System.Drawing.Color.White;
@@ -617,7 +587,7 @@ namespace lab6_yunoshev
             this.PrescriptionsButtonEdit.Name = "PrescriptionsButtonEdit";
             this.PrescriptionsButtonEdit.Size = new System.Drawing.Size(175, 35);
             this.PrescriptionsButtonEdit.TabIndex = 21;
-            this.PrescriptionsButtonEdit.Text = "Изменить запись";
+            this.PrescriptionsButtonEdit.Text = "Изменить рецепт";
             this.PrescriptionsButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.PrescriptionsButtonEdit.UseAccentColor = false;
             this.PrescriptionsButtonEdit.UseVisualStyleBackColor = true;
@@ -637,7 +607,7 @@ namespace lab6_yunoshev
             this.PrescriptionsButtonDelete.Name = "PrescriptionsButtonDelete";
             this.PrescriptionsButtonDelete.Size = new System.Drawing.Size(175, 35);
             this.PrescriptionsButtonDelete.TabIndex = 20;
-            this.PrescriptionsButtonDelete.Text = "Удалить запись";
+            this.PrescriptionsButtonDelete.Text = "Удалить рецепт";
             this.PrescriptionsButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.PrescriptionsButtonDelete.UseAccentColor = false;
             this.PrescriptionsButtonDelete.UseVisualStyleBackColor = true;
@@ -657,10 +627,11 @@ namespace lab6_yunoshev
             this.PrescriptionsButtonAdd.Name = "PrescriptionsButtonAdd";
             this.PrescriptionsButtonAdd.Size = new System.Drawing.Size(175, 35);
             this.PrescriptionsButtonAdd.TabIndex = 19;
-            this.PrescriptionsButtonAdd.Text = "Добавить запись";
+            this.PrescriptionsButtonAdd.Text = "Добавить рецепт";
             this.PrescriptionsButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.PrescriptionsButtonAdd.UseAccentColor = false;
             this.PrescriptionsButtonAdd.UseVisualStyleBackColor = true;
+            this.PrescriptionsButtonAdd.Click += new System.EventHandler(this.PrescriptionsButtonAdd_Click);
             // 
             // PrescriptionsLabelSearch
             // 
@@ -790,6 +761,36 @@ namespace lab6_yunoshev
             // 
             this.headerPrescriptionsMedications.Text = "Список лекарств";
             this.headerPrescriptionsMedications.Width = 600;
+            // 
+            // tabPageDiagnoses
+            // 
+            this.tabPageDiagnoses.BackColor = System.Drawing.Color.White;
+            this.tabPageDiagnoses.ImageKey = "diagnoses.png";
+            this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
+            this.tabPageDiagnoses.Name = "tabPageDiagnoses";
+            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageDiagnoses.TabIndex = 5;
+            this.tabPageDiagnoses.Text = "Диагнозы";
+            // 
+            // tabPageInventory
+            // 
+            this.tabPageInventory.BackColor = System.Drawing.Color.White;
+            this.tabPageInventory.ImageKey = "inventory.png";
+            this.tabPageInventory.Location = new System.Drawing.Point(4, 39);
+            this.tabPageInventory.Name = "tabPageInventory";
+            this.tabPageInventory.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageInventory.TabIndex = 6;
+            this.tabPageInventory.Text = "Инвентаризация";
+            // 
+            // tabPagePatients
+            // 
+            this.tabPagePatients.BackColor = System.Drawing.Color.White;
+            this.tabPagePatients.ImageKey = "patient.png";
+            this.tabPagePatients.Location = new System.Drawing.Point(4, 39);
+            this.tabPagePatients.Name = "tabPagePatients";
+            this.tabPagePatients.Size = new System.Drawing.Size(1266, 671);
+            this.tabPagePatients.TabIndex = 1;
+            this.tabPagePatients.Text = "Пациенты";
             // 
             // tabPageOrders
             // 

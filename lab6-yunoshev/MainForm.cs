@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DBManager;
 using lab6_yunoshev.Medications;
 using lab6_yunoshev.StorehouseFields;
+using lab6_yunoshev.Prescriptions;
 using Models;
 
 namespace lab6_yunoshev
@@ -387,6 +388,24 @@ namespace lab6_yunoshev
             }
             else
             {
+                PrescriptionsPrint(SortTypes.IdAsc);
+            }
+        }
+
+        private void PrescriptionsButtonAdd_Click(object sender, EventArgs e)
+        {
+            AddPrescriptions addPrescriptions = new AddPrescriptions();
+            DialogResult status = addPrescriptions.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                //query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
+                //    Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
+                //    Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
+                //    Models.StorehouseField.ShelfLife);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
         }

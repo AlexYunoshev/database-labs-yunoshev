@@ -405,8 +405,7 @@ namespace lab6_yunoshev
             {
                 query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName, 
                     Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp, 
-                    Models.Prescriptions.patientId, Models.Prescriptions.diagnosesId, 
-                    Models.Prescriptions.medicationsId);
+                    Models.Prescriptions.patientId);
                 MessageBox.Show("1\n" + query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
@@ -459,40 +458,42 @@ namespace lab6_yunoshev
             {
                 query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
                     Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
-                    Models.Prescriptions.patientId, Models.Prescriptions.diagnosesId,
-                    Models.Prescriptions.medicationsId);
+                    Models.Prescriptions.patientId);
                 MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
-                MessageBox.Show("Обновлено: " + count.ToString());
+                MessageBox.Show("Обновлено основ: " + count.ToString());
+                PrescriptionsPrint(SortTypes.IdAsc);
+
+                query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Удалено диагнозов: " + count.ToString());
+                PrescriptionsPrint(SortTypes.IdAsc);
+
+                query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Удалено лекарств: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
 
 
 
-                //MessageBox.Show("1\n" + query);
-                //ConnectedData.SetCommand(query);
-                //int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
+                query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
+                MessageBox.Show("3\n" + query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено диагнозов: " + count.ToString());
 
-                //string[] data = new string[1];
-                //query = Commands.SelectLastId("dbo.prescriptions");
-                //MessageBox.Show("2\n" + query);
-                //ConnectedData.SetCommand(query);
-                //data = ConnectedData.GetRowFromTable();
-                //int id = Convert.ToInt32(data[0]);
+                query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
+                MessageBox.Show("4\n" + query);
+                ConnectedData.SetCommand(query);
+                count = ConnectedData.UpdateData();
+                MessageBox.Show("Добавлено лекарств: " + count.ToString());
 
-                //query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
-                //MessageBox.Show("3\n" + query);
-                //ConnectedData.SetCommand(query);
-                //count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
-
-                //query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
-                //MessageBox.Show("4\n" + query);
-                //ConnectedData.SetCommand(query);
-                //count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
-
+                PrescriptionsPrint(SortTypes.IdAsc);
             }
         }
     }

@@ -313,7 +313,7 @@ namespace DBManager
             return cmd;
         }
 
-        public static string InsertPrescriptions(string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId, List<int> DiagnosesId, Dictionary<int, int> MedicationsId)
+        public static string InsertPrescriptions(string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId)
         {
             string cmd = @"insert into 
             dbo.prescriptions(doctor_full_name, doctor_signature, doctor_stamp, patient_id)
@@ -341,6 +341,20 @@ namespace DBManager
                 cmd += @"insert into dbo.prescriptions_medications(prescriptions_id, medications_id, quantity)
                 values(" + id + ", " + a.Key + ", " + a.Value + ");\n";
             }
+            return cmd;
+        }
+
+
+
+        public static string DeletePrescriptionsMedications(int id)
+        {
+            string cmd = @"delete from dbo.prescriptions_medications where prescriptions_id = " + id;
+            return cmd;
+        }
+
+        public static string DeleteDiagnosesPrescriptions(int id)
+        {
+            string cmd = @"delete from dbo.diagnoses_prescriptions where prescriptions_id = " + id;
             return cmd;
         }
 
@@ -396,7 +410,7 @@ namespace DBManager
             return cmd;
         }
 
-        public static string UpdatePrescriptions(int id, string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId, List<int> DiagnosesId, Dictionary<int, int> MedicationsId)
+        public static string UpdatePrescriptions(int id, string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId)
         {
             string cmd = @"update dbo.prescriptions set
             doctor_full_name = N'" + DoctorName + "', " +
@@ -405,22 +419,6 @@ namespace DBManager
             "patient_id = " + PatientId +
             " where id = " + id + ";\n";
     
-            foreach (var a in DiagnosesId)
-            {
-                cmd += @"update dbo.diagnoses_prescriptions set
-                diagnoses_id = " + a + ", " +
-                "prescriptions_id = " + id +
-                 " where diagnoses_id = " + id + ";\n";
-            }
-           
-            foreach (KeyValuePair<int, int> a in MedicationsId)
-            {
-                cmd += @"update dbo.prescriptions_medications set
-                prescriptions_id = " + id + ", " +
-                "medications_id = " + a.Key + ", " +
-                "quantity = " + a.Value +
-                 " where prescriptions_id = " + id + ";\n";
-            }
             return cmd;
         }
     }

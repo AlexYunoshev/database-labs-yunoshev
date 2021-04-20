@@ -249,5 +249,54 @@ namespace DBManager
             }
             return cmd;
         }
+
+
+        public static string SelectPrescriptions(SortTypes sort, string name = "")
+        {
+            string cmd = @"select pres.id, pres.patient_id, p.full_name, pres.doctor_full_name, 
+            pres.doctor_signature, pres.doctor_stamp
+            from dbo.prescriptions pres, dbo.patient p
+            where pres.patient_id = p.id";
+
+            if (name != "")
+            {
+                cmd += " and (pres.doctor_full_name like N'%" + name + "%'" + " or p.full_name like N'%" + name + "%')";
+            }
+
+            if (sort == SortTypes.IdDesc)
+            {
+                cmd += " order by pres.id desc";
+            }
+            else if (sort == SortTypes.NameAsc)
+            {
+                cmd += " order by pres.doctor_full_name asc";
+            }
+
+            else if (sort == SortTypes.NameDesc)
+            {
+                cmd += " order by pres.doctor_full_name desc";
+            }
+
+            else if (sort == SortTypes.Name2Asc)
+            {
+                cmd += " order by p.full_name asc";
+            }
+
+            else if (sort == SortTypes.Name2Desc)
+            {
+                cmd += " order by p.full_name desc";
+            }
+
+            return cmd;
+        }
+
+        public static string SelectPrescriptionsDiagnoses()
+        {
+            string cmd = @"select  DISTINCT p.id, d.diagnosis 
+            from dbo.diagnoses_prescriptions dp, dbo.diagnoses d, dbo.prescriptions p
+            where dp.prescriptions_id = p.id and dp.diagnoses_id = d.id order by p.id asc";
+
+            return cmd;
+        }
     }
 }

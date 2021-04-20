@@ -67,27 +67,28 @@ namespace lab6_yunoshev
             this.columnHeaderManufactureDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderShelfDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderStorehouseRId = new System.Windows.Forms.ColumnHeader();
+            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
             this.tabPageInventory = new System.Windows.Forms.TabPage();
             this.tabPagePatients = new System.Windows.Forms.TabPage();
-            this.tabPageDiagnoses = new System.Windows.Forms.TabPage();
             this.tabPagePrescriptons = new System.Windows.Forms.TabPage();
-            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            this.PrescriptionsButtonEdit = new MaterialSkin.Controls.MaterialButton();
+            this.PrescriptionsButtonDelete = new MaterialSkin.Controls.MaterialButton();
+            this.PrescriptionsButtonAdd = new MaterialSkin.Controls.MaterialButton();
+            this.PrescriptionsLabelSearch = new MaterialSkin.Controls.MaterialLabel();
+            this.PrescriptionsTextBoxSearch = new MaterialSkin.Controls.MaterialTextBox();
+            this.PrescriptionsComboBoxSort = new MaterialSkin.Controls.MaterialComboBox();
             this.PrescriptionsListView = new MaterialSkin.Controls.MaterialListView();
             this.headerPrescriptionsId = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsPatientId = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsPatientName = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsDoctorName = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsDoctorSignature = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsDoctorStamp = new System.Windows.Forms.ColumnHeader();
+            this.headerPrescriptionsDiagnoses = new System.Windows.Forms.ColumnHeader();
             this.tabPageOrders = new System.Windows.Forms.TabPage();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.tabPageInformation = new System.Windows.Forms.TabPage();
             this.imageListIconsMenu = new System.Windows.Forms.ImageList(this.components);
-            this.headerPrescriptionsDoctorName = new System.Windows.Forms.ColumnHeader();
-            this.headerPrescriptionsPatientId = new System.Windows.Forms.ColumnHeader();
-            this.headerPrescriptionsPatientName = new System.Windows.Forms.ColumnHeader();
-            this.headerPrescriptionsDoctorSignature = new System.Windows.Forms.ColumnHeader();
-            this.headerPrescriptionsDoctorStamp = new System.Windows.Forms.ColumnHeader();
             this.MainTabControl.SuspendLayout();
             this.tabPageMedications.SuspendLayout();
             this.tabPageStorehouse.SuspendLayout();
@@ -442,7 +443,7 @@ namespace lab6_yunoshev
             // 
             this.StorehouseFTextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.StorehouseFTextBoxSearch.Depth = 0;
-            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StorehouseFTextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StorehouseFTextBoxSearch.Hint = "Введите название лекарства";
             this.StorehouseFTextBoxSearch.Location = new System.Drawing.Point(255, 6);
             this.StorehouseFTextBoxSearch.MaxLength = 50;
@@ -553,6 +554,16 @@ namespace lab6_yunoshev
             this.columnHeaderStorehouseRId.Text = "id запроса на склад";
             this.columnHeaderStorehouseRId.Width = 165;
             // 
+            // tabPageDiagnoses
+            // 
+            this.tabPageDiagnoses.BackColor = System.Drawing.Color.White;
+            this.tabPageDiagnoses.ImageKey = "diagnoses.png";
+            this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
+            this.tabPageDiagnoses.Name = "tabPageDiagnoses";
+            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageDiagnoses.TabIndex = 5;
+            this.tabPageDiagnoses.Text = "Диагнозы";
+            // 
             // tabPageInventory
             // 
             this.tabPageInventory.BackColor = System.Drawing.Color.White;
@@ -573,25 +584,15 @@ namespace lab6_yunoshev
             this.tabPagePatients.TabIndex = 1;
             this.tabPagePatients.Text = "Пациенты";
             // 
-            // tabPageDiagnoses
-            // 
-            this.tabPageDiagnoses.BackColor = System.Drawing.Color.White;
-            this.tabPageDiagnoses.ImageKey = "diagnoses.png";
-            this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
-            this.tabPageDiagnoses.Name = "tabPageDiagnoses";
-            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 671);
-            this.tabPageDiagnoses.TabIndex = 5;
-            this.tabPageDiagnoses.Text = "Диагнозы";
-            // 
             // tabPagePrescriptons
             // 
             this.tabPagePrescriptons.BackColor = System.Drawing.Color.White;
-            this.tabPagePrescriptons.Controls.Add(this.materialButton1);
-            this.tabPagePrescriptons.Controls.Add(this.materialButton2);
-            this.tabPagePrescriptons.Controls.Add(this.materialButton3);
-            this.tabPagePrescriptons.Controls.Add(this.materialLabel1);
-            this.tabPagePrescriptons.Controls.Add(this.materialTextBox1);
-            this.tabPagePrescriptons.Controls.Add(this.materialComboBox1);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonEdit);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonDelete);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonAdd);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsLabelSearch);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsTextBoxSearch);
+            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsComboBoxSort);
             this.tabPagePrescriptons.Controls.Add(this.PrescriptionsListView);
             this.tabPagePrescriptons.ImageKey = "prescription.png";
             this.tabPagePrescriptons.Location = new System.Drawing.Point(4, 39);
@@ -600,122 +601,126 @@ namespace lab6_yunoshev
             this.tabPagePrescriptons.TabIndex = 2;
             this.tabPagePrescriptons.Text = "Рецепты";
             // 
-            // materialButton1
+            // PrescriptionsButtonEdit
             // 
-            this.materialButton1.AutoSize = false;
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.DrawShadows = true;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(1030, 5);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.Size = new System.Drawing.Size(175, 35);
-            this.materialButton1.TabIndex = 21;
-            this.materialButton1.Text = "Изменить запись";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
+            this.PrescriptionsButtonEdit.AutoSize = false;
+            this.PrescriptionsButtonEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PrescriptionsButtonEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PrescriptionsButtonEdit.Depth = 0;
+            this.PrescriptionsButtonEdit.DrawShadows = true;
+            this.PrescriptionsButtonEdit.HighEmphasis = true;
+            this.PrescriptionsButtonEdit.Icon = null;
+            this.PrescriptionsButtonEdit.Location = new System.Drawing.Point(1030, 5);
+            this.PrescriptionsButtonEdit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.PrescriptionsButtonEdit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PrescriptionsButtonEdit.Name = "PrescriptionsButtonEdit";
+            this.PrescriptionsButtonEdit.Size = new System.Drawing.Size(175, 35);
+            this.PrescriptionsButtonEdit.TabIndex = 21;
+            this.PrescriptionsButtonEdit.Text = "Изменить запись";
+            this.PrescriptionsButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.PrescriptionsButtonEdit.UseAccentColor = false;
+            this.PrescriptionsButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // materialButton2
+            // PrescriptionsButtonDelete
             // 
-            this.materialButton2.AutoSize = false;
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.DrawShadows = true;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(840, 5);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(175, 35);
-            this.materialButton2.TabIndex = 20;
-            this.materialButton2.Text = "Удалить запись";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
+            this.PrescriptionsButtonDelete.AutoSize = false;
+            this.PrescriptionsButtonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PrescriptionsButtonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PrescriptionsButtonDelete.Depth = 0;
+            this.PrescriptionsButtonDelete.DrawShadows = true;
+            this.PrescriptionsButtonDelete.HighEmphasis = true;
+            this.PrescriptionsButtonDelete.Icon = null;
+            this.PrescriptionsButtonDelete.Location = new System.Drawing.Point(840, 5);
+            this.PrescriptionsButtonDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.PrescriptionsButtonDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PrescriptionsButtonDelete.Name = "PrescriptionsButtonDelete";
+            this.PrescriptionsButtonDelete.Size = new System.Drawing.Size(175, 35);
+            this.PrescriptionsButtonDelete.TabIndex = 20;
+            this.PrescriptionsButtonDelete.Text = "Удалить запись";
+            this.PrescriptionsButtonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.PrescriptionsButtonDelete.UseAccentColor = false;
+            this.PrescriptionsButtonDelete.UseVisualStyleBackColor = true;
             // 
-            // materialButton3
+            // PrescriptionsButtonAdd
             // 
-            this.materialButton3.AutoSize = false;
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.DrawShadows = true;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(650, 5);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.Size = new System.Drawing.Size(175, 35);
-            this.materialButton3.TabIndex = 19;
-            this.materialButton3.Text = "Добавить запись";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
+            this.PrescriptionsButtonAdd.AutoSize = false;
+            this.PrescriptionsButtonAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PrescriptionsButtonAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PrescriptionsButtonAdd.Depth = 0;
+            this.PrescriptionsButtonAdd.DrawShadows = true;
+            this.PrescriptionsButtonAdd.HighEmphasis = true;
+            this.PrescriptionsButtonAdd.Icon = null;
+            this.PrescriptionsButtonAdd.Location = new System.Drawing.Point(650, 5);
+            this.PrescriptionsButtonAdd.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.PrescriptionsButtonAdd.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PrescriptionsButtonAdd.Name = "PrescriptionsButtonAdd";
+            this.PrescriptionsButtonAdd.Size = new System.Drawing.Size(175, 35);
+            this.PrescriptionsButtonAdd.TabIndex = 19;
+            this.PrescriptionsButtonAdd.Text = "Добавить запись";
+            this.PrescriptionsButtonAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.PrescriptionsButtonAdd.UseAccentColor = false;
+            this.PrescriptionsButtonAdd.UseVisualStyleBackColor = true;
             // 
-            // materialLabel1
+            // PrescriptionsLabelSearch
             // 
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(200, 6);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(50, 36);
-            this.materialLabel1.TabIndex = 18;
-            this.materialLabel1.Text = "Найти:";
-            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PrescriptionsLabelSearch.Depth = 0;
+            this.PrescriptionsLabelSearch.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.PrescriptionsLabelSearch.Location = new System.Drawing.Point(200, 6);
+            this.PrescriptionsLabelSearch.MouseState = MaterialSkin.MouseState.HOVER;
+            this.PrescriptionsLabelSearch.Name = "PrescriptionsLabelSearch";
+            this.PrescriptionsLabelSearch.Size = new System.Drawing.Size(50, 36);
+            this.PrescriptionsLabelSearch.TabIndex = 18;
+            this.PrescriptionsLabelSearch.Text = "Найти:";
+            this.PrescriptionsLabelSearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // materialTextBox1
+            // PrescriptionsTextBoxSearch
             // 
-            this.materialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox1.Depth = 0;
-            this.materialTextBox1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.materialTextBox1.Hint = "Введите название лекарства";
-            this.materialTextBox1.Location = new System.Drawing.Point(255, 6);
-            this.materialTextBox1.MaxLength = 50;
-            this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox1.Multiline = false;
-            this.materialTextBox1.Name = "materialTextBox1";
-            this.materialTextBox1.Size = new System.Drawing.Size(388, 36);
-            this.materialTextBox1.TabIndex = 17;
-            this.materialTextBox1.Text = "";
-            this.materialTextBox1.UseTallSize = false;
+            this.PrescriptionsTextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PrescriptionsTextBoxSearch.Depth = 0;
+            this.PrescriptionsTextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PrescriptionsTextBoxSearch.Hint = "Введите имя доктора или пациента";
+            this.PrescriptionsTextBoxSearch.Location = new System.Drawing.Point(255, 6);
+            this.PrescriptionsTextBoxSearch.MaxLength = 50;
+            this.PrescriptionsTextBoxSearch.MouseState = MaterialSkin.MouseState.OUT;
+            this.PrescriptionsTextBoxSearch.Multiline = false;
+            this.PrescriptionsTextBoxSearch.Name = "PrescriptionsTextBoxSearch";
+            this.PrescriptionsTextBoxSearch.Size = new System.Drawing.Size(388, 36);
+            this.PrescriptionsTextBoxSearch.TabIndex = 17;
+            this.PrescriptionsTextBoxSearch.Text = "";
+            this.PrescriptionsTextBoxSearch.UseTallSize = false;
+            this.PrescriptionsTextBoxSearch.TextChanged += new System.EventHandler(this.PrescriptionsTextBoxSearch_TextChanged);
             // 
-            // materialComboBox1
+            // PrescriptionsComboBoxSort
             // 
-            this.materialComboBox1.AutoResize = false;
-            this.materialComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.materialComboBox1.Depth = 0;
-            this.materialComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox1.DropDownHeight = 118;
-            this.materialComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox1.DropDownWidth = 121;
-            this.materialComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox1.FormattingEnabled = true;
-            this.materialComboBox1.IntegralHeight = false;
-            this.materialComboBox1.ItemHeight = 29;
-            this.materialComboBox1.Items.AddRange(new object[] {
+            this.PrescriptionsComboBoxSort.AutoResize = false;
+            this.PrescriptionsComboBoxSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.PrescriptionsComboBoxSort.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PrescriptionsComboBoxSort.Depth = 0;
+            this.PrescriptionsComboBoxSort.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.PrescriptionsComboBoxSort.DropDownHeight = 118;
+            this.PrescriptionsComboBoxSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrescriptionsComboBoxSort.DropDownWidth = 121;
+            this.PrescriptionsComboBoxSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.PrescriptionsComboBoxSort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PrescriptionsComboBoxSort.FormattingEnabled = true;
+            this.PrescriptionsComboBoxSort.IntegralHeight = false;
+            this.PrescriptionsComboBoxSort.ItemHeight = 29;
+            this.PrescriptionsComboBoxSort.Items.AddRange(new object[] {
             "Без сортировки",
             "id ↓",
-            "Название ↑",
-            "Название ↓"});
-            this.materialComboBox1.Location = new System.Drawing.Point(3, 6);
-            this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(182, 35);
-            this.materialComboBox1.StartIndex = 0;
-            this.materialComboBox1.TabIndex = 16;
-            this.materialComboBox1.UseTallSize = false;
+            "Имя доктора ↑",
+            "Имя доктора ↓",
+            "Имя пациента ↑",
+            "Имя пациента ↓"});
+            this.PrescriptionsComboBoxSort.Location = new System.Drawing.Point(3, 6);
+            this.PrescriptionsComboBoxSort.MaxDropDownItems = 4;
+            this.PrescriptionsComboBoxSort.MouseState = MaterialSkin.MouseState.OUT;
+            this.PrescriptionsComboBoxSort.Name = "PrescriptionsComboBoxSort";
+            this.PrescriptionsComboBoxSort.Size = new System.Drawing.Size(182, 35);
+            this.PrescriptionsComboBoxSort.StartIndex = 0;
+            this.PrescriptionsComboBoxSort.TabIndex = 16;
+            this.PrescriptionsComboBoxSort.UseTallSize = false;
+            this.PrescriptionsComboBoxSort.SelectedIndexChanged += new System.EventHandler(this.PrescriptionsComboBoxSort_SelectedIndexChanged);
             // 
             // PrescriptionsListView
             // 
@@ -728,7 +733,8 @@ namespace lab6_yunoshev
             this.headerPrescriptionsPatientName,
             this.headerPrescriptionsDoctorName,
             this.headerPrescriptionsDoctorSignature,
-            this.headerPrescriptionsDoctorStamp});
+            this.headerPrescriptionsDoctorStamp,
+            this.headerPrescriptionsDiagnoses});
             this.PrescriptionsListView.Depth = 0;
             this.PrescriptionsListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PrescriptionsListView.FullRowSelect = true;
@@ -747,6 +753,36 @@ namespace lab6_yunoshev
             // headerPrescriptionsId
             // 
             this.headerPrescriptionsId.Text = "id";
+            // 
+            // headerPrescriptionsPatientId
+            // 
+            this.headerPrescriptionsPatientId.Text = "id пациента";
+            this.headerPrescriptionsPatientId.Width = 115;
+            // 
+            // headerPrescriptionsPatientName
+            // 
+            this.headerPrescriptionsPatientName.Text = "Имя пациента";
+            this.headerPrescriptionsPatientName.Width = 260;
+            // 
+            // headerPrescriptionsDoctorName
+            // 
+            this.headerPrescriptionsDoctorName.Text = "Имя доктора";
+            this.headerPrescriptionsDoctorName.Width = 260;
+            // 
+            // headerPrescriptionsDoctorSignature
+            // 
+            this.headerPrescriptionsDoctorSignature.Text = "Подпись доктора";
+            this.headerPrescriptionsDoctorSignature.Width = 160;
+            // 
+            // headerPrescriptionsDoctorStamp
+            // 
+            this.headerPrescriptionsDoctorStamp.Text = "Печать доктора";
+            this.headerPrescriptionsDoctorStamp.Width = 160;
+            // 
+            // headerPrescriptionsDiagnoses
+            // 
+            this.headerPrescriptionsDiagnoses.Text = "Список диагнозов";
+            this.headerPrescriptionsDiagnoses.Width = 400;
             // 
             // tabPageOrders
             // 
@@ -792,31 +828,6 @@ namespace lab6_yunoshev
             this.imageListIconsMenu.Images.SetKeyName(6, "inventory.png");
             this.imageListIconsMenu.Images.SetKeyName(7, "information.png");
             this.imageListIconsMenu.Images.SetKeyName(8, "settings.png");
-            // 
-            // headerPrescriptionsDoctorName
-            // 
-            this.headerPrescriptionsDoctorName.Text = "Имя доктора";
-            this.headerPrescriptionsDoctorName.Width = 260;
-            // 
-            // headerPrescriptionsPatientId
-            // 
-            this.headerPrescriptionsPatientId.Text = "id пациента";
-            this.headerPrescriptionsPatientId.Width = 115;
-            // 
-            // headerPrescriptionsPatientName
-            // 
-            this.headerPrescriptionsPatientName.Text = "Имя пациента";
-            this.headerPrescriptionsPatientName.Width = 260;
-            // 
-            // headerPrescriptionsDoctorSignature
-            // 
-            this.headerPrescriptionsDoctorSignature.Text = "Подпись доктора";
-            this.headerPrescriptionsDoctorSignature.Width = 160;
-            // 
-            // headerPrescriptionsDoctorStamp
-            // 
-            this.headerPrescriptionsDoctorStamp.Text = "Печать доктора";
-            this.headerPrescriptionsDoctorStamp.Width = 160;
             // 
             // MainForm
             // 
@@ -889,12 +900,12 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader columnHeaderManufactureDate;
         private System.Windows.Forms.ColumnHeader columnHeaderShelfDate;
         private System.Windows.Forms.ColumnHeader columnHeaderStorehouseRId;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialButton PrescriptionsButtonEdit;
+        private MaterialSkin.Controls.MaterialButton PrescriptionsButtonDelete;
+        private MaterialSkin.Controls.MaterialButton PrescriptionsButtonAdd;
+        private MaterialSkin.Controls.MaterialLabel PrescriptionsLabelSearch;
+        private MaterialSkin.Controls.MaterialTextBox PrescriptionsTextBoxSearch;
+        private MaterialSkin.Controls.MaterialComboBox PrescriptionsComboBoxSort;
         private MaterialSkin.Controls.MaterialListView PrescriptionsListView;
         private System.Windows.Forms.ColumnHeader columnHeaderPrescriptionsId;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsId;
@@ -903,5 +914,6 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorName;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorSignature;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorStamp;
+        private System.Windows.Forms.ColumnHeader headerPrescriptionsDiagnoses;
     }
 }

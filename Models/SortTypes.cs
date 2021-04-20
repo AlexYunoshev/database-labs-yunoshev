@@ -11,6 +11,8 @@ namespace Models
         IdAsc,
         IdDesc,
         NameAsc,
-        NameDesc
+        NameDesc,
+        Name2Asc,
+        Name2Desc
     }
 }

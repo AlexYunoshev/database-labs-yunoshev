@@ -38,6 +38,7 @@ namespace lab6_yunoshev
             //this.Text += ConnectedData.connection.State;
             MedicationsPrint(SortTypes.IdAsc);
             StorehouseFPrint(SortTypes.IdAsc);
+            PrescriptionsPrint(SortTypes.IdAsc);
         }
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -251,6 +252,104 @@ namespace lab6_yunoshev
                 StorehouseFPrint(SortTypes.IdAsc);
             }
 
+        }
+
+        public void PrescriptionsPrint(SortTypes sort, string name = "")
+        {
+            PrescriptionsListView.Items.Clear();
+            if (name != "") query = Commands.SelectPrescriptions(sort, name);
+            else query = Commands.SelectPrescriptions(sort);
+            ConnectedData.SetCommand(query);
+            int[] size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            int row = size[0];
+            int column = size[1];
+            ListViewItem item;
+            string[,] data = new string[row, column];
+            data = ConnectedData.GetTableData();
+
+            for (int i = 0; i < row; i++)
+            {
+                item = new ListViewItem(data[i, 0]);
+                for (int j = 1; j < column; j++)
+                {
+                    if (j == 4 || j == 5)
+                    {
+                        bool value = Convert.ToBoolean(data[i, j]);
+                        if (value == true)
+                            item.SubItems.Add("+"); 
+                        else
+                            item.SubItems.Add("-");
+                    }       
+
+                    else
+                        item.SubItems.Add(data[i, j]);
+                }
+                PrescriptionsListView.Items.Add(item);
+            }
+    
+        }
+
+
+        public void GetPrescriptionsDiagnoses()
+        {
+            query = Commands.SelectPrescriptionsDiagnoses();
+            ConnectedData.SetCommand(query);
+            int[] size = new int[2];
+            size = ConnectedData.GetRowAndColumnCount();
+            int row = size[0];
+            int column = size[1];
+            Dictionary<int, string> list = new Dictionary<int, string>();
+
+            string[,] data = new string[row, column];
+            data = ConnectedData.GetTableData();
+
+            for (int i = 0; i < row; i++)
+            {
+                string str = "";
+                for (int j = 0; j < column; j++)
+                {
+                    if (j == 4 || j == 5)
+                    {
+                        bool value = Convert.ToBoolean(data[i, j]);
+                        if (value == true)
+                            item.SubItems.Add("+");
+                        else
+                            item.SubItems.Add("-");
+                    }
+
+                    else
+                        item.SubItems.Add(data[i, j]);
+                }
+
+            }
+
+
+
+
+            PrescriptionsListView.Items.Add(item);
+        }
+
+        private void PrescriptionsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (PrescriptionsComboBoxSort.SelectedIndex == 0) PrescriptionsPrint(SortTypes.IdAsc);
+            else if (PrescriptionsComboBoxSort.SelectedIndex == 1) PrescriptionsPrint(SortTypes.IdDesc);
+            else if (PrescriptionsComboBoxSort.SelectedIndex == 2) PrescriptionsPrint(SortTypes.NameAsc);
+            else if (PrescriptionsComboBoxSort.SelectedIndex == 3) PrescriptionsPrint(SortTypes.NameDesc);
+            else if (PrescriptionsComboBoxSort.SelectedIndex == 4) PrescriptionsPrint(SortTypes.Name2Asc);
+            else if (PrescriptionsComboBoxSort.SelectedIndex == 5) PrescriptionsPrint(SortTypes.Name2Desc);
+        }
+
+        private void PrescriptionsTextBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (PrescriptionsTextBoxSearch.Text != "")
+            {
+                PrescriptionsPrint(SortTypes.IdAsc, PrescriptionsTextBoxSearch.Text);
+            }
+            else
+            {
+                PrescriptionsPrint(SortTypes.IdAsc);
+            }
         }
     }
 }

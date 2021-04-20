@@ -12,6 +12,7 @@ namespace Models
         public static int id2 { get; set; }
         public static int patientId { get; set; }
         public static string doctorName { get; set; }
+        public static string patientName { get; set; }
         public static bool doctorStamp { get; set; }
         public static bool doctorSignature { get; set; }
         public static List<int> diagnosesId = new List<int>();

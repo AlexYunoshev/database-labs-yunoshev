@@ -435,5 +435,21 @@ namespace lab6_yunoshev
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
         }
+
+        private void PrescriptionsButtonDelete_Click(object sender, EventArgs e)
+        {
+            DeletePrescriptions deletePrescriptions = new DeletePrescriptions();
+            DialogResult status = deletePrescriptions.ShowDialog();
+
+            if (status == DialogResult.OK)
+            {
+                query = Commands.DeletePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.id2, Models.Prescriptions.patientName);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Удалено: " + count.ToString());
+                PrescriptionsPrint(SortTypes.IdAsc);
+            }
+        }
     }
 }

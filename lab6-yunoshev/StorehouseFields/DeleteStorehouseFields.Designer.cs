@@ -92,7 +92,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.TextBoxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxName.Depth = 0;
             this.TextBoxName.Enabled = false;
-            this.TextBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TextBoxName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TextBoxName.Location = new System.Drawing.Point(21, 190);
             this.TextBoxName.MaxLength = 50;
             this.TextBoxName.MouseState = MaterialSkin.MouseState.OUT;
@@ -269,7 +269,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ShowInTaskbar = false;
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Удалить запись";
+            this.Text = "Удаление записи на складе";
             ((System.ComponentModel.ISupportInitialize)(this.NumericTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericSpecificId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericFrom)).EndInit();

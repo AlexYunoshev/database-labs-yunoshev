@@ -323,7 +323,7 @@ namespace lab6_yunoshev.StorehouseFields
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Sizable = false;
-            this.Text = "Изменение записи";
+            this.Text = "Изменение записи на складе";
             ((System.ComponentModel.ISupportInitialize)(this.NumericId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericRId)).EndInit();
             this.ResumeLayout(false);

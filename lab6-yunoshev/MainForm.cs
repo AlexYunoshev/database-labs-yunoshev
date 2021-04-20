@@ -250,7 +250,6 @@ namespace lab6_yunoshev
                 MessageBox.Show("Обновлено: " + count.ToString());
                 StorehouseFPrint(SortTypes.IdAsc);
             }
-
         }
 
         public void PrescriptionsPrint(SortTypes sort, string name = "")
@@ -448,6 +447,23 @@ namespace lab6_yunoshev
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Удалено: " + count.ToString());
+                PrescriptionsPrint(SortTypes.IdAsc);
+            }
+        }
+
+        private void PrescriptionsButtonEdit_Click(object sender, EventArgs e)
+        {
+            UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions();
+            DialogResult status = updatePrescriptions.ShowDialog();
+            if (status == DialogResult.OK)
+            {
+                //query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity,
+                //        Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId,
+                //        Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
+                MessageBox.Show(query);
+                ConnectedData.SetCommand(query);
+                int count = ConnectedData.UpdateData();
+                MessageBox.Show("Обновлено: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
             }
         }

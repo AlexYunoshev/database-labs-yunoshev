@@ -591,6 +591,7 @@ namespace lab6_yunoshev
             this.PrescriptionsButtonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.PrescriptionsButtonEdit.UseAccentColor = false;
             this.PrescriptionsButtonEdit.UseVisualStyleBackColor = true;
+            this.PrescriptionsButtonEdit.Click += new System.EventHandler(this.PrescriptionsButtonEdit_Click);
             // 
             // PrescriptionsButtonDelete
             // 

@@ -269,7 +269,7 @@ namespace lab6_yunoshev.Prescriptions
             this.ShowInTaskbar = false;
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Удалить рецепт";
+            this.Text = "Удаление рецепта";
             ((System.ComponentModel.ISupportInitialize)(this.NumericTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericSpecificId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericFrom)).EndInit();

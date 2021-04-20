@@ -29,7 +29,7 @@ namespace lab6_yunoshev.Prescriptions
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelMId = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelPId = new MaterialSkin.Controls.MaterialLabel();
             this.TextBoxStatusPId = new System.Windows.Forms.TextBox();
             this.LabelStatusPId = new MaterialSkin.Controls.MaterialLabel();
             this.ButtonAcceptPId = new MaterialSkin.Controls.MaterialButton();
@@ -41,8 +41,8 @@ namespace lab6_yunoshev.Prescriptions
             this.TextBoxPName = new MaterialSkin.Controls.MaterialTextBox();
             this.CheckBoxDStamp = new MaterialSkin.Controls.MaterialCheckbox();
             this.DGVDiagnoses = new System.Windows.Forms.DataGridView();
-            this.DGVMedications = new System.Windows.Forms.DataGridView();
             this.ColumnDiagnosisId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGVMedications = new System.Windows.Forms.DataGridView();
             this.ColumnMedicationsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMedicationsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.NumericPId)).BeginInit();
@@ -50,17 +50,17 @@ namespace lab6_yunoshev.Prescriptions
             ((System.ComponentModel.ISupportInitialize)(this.DGVMedications)).BeginInit();
             this.SuspendLayout();
             // 
-            // LabelMId
+            // LabelPId
             // 
-            this.LabelMId.Depth = 0;
-            this.LabelMId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LabelMId.Location = new System.Drawing.Point(10, 71);
-            this.LabelMId.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LabelMId.Name = "LabelMId";
-            this.LabelMId.Size = new System.Drawing.Size(177, 20);
-            this.LabelMId.TabIndex = 85;
-            this.LabelMId.Text = "id пациента";
-            this.LabelMId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelPId.Depth = 0;
+            this.LabelPId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelPId.Location = new System.Drawing.Point(10, 71);
+            this.LabelPId.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelPId.Name = "LabelPId";
+            this.LabelPId.Size = new System.Drawing.Size(177, 20);
+            this.LabelPId.TabIndex = 85;
+            this.LabelPId.Text = "id пациента";
+            this.LabelPId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TextBoxStatusPId
             // 
@@ -243,6 +243,11 @@ namespace lab6_yunoshev.Prescriptions
             this.DGVDiagnoses.TabIndex = 87;
             this.DGVDiagnoses.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDiagnoses_CellEndEdit);
             // 
+            // ColumnDiagnosisId
+            // 
+            this.ColumnDiagnosisId.HeaderText = "id диагноза";
+            this.ColumnDiagnosisId.Name = "ColumnDiagnosisId";
+            // 
             // DGVMedications
             // 
             this.DGVMedications.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -255,11 +260,6 @@ namespace lab6_yunoshev.Prescriptions
             this.DGVMedications.Size = new System.Drawing.Size(234, 120);
             this.DGVMedications.TabIndex = 88;
             this.DGVMedications.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMedications_CellEndEdit);
-            // 
-            // ColumnDiagnosisId
-            // 
-            this.ColumnDiagnosisId.HeaderText = "id диагноза";
-            this.ColumnDiagnosisId.Name = "ColumnDiagnosisId";
             // 
             // ColumnMedicationsId
             // 
@@ -280,7 +280,7 @@ namespace lab6_yunoshev.Prescriptions
             this.Controls.Add(this.DGVMedications);
             this.Controls.Add(this.DGVDiagnoses);
             this.Controls.Add(this.CheckBoxDStamp);
-            this.Controls.Add(this.LabelMId);
+            this.Controls.Add(this.LabelPId);
             this.Controls.Add(this.TextBoxStatusPId);
             this.Controls.Add(this.LabelStatusPId);
             this.Controls.Add(this.ButtonAcceptPId);
@@ -308,7 +308,7 @@ namespace lab6_yunoshev.Prescriptions
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel LabelMId;
+        private MaterialSkin.Controls.MaterialLabel LabelPId;
         private System.Windows.Forms.TextBox TextBoxStatusPId;
         private MaterialSkin.Controls.MaterialLabel LabelStatusPId;
         private MaterialSkin.Controls.MaterialButton ButtonAcceptPId;

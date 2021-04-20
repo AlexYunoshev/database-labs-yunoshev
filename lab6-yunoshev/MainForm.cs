@@ -268,6 +268,8 @@ namespace lab6_yunoshev
             string[,] data = new string[row, column];
             data = ConnectedData.GetTableData();
 
+            Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+
             for (int i = 0; i < row; i++)
             {
                 item = new ListViewItem(data[i, 0]);
@@ -285,13 +287,17 @@ namespace lab6_yunoshev
                     else
                         item.SubItems.Add(data[i, j]);
                 }
+
+              
+                item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
+
                 PrescriptionsListView.Items.Add(item);
             }
     
         }
 
 
-        public void GetPrescriptionsDiagnoses()
+        public Dictionary<int, string> GetPrescriptionsDiagnoses()
         {
             query = Commands.SelectPrescriptionsDiagnoses();
             ConnectedData.SetCommand(query);
@@ -304,30 +310,46 @@ namespace lab6_yunoshev
             string[,] data = new string[row, column];
             data = ConnectedData.GetTableData();
 
+            int key = Convert.ToInt32(data[0, 0]);
+            string str = "";
+
+            //int i = 0;
+            //while (i < row)
+            //{
+            //    if (Convert.ToInt32(data[i, 0]) == key)
+            //    {
+            //        str += data[i, 1] + ", ";
+            //        i++;
+            //    }
+            //    else
+            //    {
+
+            //        str = str.Remove(str.Length - 2);
+            //        list.Add(key, str);
+            //        str = "";
+            //        i++;
+            //        key = i;
+            //    }
+            //}
+
+
             for (int i = 0; i < row; i++)
             {
-                string str = "";
-                for (int j = 0; j < column; j++)
+                if (Convert.ToInt32(data[i, 0]) == key)
                 {
-                    if (j == 4 || j == 5)
-                    {
-                        bool value = Convert.ToBoolean(data[i, j]);
-                        if (value == true)
-                            item.SubItems.Add("+");
-                        else
-                            item.SubItems.Add("-");
-                    }
-
-                    else
-                        item.SubItems.Add(data[i, j]);
+                    str += data[i, 1] + ", ";
                 }
-
+                else
+                {
+                    str = str.Remove(str.Length - 2);
+                    list.Add(key, str);
+                    str = "";
+                    key = i;
+                    str += data[i, 1] + "  ";
+                }
             }
-
-
-
-
-            PrescriptionsListView.Items.Add(item);
+            list.Add(key, str);
+            return list;
         }
 
         private void PrescriptionsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)

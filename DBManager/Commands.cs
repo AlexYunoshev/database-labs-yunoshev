@@ -409,7 +409,8 @@ namespace DBManager
             {
                 cmd += @"update dbo.diagnoses_prescriptions set
                 diagnoses_id = " + a + ", " +
-                "prescriptions_id = " + id + ";\n";
+                "prescriptions_id = " + id +
+                 " where diagnoses_id = " + id + ";\n";
             }
            
             foreach (KeyValuePair<int, int> a in MedicationsId)
@@ -417,7 +418,8 @@ namespace DBManager
                 cmd += @"update dbo.prescriptions_medications set
                 prescriptions_id = " + id + ", " +
                 "medications_id = " + a.Key + ", " +
-                "quantity = " + a.Value + ";\n";
+                "quantity = " + a.Value +
+                 " where prescriptions_id = " + id + ";\n";
             }
             return cmd;
         }

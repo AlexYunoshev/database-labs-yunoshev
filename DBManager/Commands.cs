@@ -321,7 +321,6 @@ namespace DBManager
             return cmd;
         }
 
-
         public static string InsertDiagnosesPrescriptions(List<int> DiagnosesId, int id)
         {
             string cmd = @"";
@@ -397,5 +396,30 @@ namespace DBManager
             return cmd;
         }
 
+        public static string UpdatePrescriptions(int id, string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId, List<int> DiagnosesId, Dictionary<int, int> MedicationsId)
+        {
+            string cmd = @"update dbo.prescriptions set
+            doctor_full_name = N'" + DoctorName + "', " +
+            "doctor_signature = '" + DoctorSignature + "', " +
+            "doctor_stamp = '" + DoctorStamp + "', " +
+            "patient_id = " + PatientId +
+            " where id = " + id + ";\n";
+    
+            foreach (var a in DiagnosesId)
+            {
+                cmd += @"update dbo.diagnoses_prescriptions set
+                diagnoses_id = " + a + ", " +
+                "prescriptions_id = " + id + ";\n";
+            }
+           
+            foreach (KeyValuePair<int, int> a in MedicationsId)
+            {
+                cmd += @"update dbo.prescriptions_medications set
+                prescriptions_id = " + id + ", " +
+                "medications_id = " + a.Key + ", " +
+                "quantity = " + a.Value + ";\n";
+            }
+            return cmd;
+        }
     }
 }

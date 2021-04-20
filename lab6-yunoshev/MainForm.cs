@@ -457,14 +457,42 @@ namespace lab6_yunoshev
             DialogResult status = updatePrescriptions.ShowDialog();
             if (status == DialogResult.OK)
             {
-                //query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity,
-                //        Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId,
-                //        Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
+                query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
+                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
+                    Models.Prescriptions.patientId, Models.Prescriptions.diagnosesId,
+                    Models.Prescriptions.medicationsId);
                 MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();
                 MessageBox.Show("Обновлено: " + count.ToString());
                 PrescriptionsPrint(SortTypes.IdAsc);
+
+
+
+                //MessageBox.Show("1\n" + query);
+                //ConnectedData.SetCommand(query);
+                //int count = ConnectedData.UpdateData();
+                //MessageBox.Show("Добавлено: " + count.ToString());
+
+                //string[] data = new string[1];
+                //query = Commands.SelectLastId("dbo.prescriptions");
+                //MessageBox.Show("2\n" + query);
+                //ConnectedData.SetCommand(query);
+                //data = ConnectedData.GetRowFromTable();
+                //int id = Convert.ToInt32(data[0]);
+
+                //query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
+                //MessageBox.Show("3\n" + query);
+                //ConnectedData.SetCommand(query);
+                //count = ConnectedData.UpdateData();
+                //MessageBox.Show("Добавлено: " + count.ToString());
+
+                //query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
+                //MessageBox.Show("4\n" + query);
+                //ConnectedData.SetCommand(query);
+                //count = ConnectedData.UpdateData();
+                //MessageBox.Show("Добавлено: " + count.ToString());
+
             }
         }
     }

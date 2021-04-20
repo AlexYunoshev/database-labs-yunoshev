@@ -75,6 +75,7 @@ namespace lab6_yunoshev.Prescriptions
             this.ButtonUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.ButtonUpdate.UseAccentColor = false;
             this.ButtonUpdate.UseVisualStyleBackColor = true;
+            this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // TextBoxStatusId
             // 
@@ -166,6 +167,7 @@ namespace lab6_yunoshev.Prescriptions
             this.DGVMedications.RowTemplate.Height = 25;
             this.DGVMedications.Size = new System.Drawing.Size(234, 120);
             this.DGVMedications.TabIndex = 101;
+            this.DGVMedications.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVMedications_CellEndEdit);
             // 
             // ColumnMedicationsId
             // 
@@ -189,6 +191,7 @@ namespace lab6_yunoshev.Prescriptions
             this.DGVDiagnoses.RowTemplate.Height = 25;
             this.DGVDiagnoses.Size = new System.Drawing.Size(143, 120);
             this.DGVDiagnoses.TabIndex = 100;
+            this.DGVDiagnoses.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVDiagnoses_CellEndEdit);
             // 
             // ColumnDiagnosisId
             // 

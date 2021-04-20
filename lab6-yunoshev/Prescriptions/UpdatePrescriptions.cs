@@ -61,8 +61,6 @@ namespace lab6_yunoshev.Prescriptions
                 DGVDiagnoses[0, i].Value = Convert.ToInt32(dataDiagnoses[i, 1]);
             }
 
-
-
             query = Commands.SelectPrescriptionsMedicationsWhereId(id);
             ConnectedData.SetCommand(query);
             size = new int[2];
@@ -170,6 +168,77 @@ namespace lab6_yunoshev.Prescriptions
                 TextBoxStatusPId.ForeColor = Color.Red;
                 TextBoxPName.ResetText();
                 MessageBox.Show("Пациента с таким id не существует!");
+            }
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            if (TextBoxDName.Text.Length == 0 || TextBoxStatusPId.Text == "Не выбрано")
+            {
+                MessageBox.Show("Проверьте корректность введенных данных!");
+            }
+
+            else
+            {
+                int dRow = DGVDiagnoses.RowCount;
+                int mRow = DGVMedications.RowCount;
+
+                for (int i = 0; i < dRow; i++)
+                {
+                    if (DGVDiagnoses[0, i].Value != null)
+                    {
+                        try { Models.Prescriptions.diagnosesId.Add(Convert.ToInt32(DGVDiagnoses[0, i].Value)); }
+                        catch { }
+                    }
+                }
+
+                for (int i = 0; i < mRow; i++)
+                {
+                    if (DGVMedications[0, i].Value != null && DGVMedications[1, i].Value != null)
+                    {
+                        try { Models.Prescriptions.medicationsId.Add(Convert.ToInt32(DGVMedications[0, i].Value), Convert.ToInt32(DGVMedications[1, i].Value)); }
+                        catch { }
+                    }
+                }
+
+                Models.Prescriptions.doctorName = TextBoxDName.Text;
+                Models.Prescriptions.doctorSignature = CheckBoxDSignature.Checked;
+                Models.Prescriptions.doctorStamp = CheckBoxDStamp.Checked;
+                Models.Prescriptions.patientId = Convert.ToInt32(NumericPId.Value);
+                Models.Prescriptions.id1 = Convert.ToInt32(NumericId.Value);
+                this.Close();
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void DGVDiagnoses_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            int value;
+            try
+            {
+                value = Convert.ToInt32(DGVDiagnoses[0, row].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Вы пытаетесь ввести данные в неправильном формате!!!");
+                DGVDiagnoses[0, row].Value = null;
+            }
+        }
+
+        private void DGVMedications_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            int column = e.ColumnIndex;
+            int value;
+            try
+            {
+                value = Convert.ToInt32(DGVMedications[column, row].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Вы пытаетесь ввести данные в неправильном формате!!!");
+                DGVMedications[column, row].Value = null;
             }
         }
     }

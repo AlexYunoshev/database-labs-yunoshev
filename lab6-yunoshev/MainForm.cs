@@ -289,9 +289,15 @@ namespace lab6_yunoshev
                         item.SubItems.Add(data[i, j]);
                 }
 
-              
-                item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
-                item.SubItems.Add(list2[Convert.ToInt32(data[i, 0])]);
+                if (list.ContainsKey(Convert.ToInt32(data[i, 0])))
+                    item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
+                else
+                    item.SubItems.Add("-");
+
+                if (list2.ContainsKey(Convert.ToInt32(data[i, 0])))
+                    item.SubItems.Add(list2[Convert.ToInt32(data[i, 0])]);
+                else
+                    item.SubItems.Add("-");
 
                 PrescriptionsListView.Items.Add(item);
             }
@@ -398,10 +404,10 @@ namespace lab6_yunoshev
             DialogResult status = addPrescriptions.ShowDialog();
             if (status == DialogResult.OK)
             {
-                //query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
-                //    Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
-                //    Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
-                //    Models.StorehouseField.ShelfLife);
+                query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName, 
+                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp, 
+                    Models.Prescriptions.patientId, Models.Prescriptions.diagnosesId, 
+                    Models.Prescriptions.medicationsId);
                 MessageBox.Show(query);
                 ConnectedData.SetCommand(query);
                 int count = ConnectedData.UpdateData();

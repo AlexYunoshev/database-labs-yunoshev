@@ -9,14 +9,14 @@ namespace DBManager
 {
     public static class Commands
     {
-        public static string InsertMedications(string Name, double Price, string Quantity, string Volume, int MedicationType, int UsesType, int ManufactureType, 
-            string MixableList, string PreparationTime , string FiltrationTime)
+        public static string InsertMedications(string Name, double Price, string Quantity, string Volume, int MedicationType, int UsesType, int ManufactureType,
+            string MixableList, string PreparationTime, string FiltrationTime)
         {
             string mixableListOut = "";
             string prepatationTimeOut = "";
             string filtrationTimeOut = "";
 
-            if (MixableList == "") 
+            if (MixableList == "")
                 mixableListOut = "NULL";
             else
             {
@@ -25,7 +25,7 @@ namespace DBManager
                 mixableListOut += "'";
             }
 
-            if (PreparationTime == "") 
+            if (PreparationTime == "")
                 prepatationTimeOut = "NULL";
             else
             {
@@ -43,7 +43,7 @@ namespace DBManager
                 filtrationTimeOut += "'";
 
             }
-        
+
             string cmd = @"insert into 
             dbo.medications(medications_name, price, quantity, volume, medications_types_id, uses_types_id, manufacture_types_id, 
             preparation_time, filtration_time, mixable_list)
@@ -99,7 +99,7 @@ namespace DBManager
             "filtration_time = " + filtrationTimeOut + ", " +
             "mixable_list = " + mixableListOut +
             " where id = " + id + ";";
-            
+
             return cmd;
         }
 
@@ -116,11 +116,11 @@ namespace DBManager
                 med.uses_types_id = uset.id and
                 med.manufacture_types_id = mant.id";
 
-            if(name != "")
+            if (name != "")
             {
                 cmd += " and med.medications_name like N'%" + name + "%'";
             }
-            
+
             if (sort == SortTypes.IdDesc)
             {
                 cmd += " order by med.id desc";
@@ -140,8 +140,8 @@ namespace DBManager
 
         public static string SelectMedicationsWhereId(int id)
         {
-            string cmd = @"select * from dbo.medications where id = " + id;    
-            return cmd;    
+            string cmd = @"select * from dbo.medications where id = " + id;
+            return cmd;
         }
 
         public static string DeleteMedications(int id1 = -1, int id2 = -1, string name = "")
@@ -151,10 +151,10 @@ namespace DBManager
             {
                 cmd = @"delete from dbo.medications where id = " + id1 + ";";
             }
-            else if (id1 != -1 &&id2 != -1 && name == "")
+            else if (id1 != -1 && id2 != -1 && name == "")
             {
-                cmd = @"delete from dbo.medications where id >= " + id1 + " and id <= " + id2 +";";
-            } 
+                cmd = @"delete from dbo.medications where id >= " + id1 + " and id <= " + id2 + ";";
+            }
             else if (name != "" && id1 == -1 && id2 == -1)
             {
                 cmd = @"delete from dbo.medications where medications_name = N'" + name + "';";
@@ -220,9 +220,9 @@ namespace DBManager
         {
             string cmd = @"update dbo.storehouse_fields set
             quantity = " + Quantity + ", " +
-            "critical_quantity = " + CriticalQuantity + ", " + 
-            "manufacture_date = '" + ManufactureDate + "', " + 
-            "shelf_life = '" + ShelfLife + "', " + 
+            "critical_quantity = " + CriticalQuantity + ", " +
+            "manufacture_date = '" + ManufactureDate + "', " +
+            "shelf_life = '" + ShelfLife + "', " +
             "storehouse_requests_id = " + StorehouseRequestId +
             " where id = " + id + ";";
             return cmd;
@@ -240,7 +240,7 @@ namespace DBManager
                 cmd = @"delete from dbo.storehouse_fields where id >= " + id1 + " and id <= " + id2 + ";";
             }
             else if (name != "" && id1 == -1 && id2 == -1)
-            {  
+            {
                 cmd = @"delete from dbo.storehouse_fields where medications_id = (select id from dbo.medications where medications_name = N'" + name + "')";
             }
             else if (name != "" && id1 != -1 && id2 != -1)
@@ -306,5 +306,39 @@ namespace DBManager
 
             return cmd;
         }
+
+        public static string SelectLastId(string tableName)
+        {
+            string cmd = @"SELECT MAX(id) from " + tableName;
+            return cmd;
+        }
+
+        public static string InsertPrescriptions(string DoctorName, bool DoctorSignature, bool DoctorStamp, int PatientId, List<int> DiagnosesId, Dictionary<int, int> MedicationsId)
+        {
+            string cmd = @"insert into 
+            dbo.prescriptions(doctor_full_name, doctor_signature, doctor_stamp, patient_id)
+            values(N'" + DoctorName + "', '" + DoctorSignature + "', '" + DoctorStamp + "', " + PatientId + ");\n";
+            return cmd;
+        }
+
+
+        public static string InsertDiagnosesPrescriptions(List<int> DiagnosesId, int id)
+        {
+            string cmd = @"";
+            foreach (var a in DiagnosesId)
+            {
+                cmd += @"insert into dbo.diagnoses_prescriptions(diagnoses_id, prescriptions_id)
+                values(" + a + ", " + id + ");";
+            }
+            return cmd;
+        }
+
+        public static string SelectPatientWhereId(int id)
+        {
+            string cmd = @"select * from dbo.patient where id = " + id;
+            return cmd;
+        }
+
+
     }
 }

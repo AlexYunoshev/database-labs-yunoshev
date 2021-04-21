@@ -126,7 +126,6 @@ namespace lab6_yunoshev.StorehouseFields
             bool status = ConnectedData.CheckExist();
             if (status == true)
             {
-                
                 data2 = ConnectedData.GetRowFromTable();
                 if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
                 {

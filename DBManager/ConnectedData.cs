@@ -17,19 +17,16 @@ namespace DBManager
             connection.Open();
         }
 
-
-   
-
-        public static SqlConnection connection = new SqlConnection();
-        public static SqlCommand command;
-        public static SqlDataReader dataReader;
+        private static SqlConnection connection = new SqlConnection();
+        private static SqlCommand command;
+        private static SqlDataReader dataReader;
 
         private static int row = 0;
         private static int column = 0;
 
-        public static string ServerName { get; set; }
-        public static string DBName { get; set; }
-        public static bool IntegratedSecurity { get; set; } = false;
+        private static string ServerName { get; set; }
+        private static string DBName { get; set; }
+        private static bool IntegratedSecurity { get; set; } = false;
 
         public static void SetCommand(string query)
         {

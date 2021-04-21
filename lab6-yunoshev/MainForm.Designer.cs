@@ -17,6 +17,7 @@ namespace lab6_yunoshev
             if (disposing && (components != null))
             {
                 components.Dispose();
+                DBManager.ConnectedData.ConnectionClose();
             }
             base.Dispose(disposing);
         }

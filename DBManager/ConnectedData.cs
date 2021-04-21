@@ -17,6 +17,9 @@ namespace DBManager
             connection.Open();
         }
 
+
+   
+
         public static SqlConnection connection = new SqlConnection();
         public static SqlCommand command;
         public static SqlDataReader dataReader;

@@ -43,6 +43,11 @@ namespace lab6_yunoshev.Prescriptions
 
         private void InitializeDGVs(int id)
         {
+            DGVDiagnoses.DataSource = null;
+            DGVMedications.DataSource = null;
+            diagnosesId.Clear();
+            medicationsId.Clear();
+
             string query = Commands.SelectPrescriptionsDiagnosesWhereId(id);
             ConnectedData.SetCommand(query);
             int[] size = new int[2];

@@ -344,8 +344,6 @@ namespace DBManager
             return cmd;
         }
 
-
-
         public static string DeletePrescriptionsMedications(int id)
         {
             string cmd = @"delete from dbo.prescriptions_medications where prescriptions_id = " + id;

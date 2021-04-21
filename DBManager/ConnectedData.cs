@@ -110,5 +110,11 @@ namespace DBManager
             int count = command.ExecuteNonQuery();
             return count;
         }
+
+        public static void ConnectionClose()
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+                connection.Close();
+        }
     }
 }

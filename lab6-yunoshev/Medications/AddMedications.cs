@@ -29,8 +29,6 @@ namespace lab6_yunoshev.Medications
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,
                 MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Pink200,
                 MaterialSkin.TextShade.WHITE);
-
-
         }
 
         private void CheckBoxPrepTime_CheckedChanged(object sender, EventArgs e)
@@ -40,7 +38,6 @@ namespace lab6_yunoshev.Medications
                 TextBoxPrepTime.Text = "";
                 TextBoxPrepTime.Enabled = false;
             }
-            
         }
 
         private void CheckBoxFilterTime_CheckedChanged(object sender, EventArgs e)
@@ -50,7 +47,6 @@ namespace lab6_yunoshev.Medications
                 TextBoxFiltrationTime.Text = "";
                 TextBoxFiltrationTime.Enabled = false;
             }
-            
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
@@ -69,9 +65,6 @@ namespace lab6_yunoshev.Medications
             TextBoxMixableList.ResetText();
             this.Refresh();
         }
-
-
-
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {

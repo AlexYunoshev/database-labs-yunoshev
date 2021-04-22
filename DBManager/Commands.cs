@@ -41,7 +41,6 @@ namespace DBManager
                 filtrationTimeOut = "'";
                 filtrationTimeOut += FiltrationTime;
                 filtrationTimeOut += "'";
-
             }
 
             string cmd = @"insert into 

@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>lab7_yunoshev</RootNamespace>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialSkin.2" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBManager\DBManager.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Medications\AddMedications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Medications\DeleteMedications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Medications\UpdateMedications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Prescriptions\AddPrescriptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Prescriptions\DeletePrescriptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Prescriptions\UpdatePrescriptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="StorehouseFields\AddStorehouseFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="StorehouseFields\DeleteStorehouseFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="StorehouseFields\UpdateStorehouseFields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

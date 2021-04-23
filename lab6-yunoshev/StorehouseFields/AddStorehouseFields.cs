@@ -15,11 +15,12 @@ namespace lab6_yunoshev.StorehouseFields
 {
     public partial class AddStorehouseFields : MaterialForm
     {
+        ConnectionTypes connectionType;
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
         private string[] data = new string[4];
 
-        public AddStorehouseFields()
+        public AddStorehouseFields(ConnectionTypes connectionType)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -31,6 +32,7 @@ namespace lab6_yunoshev.StorehouseFields
                 MaterialSkin.TextShade.WHITE);
             TextBoxStatusMId.ForeColor = Color.Red;
             TextBoxStatusRId.ForeColor = Color.Red;
+            this.connectionType = connectionType;
         }
 
         private void CheckBoxRId_CheckedChanged(object sender, EventArgs e)
@@ -65,54 +67,64 @@ namespace lab6_yunoshev.StorehouseFields
 
         private void ButtonAcceptMId_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(NumericMId.Value);
-            string query = Commands.SelectMedicationsWhereId(id);
+            if (connectionType == ConnectionTypes.Connected)
+            {
+                int id = Convert.ToInt32(NumericMId.Value);
+                string query = Commands.SelectMedicationsWhereId(id);
 
-            ConnectedData.SetCommand(query);
-            bool status = ConnectedData.CheckExist();
-            if (status == true)
-            {
-                TextBoxStatusMId.Text = "Выбрано";
-                TextBoxStatusMId.ForeColor = Color.Green;
+                ConnectedData.SetCommand(query);
+                bool status = ConnectedData.CheckExist();
+                if (status == true)
+                {
+                    TextBoxStatusMId.Text = "Выбрано";
+                    TextBoxStatusMId.ForeColor = Color.Green;
+                }
+                else
+                {
+                    TextBoxStatusMId.Text = "Не выбрано";
+                    TextBoxStatusMId.ForeColor = Color.Red;
+                    MessageBox.Show("Лекарства с таким id не существует!");
+                }
             }
-            else
-            {
-                TextBoxStatusMId.Text = "Не выбрано";
-                TextBoxStatusMId.ForeColor = Color.Red;
-                MessageBox.Show("Лекарства с таким id не существует!");
-            }
+
+               
         }
 
         private void ButtonAcceptRId_Click(object sender, EventArgs e)
         {
-            int RId = Convert.ToInt32(NumericRId.Value);
-            string query = Commands.SelectStorehouseRWhereId(RId);
-
-            ConnectedData.SetCommand(query);
-            bool status = ConnectedData.CheckExist();
-            if (status == true)
+            if (connectionType == ConnectionTypes.Connected)
             {
+                int RId = Convert.ToInt32(NumericRId.Value);
+                string query = Commands.SelectStorehouseRWhereId(RId);
 
-                data = ConnectedData.GetRowFromTable();
-                if (Convert.ToInt32(data[2]) == Convert.ToInt32(NumericMId.Value))
+                ConnectedData.SetCommand(query);
+                bool status = ConnectedData.CheckExist();
+                if (status == true)
                 {
-                    TextBoxStatusRId.ForeColor = Color.Green;
-                    TextBoxStatusRId.Text = "Выбрано";
+
+                    data = ConnectedData.GetRowFromTable();
+                    if (Convert.ToInt32(data[2]) == Convert.ToInt32(NumericMId.Value))
+                    {
+                        TextBoxStatusRId.ForeColor = Color.Green;
+                        TextBoxStatusRId.Text = "Выбрано";
+                    }
+                    else
+                    {
+                        TextBoxStatusRId.ForeColor = Color.Red;
+                        TextBoxStatusRId.Text = "Не выбрано";
+                        MessageBox.Show("Записи с таким id для такого лекарства не существует!");
+                    }
+
                 }
                 else
                 {
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
-                    MessageBox.Show("Записи с таким id для такого лекарства не существует!");
+                    MessageBox.Show("Записи с таким id не существует!");
                 }
+            }
 
-            }
-            else
-            {
-                TextBoxStatusRId.ForeColor = Color.Red;
-                TextBoxStatusRId.Text = "Не выбрано";
-                MessageBox.Show("Записи с таким id не существует!");
-            }
+                
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)

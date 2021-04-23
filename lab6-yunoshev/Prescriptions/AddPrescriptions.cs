@@ -16,8 +16,9 @@ namespace lab6_yunoshev.Prescriptions
 {
     public partial class AddPrescriptions : MaterialForm
     {
+        ConnectionTypes connectionType;
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        public AddPrescriptions()
+        public AddPrescriptions(ConnectionTypes connectionType)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -29,6 +30,7 @@ namespace lab6_yunoshev.Prescriptions
                 MaterialSkin.TextShade.WHITE);
             TextBoxStatusPId.Text = "Не выбрано";
             TextBoxStatusPId.ForeColor = Color.Red;
+            this.connectionType = connectionType;
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
@@ -116,25 +118,30 @@ namespace lab6_yunoshev.Prescriptions
 
         private void ButtonAcceptPId_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(NumericPId.Value);
-            string query = Commands.SelectPatientWhereId(id);
-            string[] data = new string[5];
-            ConnectedData.SetCommand(query);
-            bool status = ConnectedData.CheckExist();
-            if (status == true)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                TextBoxStatusPId.Text = "Выбрано";
-                TextBoxStatusPId.ForeColor = Color.Green;
-                data = ConnectedData.GetRowFromTable();
-                TextBoxPName.Text = data[1];
+                int id = Convert.ToInt32(NumericPId.Value);
+                string query = Commands.SelectPatientWhereId(id);
+                string[] data = new string[5];
+                ConnectedData.SetCommand(query);
+                bool status = ConnectedData.CheckExist();
+                if (status == true)
+                {
+                    TextBoxStatusPId.Text = "Выбрано";
+                    TextBoxStatusPId.ForeColor = Color.Green;
+                    data = ConnectedData.GetRowFromTable();
+                    TextBoxPName.Text = data[1];
+                }
+                else
+                {
+                    TextBoxStatusPId.Text = "Не выбрано";
+                    TextBoxStatusPId.ForeColor = Color.Red;
+                    TextBoxPName.ResetText();
+                    MessageBox.Show("Пациента с таким id не существует!");
+                }
             }
-            else
-            {
-                TextBoxStatusPId.Text = "Не выбрано";
-                TextBoxStatusPId.ForeColor = Color.Red;
-                TextBoxPName.ResetText();
-                MessageBox.Show("Пациента с таким id не существует!");
-            }
+
+                
         }
     }
 }

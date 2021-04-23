@@ -16,10 +16,11 @@ namespace lab6_yunoshev.StorehouseFields
 {
     public partial class UpdateStorehouseFields : MaterialForm
     {
+        ConnectionTypes connectionType;
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         private string[] data = new string[7];
         private string[] data2 = new string[4];
-        public UpdateStorehouseFields()
+        public UpdateStorehouseFields(ConnectionTypes connectionType)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -31,73 +32,79 @@ namespace lab6_yunoshev.StorehouseFields
                 MaterialSkin.TextShade.WHITE);
             TextBoxStatusId.ForeColor = Color.Red;
             TextBoxStatusRId.ForeColor = Color.Red;
+            this.connectionType = connectionType;
         }
 
         private void ButtonAcceptId_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(NumericId.Value);
-            string query = Commands.SelectStorehouseFWhereId(id);
-            
-            ConnectedData.SetCommand(query);
-            bool status = ConnectedData.CheckExist();
-            if (status == true)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                TextBoxStatusId.Text = "Выбрано";
-                TextBoxStatusId.ForeColor = Color.Green;
-                ButtonUpdate.Enabled = true;
-                TextBoxQuantity.Enabled = true;
-                TextBoxCriticalQuantity.Enabled = true;
-                TextBoxManufactureDate.Enabled = true;
-                TextBoxShelfLife.Enabled = true;
-                CheckBoxRId.Enabled = true;
-               
+                int id = Convert.ToInt32(NumericId.Value);
+                string query = Commands.SelectStorehouseFWhereId(id);
+
                 ConnectedData.SetCommand(query);
-                data = ConnectedData.GetRowFromTable();
-
-                TextBoxQuantity.Text = data[4];
-                TextBoxCriticalQuantity.Text = data[2];
-
-                DateTime manufactureDate = Convert.ToDateTime(data[5]);
-                DateTime shelfLife = Convert.ToDateTime(data[6]);
-                TextBoxManufactureDate.Text = manufactureDate.ToShortDateString();
-                TextBoxShelfLife.Text = shelfLife.ToShortDateString();
-
-                if (data[3] != "-")
+                bool status = ConnectedData.CheckExist();
+                if (status == true)
                 {
-                    NumericRId.Value = Convert.ToInt32(data[3]);
-                    CheckBoxRId.Checked = true;
-                    NumericRId.Enabled = true;
-                    ButtonAcceptRId.Enabled = true;
-                    TextBoxStatusRId.ForeColor = Color.Green;
-                    TextBoxStatusRId.Text = "Выбрано";
+                    TextBoxStatusId.Text = "Выбрано";
+                    TextBoxStatusId.ForeColor = Color.Green;
+                    ButtonUpdate.Enabled = true;
+                    TextBoxQuantity.Enabled = true;
+                    TextBoxCriticalQuantity.Enabled = true;
+                    TextBoxManufactureDate.Enabled = true;
+                    TextBoxShelfLife.Enabled = true;
+                    CheckBoxRId.Enabled = true;
+
+                    ConnectedData.SetCommand(query);
+                    data = ConnectedData.GetRowFromTable();
+
+                    TextBoxQuantity.Text = data[4];
+                    TextBoxCriticalQuantity.Text = data[2];
+
+                    DateTime manufactureDate = Convert.ToDateTime(data[5]);
+                    DateTime shelfLife = Convert.ToDateTime(data[6]);
+                    TextBoxManufactureDate.Text = manufactureDate.ToShortDateString();
+                    TextBoxShelfLife.Text = shelfLife.ToShortDateString();
+
+                    if (data[3] != "-")
+                    {
+                        NumericRId.Value = Convert.ToInt32(data[3]);
+                        CheckBoxRId.Checked = true;
+                        NumericRId.Enabled = true;
+                        ButtonAcceptRId.Enabled = true;
+                        TextBoxStatusRId.ForeColor = Color.Green;
+                        TextBoxStatusRId.Text = "Выбрано";
+                    }
+                    else
+                    {
+                        CheckBoxRId.Checked = false;
+                        TextBoxStatusRId.ForeColor = Color.Red;
+                        TextBoxStatusRId.Text = "Не выбрано";
+                    }
+
+                    this.Refresh();
+
                 }
                 else
                 {
+                    TextBoxStatusId.Text = "Не выбрано";
+                    TextBoxStatusId.ForeColor = Color.Red;
+                    ButtonUpdate.Enabled = false;
+                    TextBoxQuantity.Enabled = false;
+                    TextBoxCriticalQuantity.Enabled = false;
+                    TextBoxManufactureDate.Enabled = false;
+                    TextBoxShelfLife.Enabled = false;
                     CheckBoxRId.Checked = false;
+                    CheckBoxRId.Enabled = false;
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
+
+                    this.Refresh();
+                    MessageBox.Show("Записи с таким id не существует!");
                 }
-
-                this.Refresh();
-
             }
-            else
-            {
-                TextBoxStatusId.Text = "Не выбрано";
-                TextBoxStatusId.ForeColor = Color.Red;
-                ButtonUpdate.Enabled = false;
-                TextBoxQuantity.Enabled = false;
-                TextBoxCriticalQuantity.Enabled = false;
-                TextBoxManufactureDate.Enabled = false;
-                TextBoxShelfLife.Enabled = false;
-                CheckBoxRId.Checked = false;
-                CheckBoxRId.Enabled = false;
-                TextBoxStatusRId.ForeColor = Color.Red;
-                TextBoxStatusRId.Text = "Не выбрано";
 
-                this.Refresh();
-                MessageBox.Show("Записи с таким id не существует!");
-            }
+           
         }
 
         private void CheckBoxRId_CheckedChanged(object sender, EventArgs e)
@@ -119,33 +126,39 @@ namespace lab6_yunoshev.StorehouseFields
 
         private void ButtonAcceptRId_Click(object sender, EventArgs e)
         {
-            int RId = Convert.ToInt32(NumericRId.Value);
-            string query = Commands.SelectStorehouseRWhereId(RId);
-      
-            ConnectedData.SetCommand(query);
-            bool status = ConnectedData.CheckExist();
-            if (status == true)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                data2 = ConnectedData.GetRowFromTable();
-                if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
+                int RId = Convert.ToInt32(NumericRId.Value);
+                string query = Commands.SelectStorehouseRWhereId(RId);
+
+                ConnectedData.SetCommand(query);
+                bool status = ConnectedData.CheckExist();
+                if (status == true)
                 {
-                    TextBoxStatusRId.ForeColor = Color.Green;
-                    TextBoxStatusRId.Text = "Выбрано";
+                    data2 = ConnectedData.GetRowFromTable();
+                    if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
+                    {
+                        TextBoxStatusRId.ForeColor = Color.Green;
+                        TextBoxStatusRId.Text = "Выбрано";
+                    }
+                    else
+                    {
+                        TextBoxStatusRId.ForeColor = Color.Red;
+                        TextBoxStatusRId.Text = "Не выбрано";
+                        MessageBox.Show("Записи с таким id для такого лекарства не существует!");
+                    }
+
                 }
                 else
                 {
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
-                    MessageBox.Show("Записи с таким id для такого лекарства не существует!");
+                    MessageBox.Show("Записи с таким id не существует!");
                 }
+            }
+
+
                 
-            }
-            else
-            {
-                TextBoxStatusRId.ForeColor = Color.Red;
-                TextBoxStatusRId.Text = "Не выбрано";
-                MessageBox.Show("Записи с таким id не существует!");
-            }
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)

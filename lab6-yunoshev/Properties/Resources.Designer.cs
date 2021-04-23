@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace database-labs-yunoshev.Properties {
+namespace lab6_yunoshev.Properties {
     using System;
     
     

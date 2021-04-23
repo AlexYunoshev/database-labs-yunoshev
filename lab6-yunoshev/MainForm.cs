@@ -132,7 +132,7 @@ namespace lab6_yunoshev
         {
             if (connectionType == ConnectionTypes.Connected)
             {
-                UpdateMedications updateMedications = new UpdateMedications();
+                UpdateMedications updateMedications = new UpdateMedications(connectionType);
                 DialogResult status = updateMedications.ShowDialog();
                 if (status == DialogResult.OK)
                 {
@@ -232,7 +232,7 @@ namespace lab6_yunoshev
         {
             if (connectionType == ConnectionTypes.Connected)
             {
-                AddStorehouseFields addStorehouseFields = new AddStorehouseFields();
+                AddStorehouseFields addStorehouseFields = new AddStorehouseFields(connectionType);
                 DialogResult status = addStorehouseFields.ShowDialog();
                 if (status == DialogResult.OK)
                 {
@@ -278,7 +278,7 @@ namespace lab6_yunoshev
             if (connectionType == ConnectionTypes.Connected)
             {
 
-                UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields();
+                UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields(connectionType);
                 DialogResult status = updateStorehouseFields.ShowDialog();
                 if (status == DialogResult.OK)
                 {
@@ -472,7 +472,7 @@ namespace lab6_yunoshev
             if (connectionType == ConnectionTypes.Connected)
             {
 
-                AddPrescriptions addPrescriptions = new AddPrescriptions();
+                AddPrescriptions addPrescriptions = new AddPrescriptions(connectionType);
                 DialogResult status = addPrescriptions.ShowDialog();
                 if (status == DialogResult.OK)
                 {
@@ -534,7 +534,7 @@ namespace lab6_yunoshev
         {
             if (connectionType == ConnectionTypes.Connected)
             {
-                UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions();
+                UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions(connectionType);
                 DialogResult status = updatePrescriptions.ShowDialog();
                 if (status == DialogResult.OK)
                 {

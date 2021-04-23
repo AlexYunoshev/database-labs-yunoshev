@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab6-yunoshev", "lab6-yunoshev\lab6-yunoshev.csproj", "{838C31E7-10BE-4931-BD94-C9B6AF2F51CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "database-labs-yunoshev", "lab6-yunoshev\database-labs-yunoshev.csproj", "{838C31E7-10BE-4931-BD94-C9B6AF2F51CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBManager", "DBManager\DBManager.csproj", "{98F75EE6-4F2D-4C40-B697-8662A8C17183}"
 EndProject

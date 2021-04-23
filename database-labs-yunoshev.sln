@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBManager", "DBManager\DBMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{EB7F4262-B1E3-4CC8-856C-6125EA74BD96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab7-8-yunoshev", "lab7-8-yunoshev\lab7-8-yunoshev.csproj", "{4517D86D-D7CA-4B18-89F3-4C3115C339B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{EB7F4262-B1E3-4CC8-856C-6125EA74BD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7F4262-B1E3-4CC8-856C-6125EA74BD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7F4262-B1E3-4CC8-856C-6125EA74BD96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4517D86D-D7CA-4B18-89F3-4C3115C339B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4517D86D-D7CA-4B18-89F3-4C3115C339B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4517D86D-D7CA-4B18-89F3-4C3115C339B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4517D86D-D7CA-4B18-89F3-4C3115C339B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,9 +18,10 @@ namespace lab6_yunoshev
 {
     public partial class MainForm : MaterialForm
     {
+        ConnectionTypes connectionType;
         string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        public MainForm()
+        public MainForm(ConnectionTypes connectionType)
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -30,6 +31,7 @@ namespace lab6_yunoshev
             materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,
                 MaterialSkin.Primary.Indigo700, MaterialSkin.Primary.Indigo100, MaterialSkin.Accent.Pink200,
                 MaterialSkin.TextShade.WHITE);
+            this.connectionType = connectionType;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,84 +50,104 @@ namespace lab6_yunoshev
 
         public void MedicationsPrint(SortTypes sort, string name = "")
         {
-            MedicationsListView.Items.Clear();
-            if (name != "") query = Commands.SelectMedications(sort, name);
-            else query = Commands.SelectMedications(sort);
-            ConnectedData.SetCommand(query);
-            int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
-            int row = size[0];
-            int column = size[1];
-            ListViewItem item;
-            string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
-
-            for (int i = 0; i < row; i++)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                item = new ListViewItem(data[i, 0]);
-                for (int j = 1; j < column; j++)
-                {
-                    if (j == 2)
-                    {
-                        double value = Convert.ToDouble(data[i, j]);
-                        item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
-                    }
+                MedicationsListView.Items.Clear();
+                if (name != "") query = Commands.SelectMedications(sort, name);
+                else query = Commands.SelectMedications(sort);
+                ConnectedData.SetCommand(query);
+                int[] size = new int[2];
+                size = ConnectedData.GetRowAndColumnCount();
+                int row = size[0];
+                int column = size[1];
+                ListViewItem item;
+                string[,] data = new string[row, column];
+                data = ConnectedData.GetTableData();
 
-                    else
-                        item.SubItems.Add(data[i, j]);
+                for (int i = 0; i < row; i++)
+                {
+                    item = new ListViewItem(data[i, 0]);
+                    for (int j = 1; j < column; j++)
+                    {
+                        if (j == 2)
+                        {
+                            double value = Convert.ToDouble(data[i, j]);
+                            item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
+                        }
+
+                        else
+                            item.SubItems.Add(data[i, j]);
+                    }
+                    MedicationsListView.Items.Add(item);
                 }
-                MedicationsListView.Items.Add(item);
             }
+
+            
         }
 
         private void MedicationButtonAdd_Click(object sender, EventArgs e)
         {
-            AddMedications addMedications = new AddMedications();
-            DialogResult status = addMedications.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                        Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
-                        Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
-                MedicationsPrint(SortTypes.IdAsc);
+                AddMedications addMedications = new AddMedications();
+                DialogResult status = addMedications.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                            Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                            Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено: " + count.ToString());
+                    MedicationsPrint(SortTypes.IdAsc);
+                }
             }
+
+                
         }
 
         private void MedicationButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteMedications deleteMedications = new DeleteMedications();
-            DialogResult status = deleteMedications.ShowDialog();
-
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Удалено: " + count.ToString());
-                MedicationsPrint(SortTypes.IdAsc);
+                DeleteMedications deleteMedications = new DeleteMedications();
+                DialogResult status = deleteMedications.ShowDialog();
+
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Удалено: " + count.ToString());
+                    MedicationsPrint(SortTypes.IdAsc);
+                }
             }
+
+               
         }
 
         private void MedicationButtonEdit_Click(object sender, EventArgs e)
         {
-            UpdateMedications updateMedications = new UpdateMedications();
-            DialogResult status = updateMedications.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                       Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
-                       Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Обновлено: " + count.ToString());
-                MedicationsPrint(SortTypes.IdAsc);
+                UpdateMedications updateMedications = new UpdateMedications();
+                DialogResult status = updateMedications.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                           Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                           Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Обновлено: " + count.ToString());
+                    MedicationsPrint(SortTypes.IdAsc);
+                }
             }
+
+                
         }
 
         private void MedicationsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,35 +172,40 @@ namespace lab6_yunoshev
 
         public void StorehouseFPrint(SortTypes sort, string name = "")
         {
-            StorehouseFListView.Items.Clear();
-            if (name != "") query = Commands.SelectStorehouseF(sort, name);
-            else query = Commands.SelectStorehouseF(sort);
-            ConnectedData.SetCommand(query);
-            int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
-            int row = size[0];
-            int column = size[1];
-            ListViewItem item;
-            string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
-
-            for (int i = 0; i < row; i++)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                item = new ListViewItem(data[i, 0]);
+                StorehouseFListView.Items.Clear();
+                if (name != "") query = Commands.SelectStorehouseF(sort, name);
+                else query = Commands.SelectStorehouseF(sort);
+                ConnectedData.SetCommand(query);
+                int[] size = new int[2];
+                size = ConnectedData.GetRowAndColumnCount();
+                int row = size[0];
+                int column = size[1];
+                ListViewItem item;
+                string[,] data = new string[row, column];
+                data = ConnectedData.GetTableData();
 
-                for (int j = 1; j < column; j++) 
+                for (int i = 0; i < row; i++)
                 {
-                    if (j == 5 || j == 6)
-                    {
-                        DateTime value = Convert.ToDateTime(data[i, j]);
-                        item.SubItems.Add(value.ToShortDateString());
-                    }
+                    item = new ListViewItem(data[i, 0]);
 
-                    else
-                        item.SubItems.Add(data[i, j]);
-                } 
-                StorehouseFListView.Items.Add(item);
+                    for (int j = 1; j < column; j++)
+                    {
+                        if (j == 5 || j == 6)
+                        {
+                            DateTime value = Convert.ToDateTime(data[i, j]);
+                            item.SubItems.Add(value.ToShortDateString());
+                        }
+
+                        else
+                            item.SubItems.Add(data[i, j]);
+                    }
+                    StorehouseFListView.Items.Add(item);
+                }
             }
+
+              
         }
 
         private void StorehouseFComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -203,174 +230,219 @@ namespace lab6_yunoshev
 
         private void StorehouseFButtonAdd_Click(object sender, EventArgs e)
         {
-            AddStorehouseFields addStorehouseFields = new AddStorehouseFields();
-            DialogResult status = addStorehouseFields.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
-                    Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
-                    Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
-                    Models.StorehouseField.ShelfLife);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
-                StorehouseFPrint(SortTypes.IdAsc);
+                AddStorehouseFields addStorehouseFields = new AddStorehouseFields();
+                DialogResult status = addStorehouseFields.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
+                        Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
+                        Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
+                        Models.StorehouseField.ShelfLife);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено: " + count.ToString());
+                    StorehouseFPrint(SortTypes.IdAsc);
+                }
             }
+
+                
         }
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteStorehouseFields deleteStorehouseFields = new DeleteStorehouseFields();
-            DialogResult status = deleteStorehouseFields.ShowDialog();
 
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Удалено: " + count.ToString());
-                StorehouseFPrint(SortTypes.IdAsc);
+                DeleteStorehouseFields deleteStorehouseFields = new DeleteStorehouseFields();
+                DialogResult status = deleteStorehouseFields.ShowDialog();
+
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Удалено: " + count.ToString());
+                    StorehouseFPrint(SortTypes.IdAsc);
+                }
             }
+
+                
         }
 
         private void StorehouseFButtonEdit_Click(object sender, EventArgs e)
         {
-            UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields();
-            DialogResult status = updateStorehouseFields.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity, 
-                        Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId, 
-                        Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Обновлено: " + count.ToString());
-                StorehouseFPrint(SortTypes.IdAsc);
+
+                UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields();
+                DialogResult status = updateStorehouseFields.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity,
+                            Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId,
+                            Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Обновлено: " + count.ToString());
+                    StorehouseFPrint(SortTypes.IdAsc);
+                }
             }
+
         }
 
         public void PrescriptionsPrint(SortTypes sort, string name = "")
         {
-            PrescriptionsListView.Items.Clear();
-            if (name != "") query = Commands.SelectPrescriptions(sort, name);
-            else query = Commands.SelectPrescriptions(sort);
-            ConnectedData.SetCommand(query);
-            int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
-            int row = size[0];
-            int column = size[1];
-            ListViewItem item;
-            string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
 
-            Dictionary<int, string> list = GetPrescriptionsDiagnoses();
-            Dictionary<int, string> list2 = GetPrescriptionsMedications();
-            
-            for (int i = 0; i < row; i++)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                item = new ListViewItem(data[i, 0]);
-                for (int j = 1; j < column; j++)
+                PrescriptionsListView.Items.Clear();
+                if (name != "") query = Commands.SelectPrescriptions(sort, name);
+                else query = Commands.SelectPrescriptions(sort);
+                ConnectedData.SetCommand(query);
+                int[] size = new int[2];
+                size = ConnectedData.GetRowAndColumnCount();
+                int row = size[0];
+                int column = size[1];
+                ListViewItem item;
+                string[,] data = new string[row, column];
+                data = ConnectedData.GetTableData();
+
+                Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+                Dictionary<int, string> list2 = GetPrescriptionsMedications();
+
+                for (int i = 0; i < row; i++)
                 {
-                    if (j == 4 || j == 5)
+                    item = new ListViewItem(data[i, 0]);
+                    for (int j = 1; j < column; j++)
                     {
-                        bool value = Convert.ToBoolean(data[i, j]);
-                        if (value == true)
-                            item.SubItems.Add("+"); 
+                        if (j == 4 || j == 5)
+                        {
+                            bool value = Convert.ToBoolean(data[i, j]);
+                            if (value == true)
+                                item.SubItems.Add("+");
+                            else
+                                item.SubItems.Add("-");
+                        }
+
                         else
-                            item.SubItems.Add("-");
-                    }       
+                            item.SubItems.Add(data[i, j]);
+                    }
 
+                    if (list.ContainsKey(Convert.ToInt32(data[i, 0])))
+                        item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
                     else
-                        item.SubItems.Add(data[i, j]);
+                        item.SubItems.Add("-");
+
+                    if (list2.ContainsKey(Convert.ToInt32(data[i, 0])))
+                        item.SubItems.Add(list2[Convert.ToInt32(data[i, 0])]);
+                    else
+                        item.SubItems.Add("-");
+
+                    PrescriptionsListView.Items.Add(item);
                 }
-
-                if (list.ContainsKey(Convert.ToInt32(data[i, 0])))
-                    item.SubItems.Add(list[Convert.ToInt32(data[i, 0])]);
-                else
-                    item.SubItems.Add("-");
-
-                if (list2.ContainsKey(Convert.ToInt32(data[i, 0])))
-                    item.SubItems.Add(list2[Convert.ToInt32(data[i, 0])]);
-                else
-                    item.SubItems.Add("-");
-
-                PrescriptionsListView.Items.Add(item);
             }
+
+               
         }
 
         public Dictionary<int, string> GetPrescriptionsDiagnoses()
         {
-            query = Commands.SelectPrescriptionsDiagnoses();
-            ConnectedData.SetCommand(query);
-            int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
-            int row = size[0];
-            int column = size[1];
-            Dictionary<int, string> list = new Dictionary<int, string>();
 
-            string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
-
-            int key = Convert.ToInt32(data[0, 0]);
-            string str = "";
-
-            for (int i = 0; i < row; i++)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                if (Convert.ToInt32(data[i, 0]) == key)
+                query = Commands.SelectPrescriptionsDiagnoses();
+                ConnectedData.SetCommand(query);
+                int[] size = new int[2];
+                size = ConnectedData.GetRowAndColumnCount();
+                int row = size[0];
+                int column = size[1];
+                Dictionary<int, string> list = new Dictionary<int, string>();
+
+                string[,] data = new string[row, column];
+                data = ConnectedData.GetTableData();
+
+                int key = Convert.ToInt32(data[0, 0]);
+                string str = "";
+
+                for (int i = 0; i < row; i++)
                 {
-                    str += data[i, 1] + ", ";
+                    if (Convert.ToInt32(data[i, 0]) == key)
+                    {
+                        str += data[i, 1] + ", ";
+                    }
+                    else
+                    {
+                        str = str.Remove(str.Length - 2);
+                        list.Add(key, str);
+                        str = "";
+                        key = Convert.ToInt32(data[i, 0]);
+                        str += data[i, 1] + ", ";
+                    }
                 }
-                else
-                {
-                    str = str.Remove(str.Length - 2);
-                    list.Add(key, str);
-                    str = "";
-                    key = Convert.ToInt32(data[i, 0]);
-                    str += data[i, 1] + ", ";
-                }
+                str = str.Remove(str.Length - 2);
+                list.Add(key, str);
+                return list;
             }
-            str = str.Remove(str.Length - 2);
-            list.Add(key, str);
-            return list;
+
+            else
+            {
+                Dictionary<int, string> list = new Dictionary<int, string>();
+                return list;
+            }
+
+               
         }
 
         public Dictionary<int, string> GetPrescriptionsMedications()
         {
-            query = Commands.SelectPrescriptionsMedications();
-            ConnectedData.SetCommand(query);
-            int[] size = new int[2];
-            size = ConnectedData.GetRowAndColumnCount();
-            int row = size[0];
-            int column = size[1];
-            Dictionary<int, string> list = new Dictionary<int, string>();
-
-            string[,] data = new string[row, column];
-            data = ConnectedData.GetTableData();
-
-            int key = Convert.ToInt32(data[0, 0]);
-            string str = "";
-
-            for (int i = 0; i < row; i++)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                if (Convert.ToInt32(data[i, 0]) == key)
+
+                query = Commands.SelectPrescriptionsMedications();
+                ConnectedData.SetCommand(query);
+                int[] size = new int[2];
+                size = ConnectedData.GetRowAndColumnCount();
+                int row = size[0];
+                int column = size[1];
+                Dictionary<int, string> list = new Dictionary<int, string>();
+
+                string[,] data = new string[row, column];
+                data = ConnectedData.GetTableData();
+
+                int key = Convert.ToInt32(data[0, 0]);
+                string str = "";
+
+                for (int i = 0; i < row; i++)
                 {
-                    str += data[i, 1] + " " + data[i, 2] + "шт, ";
+                    if (Convert.ToInt32(data[i, 0]) == key)
+                    {
+                        str += data[i, 1] + " " + data[i, 2] + "шт, ";
+                    }
+                    else
+                    {
+                        str = str.Remove(str.Length - 2);
+                        list.Add(key, str);
+                        str = "";
+                        key = Convert.ToInt32(data[i, 0]);
+                        str += data[i, 1] + " " + data[i, 2] + "шт, ";
+                    }
                 }
-                else
-                {
-                    str = str.Remove(str.Length - 2);
-                    list.Add(key, str);
-                    str = "";
-                    key = Convert.ToInt32(data[i, 0]);
-                    str += data[i, 1] + " " + data[i, 2] + "шт, ";
-                }
+                str = str.Remove(str.Length - 2);
+                list.Add(key, str);
+                return list;
             }
-            str = str.Remove(str.Length - 2);
-            list.Add(key, str);
-            return list;
+
+            else
+            {
+                Dictionary<int, string> list = new Dictionary<int, string>();
+                return list;
+            }
+
         }
 
         private void PrescriptionsComboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -397,100 +469,115 @@ namespace lab6_yunoshev
 
         private void PrescriptionsButtonAdd_Click(object sender, EventArgs e)
         {
-            AddPrescriptions addPrescriptions = new AddPrescriptions();
-            DialogResult status = addPrescriptions.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName, 
-                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp, 
-                    Models.Prescriptions.patientId);
-                //MessageBox.Show("1\n" + query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
 
-                string[] data = new string[1];
-                query = Commands.SelectLastId("dbo.prescriptions");
-                //MessageBox.Show("2\n" + query);
-                ConnectedData.SetCommand(query);
-                data = ConnectedData.GetRowFromTable();
-                int id = Convert.ToInt32(data[0]);
+                AddPrescriptions addPrescriptions = new AddPrescriptions();
+                DialogResult status = addPrescriptions.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName,
+                        Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
+                        Models.Prescriptions.patientId);
+                    //MessageBox.Show("1\n" + query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено: " + count.ToString());
 
-                query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
-                //MessageBox.Show("3\n" + query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
+                    string[] data = new string[1];
+                    query = Commands.SelectLastId("dbo.prescriptions");
+                    //MessageBox.Show("2\n" + query);
+                    ConnectedData.SetCommand(query);
+                    data = ConnectedData.GetRowFromTable();
+                    int id = Convert.ToInt32(data[0]);
 
-                query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
-                //MessageBox.Show("4\n" + query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено: " + count.ToString());
+                    query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
+                    //MessageBox.Show("3\n" + query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено: " + count.ToString());
 
-                PrescriptionsPrint(SortTypes.IdAsc);
+                    query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
+                    //MessageBox.Show("4\n" + query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено: " + count.ToString());
+
+                    PrescriptionsPrint(SortTypes.IdAsc);
+                }
             }
+
         }
 
         private void PrescriptionsButtonDelete_Click(object sender, EventArgs e)
         {
-            DeletePrescriptions deletePrescriptions = new DeletePrescriptions();
-            DialogResult status = deletePrescriptions.ShowDialog();
-
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.DeletePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.id2, Models.Prescriptions.patientName);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Удалено: " + count.ToString());
-                PrescriptionsPrint(SortTypes.IdAsc);
+                DeletePrescriptions deletePrescriptions = new DeletePrescriptions();
+                DialogResult status = deletePrescriptions.ShowDialog();
+
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.DeletePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.id2, Models.Prescriptions.patientName);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Удалено: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
+                }
             }
+
+                
         }
 
         private void PrescriptionsButtonEdit_Click(object sender, EventArgs e)
         {
-            UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions();
-            DialogResult status = updatePrescriptions.ShowDialog();
-            if (status == DialogResult.OK)
+            if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
-                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
-                    Models.Prescriptions.patientId);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                int count = ConnectedData.UpdateData();
-                //MessageBox.Show("Обновлено основ: " + count.ToString());
-                PrescriptionsPrint(SortTypes.IdAsc);
+                UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions();
+                DialogResult status = updatePrescriptions.ShowDialog();
+                if (status == DialogResult.OK)
+                {
+                    query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
+                        Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
+                        Models.Prescriptions.patientId);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    int count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Обновлено основ: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
 
-                query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Удалено диагнозов: " + count.ToString());
-                PrescriptionsPrint(SortTypes.IdAsc);
+                    query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Удалено диагнозов: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
 
-                query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
-                //MessageBox.Show(query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Удалено лекарств: " + count.ToString());
-                PrescriptionsPrint(SortTypes.IdAsc);
+                    query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
+                    //MessageBox.Show(query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Удалено лекарств: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
 
-                query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
-                //MessageBox.Show("3\n" + query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено диагнозов: " + count.ToString());
+                    query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
+                    //MessageBox.Show("3\n" + query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено диагнозов: " + count.ToString());
 
-                query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
-                //MessageBox.Show("4\n" + query);
-                ConnectedData.SetCommand(query);
-                count = ConnectedData.UpdateData();
-                //MessageBox.Show("Добавлено лекарств: " + count.ToString());
+                    query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
+                    //MessageBox.Show("4\n" + query);
+                    ConnectedData.SetCommand(query);
+                    count = ConnectedData.UpdateData();
+                    //MessageBox.Show("Добавлено лекарств: " + count.ToString());
 
-                PrescriptionsPrint(SortTypes.IdAsc);
+                    PrescriptionsPrint(SortTypes.IdAsc);
+                }
             }
+
+               
         }
     }
 }

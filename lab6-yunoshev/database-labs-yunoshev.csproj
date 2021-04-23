@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
-    <RootNamespace>lab6_yunoshev</RootNamespace>
+    <RootNamespace>database-labs-yunoshev</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 

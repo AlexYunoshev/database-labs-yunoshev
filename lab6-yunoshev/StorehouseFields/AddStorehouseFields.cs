@@ -67,64 +67,66 @@ namespace lab6_yunoshev.StorehouseFields
 
         private void ButtonAcceptMId_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
-            {
-                int id = Convert.ToInt32(NumericMId.Value);
-                string query = Commands.SelectMedicationsWhereId(id);
+            //if (connectionType == ConnectionTypes.Connected)
+            //{
 
-                ConnectedData.SetCommand(query);
-                bool status = ConnectedData.CheckExist();
-                if (status == true)
-                {
-                    TextBoxStatusMId.Text = "Выбрано";
-                    TextBoxStatusMId.ForeColor = Color.Green;
-                }
-                else
-                {
-                    TextBoxStatusMId.Text = "Не выбрано";
-                    TextBoxStatusMId.ForeColor = Color.Red;
-                    MessageBox.Show("Лекарства с таким id не существует!");
-                }
+            //}
+            int id = Convert.ToInt32(NumericMId.Value);
+            string query = Commands.SelectMedicationsWhereId(id);
+
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
+            {
+                TextBoxStatusMId.Text = "Выбрано";
+                TextBoxStatusMId.ForeColor = Color.Green;
+            }
+            else
+            {
+                TextBoxStatusMId.Text = "Не выбрано";
+                TextBoxStatusMId.ForeColor = Color.Red;
+                MessageBox.Show("Лекарства с таким id не существует!");
             }
 
-               
+
         }
 
         private void ButtonAcceptRId_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            //if (connectionType == ConnectionTypes.Connected)
+            //{
+
+            //}
+            int RId = Convert.ToInt32(NumericRId.Value);
+            string query = Commands.SelectStorehouseRWhereId(RId);
+
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
             {
-                int RId = Convert.ToInt32(NumericRId.Value);
-                string query = Commands.SelectStorehouseRWhereId(RId);
 
-                ConnectedData.SetCommand(query);
-                bool status = ConnectedData.CheckExist();
-                if (status == true)
+                data = ConnectedData.GetRowFromTable();
+                if (Convert.ToInt32(data[2]) == Convert.ToInt32(NumericMId.Value))
                 {
-
-                    data = ConnectedData.GetRowFromTable();
-                    if (Convert.ToInt32(data[2]) == Convert.ToInt32(NumericMId.Value))
-                    {
-                        TextBoxStatusRId.ForeColor = Color.Green;
-                        TextBoxStatusRId.Text = "Выбрано";
-                    }
-                    else
-                    {
-                        TextBoxStatusRId.ForeColor = Color.Red;
-                        TextBoxStatusRId.Text = "Не выбрано";
-                        MessageBox.Show("Записи с таким id для такого лекарства не существует!");
-                    }
-
+                    TextBoxStatusRId.ForeColor = Color.Green;
+                    TextBoxStatusRId.Text = "Выбрано";
                 }
                 else
                 {
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
-                    MessageBox.Show("Записи с таким id не существует!");
+                    MessageBox.Show("Записи с таким id для такого лекарства не существует!");
                 }
+
+            }
+            else
+            {
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+                MessageBox.Show("Записи с таким id не существует!");
             }
 
-                
+
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)

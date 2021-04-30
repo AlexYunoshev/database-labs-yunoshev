@@ -118,30 +118,31 @@ namespace lab6_yunoshev.Prescriptions
 
         private void ButtonAcceptPId_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            //if (connectionType == ConnectionTypes.Connected)
+            //{
+                
+            //}
+
+            int id = Convert.ToInt32(NumericPId.Value);
+            string query = Commands.SelectPatientWhereId(id);
+            string[] data = new string[5];
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
             {
-                int id = Convert.ToInt32(NumericPId.Value);
-                string query = Commands.SelectPatientWhereId(id);
-                string[] data = new string[5];
-                ConnectedData.SetCommand(query);
-                bool status = ConnectedData.CheckExist();
-                if (status == true)
-                {
-                    TextBoxStatusPId.Text = "Выбрано";
-                    TextBoxStatusPId.ForeColor = Color.Green;
-                    data = ConnectedData.GetRowFromTable();
-                    TextBoxPName.Text = data[1];
-                }
-                else
-                {
-                    TextBoxStatusPId.Text = "Не выбрано";
-                    TextBoxStatusPId.ForeColor = Color.Red;
-                    TextBoxPName.ResetText();
-                    MessageBox.Show("Пациента с таким id не существует!");
-                }
+                TextBoxStatusPId.Text = "Выбрано";
+                TextBoxStatusPId.ForeColor = Color.Green;
+                data = ConnectedData.GetRowFromTable();
+                TextBoxPName.Text = data[1];
+            }
+            else
+            {
+                TextBoxStatusPId.Text = "Не выбрано";
+                TextBoxStatusPId.ForeColor = Color.Red;
+                TextBoxPName.ResetText();
+                MessageBox.Show("Пациента с таким id не существует!");
             }
 
-                
         }
     }
 }

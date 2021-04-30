@@ -37,74 +37,74 @@ namespace lab6_yunoshev.StorehouseFields
 
         private void ButtonAcceptId_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            //if (connectionType == ConnectionTypes.Connected)
+            //{
+
+            //}
+            int id = Convert.ToInt32(NumericId.Value);
+            string query = Commands.SelectStorehouseFWhereId(id);
+
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
             {
-                int id = Convert.ToInt32(NumericId.Value);
-                string query = Commands.SelectStorehouseFWhereId(id);
+                TextBoxStatusId.Text = "Выбрано";
+                TextBoxStatusId.ForeColor = Color.Green;
+                ButtonUpdate.Enabled = true;
+                TextBoxQuantity.Enabled = true;
+                TextBoxCriticalQuantity.Enabled = true;
+                TextBoxManufactureDate.Enabled = true;
+                TextBoxShelfLife.Enabled = true;
+                CheckBoxRId.Enabled = true;
 
                 ConnectedData.SetCommand(query);
-                bool status = ConnectedData.CheckExist();
-                if (status == true)
+                data = ConnectedData.GetRowFromTable();
+
+                TextBoxQuantity.Text = data[4];
+                TextBoxCriticalQuantity.Text = data[2];
+
+                DateTime manufactureDate = Convert.ToDateTime(data[5]);
+                DateTime shelfLife = Convert.ToDateTime(data[6]);
+                TextBoxManufactureDate.Text = manufactureDate.ToShortDateString();
+                TextBoxShelfLife.Text = shelfLife.ToShortDateString();
+
+                if (data[3] != "-")
                 {
-                    TextBoxStatusId.Text = "Выбрано";
-                    TextBoxStatusId.ForeColor = Color.Green;
-                    ButtonUpdate.Enabled = true;
-                    TextBoxQuantity.Enabled = true;
-                    TextBoxCriticalQuantity.Enabled = true;
-                    TextBoxManufactureDate.Enabled = true;
-                    TextBoxShelfLife.Enabled = true;
-                    CheckBoxRId.Enabled = true;
-
-                    ConnectedData.SetCommand(query);
-                    data = ConnectedData.GetRowFromTable();
-
-                    TextBoxQuantity.Text = data[4];
-                    TextBoxCriticalQuantity.Text = data[2];
-
-                    DateTime manufactureDate = Convert.ToDateTime(data[5]);
-                    DateTime shelfLife = Convert.ToDateTime(data[6]);
-                    TextBoxManufactureDate.Text = manufactureDate.ToShortDateString();
-                    TextBoxShelfLife.Text = shelfLife.ToShortDateString();
-
-                    if (data[3] != "-")
-                    {
-                        NumericRId.Value = Convert.ToInt32(data[3]);
-                        CheckBoxRId.Checked = true;
-                        NumericRId.Enabled = true;
-                        ButtonAcceptRId.Enabled = true;
-                        TextBoxStatusRId.ForeColor = Color.Green;
-                        TextBoxStatusRId.Text = "Выбрано";
-                    }
-                    else
-                    {
-                        CheckBoxRId.Checked = false;
-                        TextBoxStatusRId.ForeColor = Color.Red;
-                        TextBoxStatusRId.Text = "Не выбрано";
-                    }
-
-                    this.Refresh();
-
+                    NumericRId.Value = Convert.ToInt32(data[3]);
+                    CheckBoxRId.Checked = true;
+                    NumericRId.Enabled = true;
+                    ButtonAcceptRId.Enabled = true;
+                    TextBoxStatusRId.ForeColor = Color.Green;
+                    TextBoxStatusRId.Text = "Выбрано";
                 }
                 else
                 {
-                    TextBoxStatusId.Text = "Не выбрано";
-                    TextBoxStatusId.ForeColor = Color.Red;
-                    ButtonUpdate.Enabled = false;
-                    TextBoxQuantity.Enabled = false;
-                    TextBoxCriticalQuantity.Enabled = false;
-                    TextBoxManufactureDate.Enabled = false;
-                    TextBoxShelfLife.Enabled = false;
                     CheckBoxRId.Checked = false;
-                    CheckBoxRId.Enabled = false;
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
-
-                    this.Refresh();
-                    MessageBox.Show("Записи с таким id не существует!");
                 }
+
+                this.Refresh();
+
+            }
+            else
+            {
+                TextBoxStatusId.Text = "Не выбрано";
+                TextBoxStatusId.ForeColor = Color.Red;
+                ButtonUpdate.Enabled = false;
+                TextBoxQuantity.Enabled = false;
+                TextBoxCriticalQuantity.Enabled = false;
+                TextBoxManufactureDate.Enabled = false;
+                TextBoxShelfLife.Enabled = false;
+                CheckBoxRId.Checked = false;
+                CheckBoxRId.Enabled = false;
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+
+                this.Refresh();
+                MessageBox.Show("Записи с таким id не существует!");
             }
 
-           
         }
 
         private void CheckBoxRId_CheckedChanged(object sender, EventArgs e)
@@ -126,39 +126,40 @@ namespace lab6_yunoshev.StorehouseFields
 
         private void ButtonAcceptRId_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            //if (connectionType == ConnectionTypes.Connected)
+            //{
+
+            //}
+            int RId = Convert.ToInt32(NumericRId.Value);
+            string query = Commands.SelectStorehouseRWhereId(RId);
+
+            ConnectedData.SetCommand(query);
+            bool status = ConnectedData.CheckExist();
+            if (status == true)
             {
-                int RId = Convert.ToInt32(NumericRId.Value);
-                string query = Commands.SelectStorehouseRWhereId(RId);
-
-                ConnectedData.SetCommand(query);
-                bool status = ConnectedData.CheckExist();
-                if (status == true)
+                data2 = ConnectedData.GetRowFromTable();
+                if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
                 {
-                    data2 = ConnectedData.GetRowFromTable();
-                    if (Convert.ToInt32(data2[2]) == Convert.ToInt32(data[1]))
-                    {
-                        TextBoxStatusRId.ForeColor = Color.Green;
-                        TextBoxStatusRId.Text = "Выбрано";
-                    }
-                    else
-                    {
-                        TextBoxStatusRId.ForeColor = Color.Red;
-                        TextBoxStatusRId.Text = "Не выбрано";
-                        MessageBox.Show("Записи с таким id для такого лекарства не существует!");
-                    }
-
+                    TextBoxStatusRId.ForeColor = Color.Green;
+                    TextBoxStatusRId.Text = "Выбрано";
                 }
                 else
                 {
                     TextBoxStatusRId.ForeColor = Color.Red;
                     TextBoxStatusRId.Text = "Не выбрано";
-                    MessageBox.Show("Записи с таким id не существует!");
+                    MessageBox.Show("Записи с таким id для такого лекарства не существует!");
                 }
+
+            }
+            else
+            {
+                TextBoxStatusRId.ForeColor = Color.Red;
+                TextBoxStatusRId.Text = "Не выбрано";
+                MessageBox.Show("Записи с таким id не существует!");
             }
 
 
-                
+
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)

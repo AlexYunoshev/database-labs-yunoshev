@@ -299,25 +299,31 @@ namespace lab6_yunoshev
 
         private void StorehouseFButtonAdd_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            AddStorehouseFields addStorehouseFields = new AddStorehouseFields(connectionType);
+            DialogResult status = addStorehouseFields.ShowDialog();
+            if (status == DialogResult.OK)
             {
-                AddStorehouseFields addStorehouseFields = new AddStorehouseFields(connectionType);
-                DialogResult status = addStorehouseFields.ShowDialog();
-                if (status == DialogResult.OK)
+                query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
+                    Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
+                    Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
+                    Models.StorehouseField.ShelfLife);
+                MessageBox.Show(query);
+                int count;
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.InsertStorehouseF(Models.StorehouseField.Medications_id,
-                        Models.StorehouseField.Quantity, Models.StorehouseField.Critical_quantity,
-                        Models.StorehouseField.StorehouseRequestsId, Models.StorehouseField.ManufactureDate,
-                        Models.StorehouseField.ShelfLife);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено: " + count.ToString());
-                    StorehouseFPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
                 }
+                else
+                {
+                    count = DisconnectedData.InsertData(query);
+                }
+                
+                MessageBox.Show("Добавлено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
             }
 
-                
+
         }
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)

@@ -44,5 +44,17 @@ namespace DBManager
             connection.Close();
             return count;
         }
+
+        public static int DeleteData(string query)
+        {
+            dataSet = new DataSet();
+            connection.Open();
+            dataAdapter = new SqlDataAdapter(query, connection);
+            sqlCommand = new SqlCommand(query, connection);
+            dataAdapter.DeleteCommand = sqlCommand;
+            int count = dataAdapter.DeleteCommand.ExecuteNonQuery();
+            connection.Close();
+            return count;
+        }
     }
 }

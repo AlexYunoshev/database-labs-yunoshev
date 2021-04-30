@@ -135,30 +135,34 @@ namespace lab6_yunoshev
                 }
                 MessageBox.Show("Добавлено: " + count.ToString());
                 MedicationsPrint(SortTypes.IdAsc);
-            }
-
-            
-
-                
+            }       
         }
 
         private void MedicationButtonDelete_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
-            {
-                DeleteMedications deleteMedications = new DeleteMedications();
-                DialogResult status = deleteMedications.ShowDialog();
+            DeleteMedications deleteMedications = new DeleteMedications();
+            DialogResult status = deleteMedications.ShowDialog();
 
-                if (status == DialogResult.OK)
+            if (status == DialogResult.OK)
+            {
+                query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
+                MessageBox.Show(query);
+                int count;
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.DeleteMedications(Models.Medications.id1, Models.Medications.id2, Models.Medications.Name);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Удалено: " + count.ToString());
-                    MedicationsPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
                 }
+                else
+                {
+                    count = DisconnectedData.DeleteData(query);
+                }
+                MessageBox.Show("Удалено: " + count.ToString());
+                MedicationsPrint(SortTypes.IdAsc);
+
+                
             }
+            
 
                
         }

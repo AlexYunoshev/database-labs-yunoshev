@@ -56,5 +56,17 @@ namespace DBManager
             connection.Close();
             return count;
         }
+
+        public static int UpdateData(string query)
+        {
+            dataSet = new DataSet();
+            connection.Open();
+            dataAdapter = new SqlDataAdapter(query, connection);
+            sqlCommand = new SqlCommand(query, connection);
+            dataAdapter.UpdateCommand = sqlCommand;
+            int count = dataAdapter.UpdateCommand.ExecuteNonQuery();
+            connection.Close();
+            return count;
+        }
     }
 }

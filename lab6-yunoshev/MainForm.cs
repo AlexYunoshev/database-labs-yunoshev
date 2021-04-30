@@ -158,9 +158,7 @@ namespace lab6_yunoshev
                     count = DisconnectedData.DeleteData(query);
                 }
                 MessageBox.Show("Удалено: " + count.ToString());
-                MedicationsPrint(SortTypes.IdAsc);
-
-                
+                MedicationsPrint(SortTypes.IdAsc);    
             }
             
 
@@ -169,22 +167,31 @@ namespace lab6_yunoshev
 
         private void MedicationButtonEdit_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            UpdateMedications updateMedications = new UpdateMedications(connectionType);
+            DialogResult status = updateMedications.ShowDialog();
+            if (status == DialogResult.OK)
             {
-                UpdateMedications updateMedications = new UpdateMedications(connectionType);
-                DialogResult status = updateMedications.ShowDialog();
-                if (status == DialogResult.OK)
+                query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                       Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                       Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                MessageBox.Show(query);
+                int count;
+
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.UpdateMedications(Models.Medications.id1, Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                           Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
-                           Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Обновлено: " + count.ToString());
-                    MedicationsPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
                 }
+                else
+                {
+                    count = DisconnectedData.UpdateData(query);
+                }
+               
+                MessageBox.Show("Обновлено: " + count.ToString());
+                MedicationsPrint(SortTypes.IdAsc);
             }
+
+            
 
                 
         }

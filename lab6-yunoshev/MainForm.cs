@@ -327,45 +327,53 @@ namespace lab6_yunoshev
         }
 
         private void StorehouseFButtonDelete_Click(object sender, EventArgs e)
-        {
+        {   
+            DeleteStorehouseFields deleteStorehouseFields = new DeleteStorehouseFields();
+            DialogResult status = deleteStorehouseFields.ShowDialog();
 
-            if (connectionType == ConnectionTypes.Connected)
+            if (status == DialogResult.OK)
             {
-                DeleteStorehouseFields deleteStorehouseFields = new DeleteStorehouseFields();
-                DialogResult status = deleteStorehouseFields.ShowDialog();
-
-                if (status == DialogResult.OK)
+                query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
+                MessageBox.Show(query);
+                int count;
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.DeleteStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.id2, Models.StorehouseField.MedicationsName);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Удалено: " + count.ToString());
-                    StorehouseFPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
                 }
+                else
+                {
+                    count = DisconnectedData.DeleteData(query);
+                }
+                
+                MessageBox.Show("Удалено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
             }
 
-                
         }
 
         private void StorehouseFButtonEdit_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields(connectionType);
+            DialogResult status = updateStorehouseFields.ShowDialog();
+            if (status == DialogResult.OK)
             {
-
-                UpdateStorehouseFields updateStorehouseFields = new UpdateStorehouseFields(connectionType);
-                DialogResult status = updateStorehouseFields.ShowDialog();
-                if (status == DialogResult.OK)
+                query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity,
+                        Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId,
+                        Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
+                MessageBox.Show(query);
+                int count;
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.UpdateStorehouseF(Models.StorehouseField.id1, Models.StorehouseField.Quantity,
-                            Models.StorehouseField.Critical_quantity, Models.StorehouseField.StorehouseRequestsId,
-                            Models.StorehouseField.ManufactureDate, Models.StorehouseField.ShelfLife);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Обновлено: " + count.ToString());
-                    StorehouseFPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
                 }
+                else
+                {
+                    count = DisconnectedData.UpdateData(query);
+                }
+                MessageBox.Show("Обновлено: " + count.ToString());
+                StorehouseFPrint(SortTypes.IdAsc);
             }
 
         }

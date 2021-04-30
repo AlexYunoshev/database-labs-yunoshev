@@ -728,52 +728,87 @@ namespace lab6_yunoshev
 
         private void PrescriptionsButtonEdit_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions(connectionType);
+            DialogResult status = updatePrescriptions.ShowDialog();
+            if (status == DialogResult.OK)
             {
-                UpdatePrescriptions updatePrescriptions = new UpdatePrescriptions(connectionType);
-                DialogResult status = updatePrescriptions.ShowDialog();
-                if (status == DialogResult.OK)
+                query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
+                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
+                    Models.Prescriptions.patientId);
+                int count;
+                MessageBox.Show(query);
+
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.UpdatePrescriptions(Models.Prescriptions.id1, Models.Prescriptions.doctorName,
-                        Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
-                        Models.Prescriptions.patientId);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Обновлено основ: " + count.ToString());
+                    count = ConnectedData.UpdateData();
+                    MessageBox.Show("Обновлено основ: " + count.ToString());
                     PrescriptionsPrint(SortTypes.IdAsc);
 
                     query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
-                    //MessageBox.Show(query);
+                    MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Удалено диагнозов: " + count.ToString());
+                    MessageBox.Show("Удалено диагнозов: " + count.ToString());
                     PrescriptionsPrint(SortTypes.IdAsc);
 
                     query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
-                    //MessageBox.Show(query);
+                    MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Удалено лекарств: " + count.ToString());
+                    MessageBox.Show("Удалено лекарств: " + count.ToString());
                     PrescriptionsPrint(SortTypes.IdAsc);
 
                     query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
-                    //MessageBox.Show("3\n" + query);
+                    MessageBox.Show("3\n" + query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено диагнозов: " + count.ToString());
+                    MessageBox.Show("Добавлено диагнозов: " + count.ToString());
 
                     query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
-                    //MessageBox.Show("4\n" + query);
+                    MessageBox.Show("4\n" + query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено лекарств: " + count.ToString());
-
-                    PrescriptionsPrint(SortTypes.IdAsc);
+                    MessageBox.Show("Добавлено лекарств: " + count.ToString());
                 }
+
+                else
+                {
+                    count = DisconnectedData.UpdateData(query);
+                    MessageBox.Show("Обновлено основ: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
+
+                    query = Commands.DeleteDiagnosesPrescriptions(Models.Prescriptions.id1);
+                    MessageBox.Show(query);
+                   
+                    count = DisconnectedData.DeleteData(query);
+                    MessageBox.Show("Удалено диагнозов: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
+
+                    query = Commands.DeletePrescriptionsMedications(Models.Prescriptions.id1);
+                    MessageBox.Show(query);
+                    
+                    count = DisconnectedData.DeleteData(query);
+                    MessageBox.Show("Удалено лекарств: " + count.ToString());
+                    PrescriptionsPrint(SortTypes.IdAsc);
+
+                    query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, Models.Prescriptions.id1);
+                    MessageBox.Show("3\n" + query);
+                   
+                    count = DisconnectedData.InsertData(query);
+                    MessageBox.Show("Добавлено диагнозов: " + count.ToString());
+
+                    query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, Models.Prescriptions.id1);
+                    MessageBox.Show("4\n" + query);
+                    count = DisconnectedData.InsertData(query);
+                    MessageBox.Show("Добавлено лекарств: " + count.ToString());
+
+                }
+                
+
+                PrescriptionsPrint(SortTypes.IdAsc);
             }
 
-               
         }
     }
 }

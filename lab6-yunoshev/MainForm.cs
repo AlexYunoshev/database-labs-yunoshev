@@ -810,5 +810,10 @@ namespace lab6_yunoshev
             }
 
         }
+
+        private void MedicationsButtonCalculation_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

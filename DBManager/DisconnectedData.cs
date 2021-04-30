@@ -33,7 +33,7 @@ namespace DBManager
             return dataSet;
         }
 
-        public static int UpdateData(string query)
+        public static int InsertData(string query)
         {
             dataSet = new DataSet();
             connection.Open();

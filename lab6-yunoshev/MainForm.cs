@@ -131,7 +131,7 @@ namespace lab6_yunoshev
                 }
                 else
                 {
-                    count = DisconnectedData.UpdateData(query);
+                    count = DisconnectedData.InsertData(query);
                 }
                 MessageBox.Show("Добавлено: " + count.ToString());
                 MedicationsPrint(SortTypes.IdAsc);

@@ -34,7 +34,6 @@ namespace lab6_yunoshev
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMedications = new System.Windows.Forms.TabPage();
-            this.MedicationsButtonCalculation = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonDelete = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonAdd = new MaterialSkin.Controls.MaterialButton();
@@ -54,7 +53,6 @@ namespace lab6_yunoshev
             this.columnFiltrationTime = new System.Windows.Forms.ColumnHeader();
             this.columnMixableList = new System.Windows.Forms.ColumnHeader();
             this.tabPageStorehouse = new System.Windows.Forms.TabPage();
-            this.StorehouseFButtonCalculation = new MaterialSkin.Controls.MaterialButton();
             this.StorehouseFButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.StorehouseFButtonDelete = new MaterialSkin.Controls.MaterialButton();
             this.StorehouseFButtonAdd = new MaterialSkin.Controls.MaterialButton();
@@ -71,7 +69,6 @@ namespace lab6_yunoshev
             this.columnHeaderShelfDate = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderStorehouseRId = new System.Windows.Forms.ColumnHeader();
             this.tabPagePrescriptons = new System.Windows.Forms.TabPage();
-            this.PrescriptionsButtonCalculation = new MaterialSkin.Controls.MaterialButton();
             this.PrescriptionsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.PrescriptionsButtonDelete = new MaterialSkin.Controls.MaterialButton();
             this.PrescriptionsButtonAdd = new MaterialSkin.Controls.MaterialButton();
@@ -119,14 +116,13 @@ namespace lab6_yunoshev
             this.MainTabControl.Multiline = true;
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(1414, 714);
+            this.MainTabControl.Size = new System.Drawing.Size(1274, 714);
             this.MainTabControl.TabIndex = 0;
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // tabPageMedications
             // 
             this.tabPageMedications.BackColor = System.Drawing.Color.White;
-            this.tabPageMedications.Controls.Add(this.MedicationsButtonCalculation);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonEdit);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonDelete);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonAdd);
@@ -138,30 +134,9 @@ namespace lab6_yunoshev
             this.tabPageMedications.Location = new System.Drawing.Point(4, 39);
             this.tabPageMedications.Name = "tabPageMedications";
             this.tabPageMedications.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMedications.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageMedications.Size = new System.Drawing.Size(1266, 671);
             this.tabPageMedications.TabIndex = 0;
             this.tabPageMedications.Text = "Лекарства";
-            // 
-            // MedicationsButtonCalculation
-            // 
-            this.MedicationsButtonCalculation.AutoSize = false;
-            this.MedicationsButtonCalculation.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.MedicationsButtonCalculation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MedicationsButtonCalculation.Depth = 0;
-            this.MedicationsButtonCalculation.DrawShadows = true;
-            this.MedicationsButtonCalculation.HighEmphasis = true;
-            this.MedicationsButtonCalculation.Icon = null;
-            this.MedicationsButtonCalculation.Location = new System.Drawing.Point(1223, 5);
-            this.MedicationsButtonCalculation.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.MedicationsButtonCalculation.MouseState = MaterialSkin.MouseState.HOVER;
-            this.MedicationsButtonCalculation.Name = "MedicationsButtonCalculation";
-            this.MedicationsButtonCalculation.Size = new System.Drawing.Size(120, 35);
-            this.MedicationsButtonCalculation.TabIndex = 8;
-            this.MedicationsButtonCalculation.Text = "Вычисления";
-            this.MedicationsButtonCalculation.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.MedicationsButtonCalculation.UseAccentColor = false;
-            this.MedicationsButtonCalculation.UseVisualStyleBackColor = true;
-            this.MedicationsButtonCalculation.Click += new System.EventHandler(this.MedicationsButtonCalculation_Click);
             // 
             // MedicationsButtonEdit
             // 
@@ -312,7 +287,7 @@ namespace lab6_yunoshev
             this.MedicationsListView.MouseState = MaterialSkin.MouseState.OUT;
             this.MedicationsListView.Name = "MedicationsListView";
             this.MedicationsListView.OwnerDraw = true;
-            this.MedicationsListView.Size = new System.Drawing.Size(1340, 601);
+            this.MedicationsListView.Size = new System.Drawing.Size(1260, 601);
             this.MedicationsListView.TabIndex = 0;
             this.MedicationsListView.UseCompatibleStateImageBehavior = false;
             this.MedicationsListView.View = System.Windows.Forms.View.Details;
@@ -377,7 +352,6 @@ namespace lab6_yunoshev
             // tabPageStorehouse
             // 
             this.tabPageStorehouse.BackColor = System.Drawing.Color.White;
-            this.tabPageStorehouse.Controls.Add(this.StorehouseFButtonCalculation);
             this.tabPageStorehouse.Controls.Add(this.StorehouseFButtonEdit);
             this.tabPageStorehouse.Controls.Add(this.StorehouseFButtonDelete);
             this.tabPageStorehouse.Controls.Add(this.StorehouseFButtonAdd);
@@ -388,29 +362,9 @@ namespace lab6_yunoshev
             this.tabPageStorehouse.ImageKey = "storehouse.png";
             this.tabPageStorehouse.Location = new System.Drawing.Point(4, 39);
             this.tabPageStorehouse.Name = "tabPageStorehouse";
-            this.tabPageStorehouse.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageStorehouse.Size = new System.Drawing.Size(1906, 671);
             this.tabPageStorehouse.TabIndex = 4;
             this.tabPageStorehouse.Text = "Склад";
-            // 
-            // StorehouseFButtonCalculation
-            // 
-            this.StorehouseFButtonCalculation.AutoSize = false;
-            this.StorehouseFButtonCalculation.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.StorehouseFButtonCalculation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.StorehouseFButtonCalculation.Depth = 0;
-            this.StorehouseFButtonCalculation.DrawShadows = true;
-            this.StorehouseFButtonCalculation.HighEmphasis = true;
-            this.StorehouseFButtonCalculation.Icon = null;
-            this.StorehouseFButtonCalculation.Location = new System.Drawing.Point(1223, 5);
-            this.StorehouseFButtonCalculation.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.StorehouseFButtonCalculation.MouseState = MaterialSkin.MouseState.HOVER;
-            this.StorehouseFButtonCalculation.Name = "StorehouseFButtonCalculation";
-            this.StorehouseFButtonCalculation.Size = new System.Drawing.Size(120, 35);
-            this.StorehouseFButtonCalculation.TabIndex = 15;
-            this.StorehouseFButtonCalculation.Text = "Вычисления";
-            this.StorehouseFButtonCalculation.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.StorehouseFButtonCalculation.UseAccentColor = false;
-            this.StorehouseFButtonCalculation.UseVisualStyleBackColor = true;
             // 
             // StorehouseFButtonEdit
             // 
@@ -558,7 +512,7 @@ namespace lab6_yunoshev
             this.StorehouseFListView.MouseState = MaterialSkin.MouseState.OUT;
             this.StorehouseFListView.Name = "StorehouseFListView";
             this.StorehouseFListView.OwnerDraw = true;
-            this.StorehouseFListView.Size = new System.Drawing.Size(1340, 601);
+            this.StorehouseFListView.Size = new System.Drawing.Size(1260, 601);
             this.StorehouseFListView.TabIndex = 8;
             this.StorehouseFListView.UseCompatibleStateImageBehavior = false;
             this.StorehouseFListView.View = System.Windows.Forms.View.Details;
@@ -605,7 +559,6 @@ namespace lab6_yunoshev
             // tabPagePrescriptons
             // 
             this.tabPagePrescriptons.BackColor = System.Drawing.Color.White;
-            this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonCalculation);
             this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonEdit);
             this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonDelete);
             this.tabPagePrescriptons.Controls.Add(this.PrescriptionsButtonAdd);
@@ -616,29 +569,9 @@ namespace lab6_yunoshev
             this.tabPagePrescriptons.ImageKey = "prescription.png";
             this.tabPagePrescriptons.Location = new System.Drawing.Point(4, 39);
             this.tabPagePrescriptons.Name = "tabPagePrescriptons";
-            this.tabPagePrescriptons.Size = new System.Drawing.Size(1406, 671);
+            this.tabPagePrescriptons.Size = new System.Drawing.Size(1906, 671);
             this.tabPagePrescriptons.TabIndex = 2;
             this.tabPagePrescriptons.Text = "Рецепты";
-            // 
-            // PrescriptionsButtonCalculation
-            // 
-            this.PrescriptionsButtonCalculation.AutoSize = false;
-            this.PrescriptionsButtonCalculation.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PrescriptionsButtonCalculation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PrescriptionsButtonCalculation.Depth = 0;
-            this.PrescriptionsButtonCalculation.DrawShadows = true;
-            this.PrescriptionsButtonCalculation.HighEmphasis = true;
-            this.PrescriptionsButtonCalculation.Icon = null;
-            this.PrescriptionsButtonCalculation.Location = new System.Drawing.Point(1223, 5);
-            this.PrescriptionsButtonCalculation.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.PrescriptionsButtonCalculation.MouseState = MaterialSkin.MouseState.HOVER;
-            this.PrescriptionsButtonCalculation.Name = "PrescriptionsButtonCalculation";
-            this.PrescriptionsButtonCalculation.Size = new System.Drawing.Size(120, 35);
-            this.PrescriptionsButtonCalculation.TabIndex = 22;
-            this.PrescriptionsButtonCalculation.Text = "Вычисления";
-            this.PrescriptionsButtonCalculation.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.PrescriptionsButtonCalculation.UseAccentColor = false;
-            this.PrescriptionsButtonCalculation.UseVisualStyleBackColor = true;
             // 
             // PrescriptionsButtonEdit
             // 
@@ -788,7 +721,7 @@ namespace lab6_yunoshev
             this.PrescriptionsListView.MouseState = MaterialSkin.MouseState.OUT;
             this.PrescriptionsListView.Name = "PrescriptionsListView";
             this.PrescriptionsListView.OwnerDraw = true;
-            this.PrescriptionsListView.Size = new System.Drawing.Size(1340, 601);
+            this.PrescriptionsListView.Size = new System.Drawing.Size(1260, 601);
             this.PrescriptionsListView.TabIndex = 15;
             this.PrescriptionsListView.UseCompatibleStateImageBehavior = false;
             this.PrescriptionsListView.View = System.Windows.Forms.View.Details;
@@ -838,7 +771,7 @@ namespace lab6_yunoshev
             this.tabPageDiagnoses.ImageKey = "diagnoses.png";
             this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
             this.tabPageDiagnoses.Name = "tabPageDiagnoses";
-            this.tabPageDiagnoses.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageDiagnoses.Size = new System.Drawing.Size(1906, 671);
             this.tabPageDiagnoses.TabIndex = 5;
             this.tabPageDiagnoses.Text = "Диагнозы";
             // 
@@ -848,7 +781,7 @@ namespace lab6_yunoshev
             this.tabPageInventory.ImageKey = "inventory.png";
             this.tabPageInventory.Location = new System.Drawing.Point(4, 39);
             this.tabPageInventory.Name = "tabPageInventory";
-            this.tabPageInventory.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageInventory.Size = new System.Drawing.Size(1906, 671);
             this.tabPageInventory.TabIndex = 6;
             this.tabPageInventory.Text = "Инвентаризация";
             // 
@@ -858,7 +791,7 @@ namespace lab6_yunoshev
             this.tabPagePatients.ImageKey = "patient.png";
             this.tabPagePatients.Location = new System.Drawing.Point(4, 39);
             this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Size = new System.Drawing.Size(1406, 671);
+            this.tabPagePatients.Size = new System.Drawing.Size(1906, 671);
             this.tabPagePatients.TabIndex = 1;
             this.tabPagePatients.Text = "Пациенты";
             // 
@@ -868,7 +801,7 @@ namespace lab6_yunoshev
             this.tabPageOrders.ImageKey = "orders.png";
             this.tabPageOrders.Location = new System.Drawing.Point(4, 39);
             this.tabPageOrders.Name = "tabPageOrders";
-            this.tabPageOrders.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageOrders.Size = new System.Drawing.Size(1906, 671);
             this.tabPageOrders.TabIndex = 3;
             this.tabPageOrders.Text = "Заказы";
             // 
@@ -878,7 +811,7 @@ namespace lab6_yunoshev
             this.tabPageSettings.ImageKey = "settings.png";
             this.tabPageSettings.Location = new System.Drawing.Point(4, 39);
             this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageSettings.Size = new System.Drawing.Size(1906, 671);
             this.tabPageSettings.TabIndex = 7;
             this.tabPageSettings.Text = "Настройки";
             // 
@@ -888,7 +821,7 @@ namespace lab6_yunoshev
             this.tabPageInformation.ImageKey = "information.png";
             this.tabPageInformation.Location = new System.Drawing.Point(4, 39);
             this.tabPageInformation.Name = "tabPageInformation";
-            this.tabPageInformation.Size = new System.Drawing.Size(1406, 671);
+            this.tabPageInformation.Size = new System.Drawing.Size(1906, 671);
             this.tabPageInformation.TabIndex = 8;
             this.tabPageInformation.Text = "Информация";
             // 
@@ -911,7 +844,7 @@ namespace lab6_yunoshev
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1420, 720);
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.MainTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.MainTabControl;
@@ -994,8 +927,5 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorStamp;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDiagnoses;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsMedications;
-        private MaterialSkin.Controls.MaterialButton MedicationsButtonCalculation;
-        private MaterialSkin.Controls.MaterialButton StorehouseFButtonCalculation;
-        private MaterialSkin.Controls.MaterialButton PrescriptionsButtonCalculation;
     }
 }

@@ -634,44 +634,72 @@ namespace lab6_yunoshev
 
         private void PrescriptionsButtonAdd_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            AddPrescriptions addPrescriptions = new AddPrescriptions(connectionType);
+            DialogResult status = addPrescriptions.ShowDialog();
+            if (status == DialogResult.OK)
             {
+                query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName,
+                    Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
+                    Models.Prescriptions.patientId);
 
-                AddPrescriptions addPrescriptions = new AddPrescriptions(connectionType);
-                DialogResult status = addPrescriptions.ShowDialog();
-                if (status == DialogResult.OK)
+                int count;
+
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.InsertPrescriptions(Models.Prescriptions.doctorName,
-                        Models.Prescriptions.doctorSignature, Models.Prescriptions.doctorStamp,
-                        Models.Prescriptions.patientId);
-                    //MessageBox.Show("1\n" + query);
+                    MessageBox.Show("1\n" + query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено: " + count.ToString());
+                    count = ConnectedData.UpdateData();
+                    MessageBox.Show("Добавлено: " + count.ToString());
 
                     string[] data = new string[1];
                     query = Commands.SelectLastId("dbo.prescriptions");
-                    //MessageBox.Show("2\n" + query);
+                    MessageBox.Show("2\n" + query);
                     ConnectedData.SetCommand(query);
                     data = ConnectedData.GetRowFromTable();
                     int id = Convert.ToInt32(data[0]);
 
                     query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
-                    //MessageBox.Show("3\n" + query);
+                    MessageBox.Show("3\n" + query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено: " + count.ToString());
+                    MessageBox.Show("Добавлено: " + count.ToString());
 
                     query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
-                    //MessageBox.Show("4\n" + query);
+                    MessageBox.Show("4\n" + query);
                     ConnectedData.SetCommand(query);
                     count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено: " + count.ToString());
-
-                    PrescriptionsPrint(SortTypes.IdAsc);
+                    MessageBox.Show("Добавлено: " + count.ToString());
                 }
-            }
 
+                else
+                {
+                    count = DisconnectedData.InsertData(query);
+                    MessageBox.Show("Добавлено: " + count.ToString());
+
+                    query = Commands.SelectLastId("dbo.prescriptions");
+                    MessageBox.Show("2\n" + query);
+
+                    dataSet = DisconnectedData.GetTableData(query);
+                    DataTable dataTable = dataSet.Tables[0];
+                    DataRow dataRow = dataTable.Rows[0];
+                    int id = Convert.ToInt32(dataRow[0]);
+
+                    query = Commands.InsertDiagnosesPrescriptions(Models.Prescriptions.diagnosesId, id);
+                    MessageBox.Show("3\n" + query);
+                    count = DisconnectedData.InsertData(query);
+                    MessageBox.Show("Добавлено: " + count.ToString());
+
+                    query = Commands.InsertPrescriptionsMedications(Models.Prescriptions.medicationsId, id);
+                    MessageBox.Show("4\n" + query);
+                    count = DisconnectedData.InsertData(query);
+                    MessageBox.Show("Добавлено: " + count.ToString());
+                }
+
+
+               
+
+                PrescriptionsPrint(SortTypes.IdAsc);
+            }
         }
 
         private void PrescriptionsButtonDelete_Click(object sender, EventArgs e)

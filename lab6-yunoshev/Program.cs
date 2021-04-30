@@ -17,7 +17,7 @@ namespace lab6_yunoshev
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(Models.ConnectionTypes.Connected));
+            Application.Run(new MainForm(Models.ConnectionTypes.Disconnected));
         }
     }
 }

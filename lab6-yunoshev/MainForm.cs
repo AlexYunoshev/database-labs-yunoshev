@@ -351,10 +351,10 @@ namespace lab6_yunoshev
             if (name != "") query = Commands.SelectPrescriptions(sort, name);
             else query = Commands.SelectPrescriptions(sort);
             ListViewItem item;
-            Dictionary<int, string> list = GetPrescriptionsDiagnoses();
-            Dictionary<int, string> list2 = GetPrescriptionsMedications();
+            
             if (connectionType == ConnectionTypes.Connected)
             {
+
                 ConnectedData.SetCommand(query);
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
@@ -362,6 +362,8 @@ namespace lab6_yunoshev
                 int column = size[1];
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
+                Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+                Dictionary<int, string> list2 = GetPrescriptionsMedications();
                 for (int i = 0; i < row; i++)
                 {
                     item = new ListViewItem(data[i, 0]);
@@ -415,6 +417,8 @@ namespace lab6_yunoshev
                         else
                             item.SubItems.Add(dataRow[j].ToString());
                     }
+                    Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+                    Dictionary<int, string> list2 = GetPrescriptionsMedications();
                     if (list.ContainsKey(Convert.ToInt32(dataRow[0])))
                         item.SubItems.Add(list[Convert.ToInt32(dataRow[0])]);
                     else

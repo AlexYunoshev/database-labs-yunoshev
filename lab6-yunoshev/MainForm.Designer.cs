@@ -34,6 +34,12 @@ namespace lab6_yunoshev
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMedications = new System.Windows.Forms.TabPage();
+            this.LabelMedicationsSumSolutesValue = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelMedicationsSumSolutes = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelMedicationsSumPillsValue = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelMedicationsSumPills = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelMedicationsSumPriceValue = new MaterialSkin.Controls.MaterialLabel();
+            this.LabelMedicationsSumPrice = new MaterialSkin.Controls.MaterialLabel();
             this.MedicationsButtonEdit = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonDelete = new MaterialSkin.Controls.MaterialButton();
             this.MedicationsButtonAdd = new MaterialSkin.Controls.MaterialButton();
@@ -116,13 +122,19 @@ namespace lab6_yunoshev
             this.MainTabControl.Multiline = true;
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(1274, 714);
+            this.MainTabControl.Size = new System.Drawing.Size(1274, 764);
             this.MainTabControl.TabIndex = 0;
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // tabPageMedications
             // 
             this.tabPageMedications.BackColor = System.Drawing.Color.White;
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumSolutesValue);
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumSolutes);
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumPillsValue);
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumPills);
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumPriceValue);
+            this.tabPageMedications.Controls.Add(this.LabelMedicationsSumPrice);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonEdit);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonDelete);
             this.tabPageMedications.Controls.Add(this.MedicationsButtonAdd);
@@ -134,9 +146,81 @@ namespace lab6_yunoshev
             this.tabPageMedications.Location = new System.Drawing.Point(4, 39);
             this.tabPageMedications.Name = "tabPageMedications";
             this.tabPageMedications.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMedications.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageMedications.Size = new System.Drawing.Size(1266, 721);
             this.tabPageMedications.TabIndex = 0;
             this.tabPageMedications.Text = "Лекарства";
+            // 
+            // LabelMedicationsSumSolutesValue
+            // 
+            this.LabelMedicationsSumSolutesValue.AutoSize = true;
+            this.LabelMedicationsSumSolutesValue.Depth = 0;
+            this.LabelMedicationsSumSolutesValue.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumSolutesValue.Location = new System.Drawing.Point(967, 673);
+            this.LabelMedicationsSumSolutesValue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumSolutesValue.Name = "LabelMedicationsSumSolutesValue";
+            this.LabelMedicationsSumSolutesValue.Size = new System.Drawing.Size(89, 19);
+            this.LabelMedicationsSumSolutesValue.TabIndex = 13;
+            this.LabelMedicationsSumSolutesValue.Text = "Количество";
+            // 
+            // LabelMedicationsSumSolutes
+            // 
+            this.LabelMedicationsSumSolutes.AutoSize = true;
+            this.LabelMedicationsSumSolutes.Depth = 0;
+            this.LabelMedicationsSumSolutes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumSolutes.Location = new System.Drawing.Point(876, 673);
+            this.LabelMedicationsSumSolutes.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumSolutes.Name = "LabelMedicationsSumSolutes";
+            this.LabelMedicationsSumSolutes.Size = new System.Drawing.Size(85, 19);
+            this.LabelMedicationsSumSolutes.TabIndex = 12;
+            this.LabelMedicationsSumSolutes.Text = "Растворов:";
+            // 
+            // LabelMedicationsSumPillsValue
+            // 
+            this.LabelMedicationsSumPillsValue.AutoSize = true;
+            this.LabelMedicationsSumPillsValue.Depth = 0;
+            this.LabelMedicationsSumPillsValue.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumPillsValue.Location = new System.Drawing.Point(538, 673);
+            this.LabelMedicationsSumPillsValue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumPillsValue.Name = "LabelMedicationsSumPillsValue";
+            this.LabelMedicationsSumPillsValue.Size = new System.Drawing.Size(89, 19);
+            this.LabelMedicationsSumPillsValue.TabIndex = 11;
+            this.LabelMedicationsSumPillsValue.Text = "Количество";
+            // 
+            // LabelMedicationsSumPills
+            // 
+            this.LabelMedicationsSumPills.AutoSize = true;
+            this.LabelMedicationsSumPills.Depth = 0;
+            this.LabelMedicationsSumPills.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumPills.Location = new System.Drawing.Point(456, 673);
+            this.LabelMedicationsSumPills.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumPills.Name = "LabelMedicationsSumPills";
+            this.LabelMedicationsSumPills.Size = new System.Drawing.Size(76, 19);
+            this.LabelMedicationsSumPills.TabIndex = 10;
+            this.LabelMedicationsSumPills.Text = "Таблеток:";
+            // 
+            // LabelMedicationsSumPriceValue
+            // 
+            this.LabelMedicationsSumPriceValue.AutoSize = true;
+            this.LabelMedicationsSumPriceValue.Depth = 0;
+            this.LabelMedicationsSumPriceValue.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumPriceValue.Location = new System.Drawing.Point(177, 673);
+            this.LabelMedicationsSumPriceValue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumPriceValue.Name = "LabelMedicationsSumPriceValue";
+            this.LabelMedicationsSumPriceValue.Size = new System.Drawing.Size(39, 19);
+            this.LabelMedicationsSumPriceValue.TabIndex = 9;
+            this.LabelMedicationsSumPriceValue.Text = "Цена";
+            // 
+            // LabelMedicationsSumPrice
+            // 
+            this.LabelMedicationsSumPrice.AutoSize = true;
+            this.LabelMedicationsSumPrice.Depth = 0;
+            this.LabelMedicationsSumPrice.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LabelMedicationsSumPrice.Location = new System.Drawing.Point(18, 673);
+            this.LabelMedicationsSumPrice.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LabelMedicationsSumPrice.Name = "LabelMedicationsSumPrice";
+            this.LabelMedicationsSumPrice.Size = new System.Drawing.Size(153, 19);
+            this.LabelMedicationsSumPrice.TabIndex = 8;
+            this.LabelMedicationsSumPrice.Text = "Цена всех лекарств:";
             // 
             // MedicationsButtonEdit
             // 
@@ -362,7 +446,7 @@ namespace lab6_yunoshev
             this.tabPageStorehouse.ImageKey = "storehouse.png";
             this.tabPageStorehouse.Location = new System.Drawing.Point(4, 39);
             this.tabPageStorehouse.Name = "tabPageStorehouse";
-            this.tabPageStorehouse.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageStorehouse.Size = new System.Drawing.Size(1266, 721);
             this.tabPageStorehouse.TabIndex = 4;
             this.tabPageStorehouse.Text = "Склад";
             // 
@@ -569,7 +653,7 @@ namespace lab6_yunoshev
             this.tabPagePrescriptons.ImageKey = "prescription.png";
             this.tabPagePrescriptons.Location = new System.Drawing.Point(4, 39);
             this.tabPagePrescriptons.Name = "tabPagePrescriptons";
-            this.tabPagePrescriptons.Size = new System.Drawing.Size(1906, 671);
+            this.tabPagePrescriptons.Size = new System.Drawing.Size(1266, 721);
             this.tabPagePrescriptons.TabIndex = 2;
             this.tabPagePrescriptons.Text = "Рецепты";
             // 
@@ -771,7 +855,7 @@ namespace lab6_yunoshev
             this.tabPageDiagnoses.ImageKey = "diagnoses.png";
             this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
             this.tabPageDiagnoses.Name = "tabPageDiagnoses";
-            this.tabPageDiagnoses.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 721);
             this.tabPageDiagnoses.TabIndex = 5;
             this.tabPageDiagnoses.Text = "Диагнозы";
             // 
@@ -781,7 +865,7 @@ namespace lab6_yunoshev
             this.tabPageInventory.ImageKey = "inventory.png";
             this.tabPageInventory.Location = new System.Drawing.Point(4, 39);
             this.tabPageInventory.Name = "tabPageInventory";
-            this.tabPageInventory.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageInventory.Size = new System.Drawing.Size(1266, 721);
             this.tabPageInventory.TabIndex = 6;
             this.tabPageInventory.Text = "Инвентаризация";
             // 
@@ -791,7 +875,7 @@ namespace lab6_yunoshev
             this.tabPagePatients.ImageKey = "patient.png";
             this.tabPagePatients.Location = new System.Drawing.Point(4, 39);
             this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Size = new System.Drawing.Size(1906, 671);
+            this.tabPagePatients.Size = new System.Drawing.Size(1266, 721);
             this.tabPagePatients.TabIndex = 1;
             this.tabPagePatients.Text = "Пациенты";
             // 
@@ -801,7 +885,7 @@ namespace lab6_yunoshev
             this.tabPageOrders.ImageKey = "orders.png";
             this.tabPageOrders.Location = new System.Drawing.Point(4, 39);
             this.tabPageOrders.Name = "tabPageOrders";
-            this.tabPageOrders.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageOrders.Size = new System.Drawing.Size(1266, 721);
             this.tabPageOrders.TabIndex = 3;
             this.tabPageOrders.Text = "Заказы";
             // 
@@ -811,7 +895,7 @@ namespace lab6_yunoshev
             this.tabPageSettings.ImageKey = "settings.png";
             this.tabPageSettings.Location = new System.Drawing.Point(4, 39);
             this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageSettings.Size = new System.Drawing.Size(1266, 721);
             this.tabPageSettings.TabIndex = 7;
             this.tabPageSettings.Text = "Настройки";
             // 
@@ -821,7 +905,7 @@ namespace lab6_yunoshev
             this.tabPageInformation.ImageKey = "information.png";
             this.tabPageInformation.Location = new System.Drawing.Point(4, 39);
             this.tabPageInformation.Name = "tabPageInformation";
-            this.tabPageInformation.Size = new System.Drawing.Size(1906, 671);
+            this.tabPageInformation.Size = new System.Drawing.Size(1266, 721);
             this.tabPageInformation.TabIndex = 8;
             this.tabPageInformation.Text = "Информация";
             // 
@@ -844,7 +928,7 @@ namespace lab6_yunoshev
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.ClientSize = new System.Drawing.Size(1280, 770);
             this.Controls.Add(this.MainTabControl);
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.MainTabControl;
@@ -858,6 +942,7 @@ namespace lab6_yunoshev
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTabControl.ResumeLayout(false);
             this.tabPageMedications.ResumeLayout(false);
+            this.tabPageMedications.PerformLayout();
             this.tabPageStorehouse.ResumeLayout(false);
             this.tabPagePrescriptons.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -927,5 +1012,11 @@ namespace lab6_yunoshev
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDoctorStamp;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsDiagnoses;
         private System.Windows.Forms.ColumnHeader headerPrescriptionsMedications;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumPrice;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumPriceValue;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumPillsValue;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumPills;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumSolutesValue;
+        private MaterialSkin.Controls.MaterialLabel LabelMedicationsSumSolutes;
     }
 }

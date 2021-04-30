@@ -53,6 +53,9 @@ namespace lab6_yunoshev
 
         public void MedicationsPrint(SortTypes sort, string name = "")
         {
+            double sum = 0;
+            int countPills = 0;
+            int countSolutes = 0;
             MedicationsListView.Items.Clear();
             if (name != "") query = Commands.SelectMedications(sort, name);
             else query = Commands.SelectMedications(sort);
@@ -79,10 +82,13 @@ namespace lab6_yunoshev
                         {
                             double value = Convert.ToDouble(data[i, j]);
                             item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
+                            sum += value;
                         }
 
                         else
                             item.SubItems.Add(data[i, j]);
+                        if (j == 5 && data[i, j] == "Таблетки") countPills++;
+                        else if (j == 5 && data[i, j] == "Раствор") countSolutes++;
                     }
                     MedicationsListView.Items.Add(item);
                 }
@@ -102,14 +108,22 @@ namespace lab6_yunoshev
                         {
                             double value = Convert.ToDouble(dataRow[j]);
                             item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
+                            sum += value;
                         }
 
                         else
                             item.SubItems.Add(dataRow[j].ToString());
+                        if (j == 5 && dataRow[j].ToString() == "Таблетки") countPills++;
+                        else if (j == 5 && dataRow[j].ToString() == "Раствор") countSolutes++;
                     }
                     MedicationsListView.Items.Add(item);
                 }
-            }     
+            }
+
+
+            LabelMedicationsSumPriceValue.Text = Math.Round(sum, 2).ToString() + " грн";
+            LabelMedicationsSumPillsValue.Text = countPills.ToString();
+            LabelMedicationsSumSolutesValue.Text = countSolutes.ToString();
         }
 
         private void MedicationButtonAdd_Click(object sender, EventArgs e)

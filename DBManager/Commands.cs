@@ -110,10 +110,9 @@ namespace DBManager
                 uset.type_name,
                 mant.type_name,
                 med.preparation_time, med.filtration_time, med.mixable_list
-                from dbo.medications med, dbo.medications_types medt, dbo.manufacture_types mant, dbo.uses_types uset
-                where med.medications_types_id = medt.id and
-                med.uses_types_id = uset.id and
-                med.manufacture_types_id = mant.id";
+                from dbo.medications med LEFT OUTER JOIN dbo.medications_types medt on (med.medications_types_id = medt.id)
+				LEFT OUTER JOIN dbo.manufacture_types mant on (med.manufacture_types_id = mant.id) LEFT OUTER JOIN dbo.uses_types uset                
+                on (med.uses_types_id = uset.id)";
 
             if (name != "")
             {

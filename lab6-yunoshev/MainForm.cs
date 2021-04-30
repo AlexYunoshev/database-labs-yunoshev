@@ -21,6 +21,8 @@ namespace lab6_yunoshev
         ConnectionTypes connectionType;
         string query = "";
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+        DataSet dataSet;
+
         public MainForm(ConnectionTypes connectionType)
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace lab6_yunoshev
                 MaterialSkin.TextShade.WHITE);
             this.connectionType = connectionType;
         }
+      
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -50,17 +53,20 @@ namespace lab6_yunoshev
 
         public void MedicationsPrint(SortTypes sort, string name = "")
         {
+            MedicationsListView.Items.Clear();
+            if (name != "") query = Commands.SelectMedications(sort, name);
+            else query = Commands.SelectMedications(sort);
+            ListViewItem item;
+
             if (connectionType == ConnectionTypes.Connected)
             {
-                MedicationsListView.Items.Clear();
-                if (name != "") query = Commands.SelectMedications(sort, name);
-                else query = Commands.SelectMedications(sort);
+                
                 ConnectedData.SetCommand(query);
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
                 int row = size[0];
                 int column = size[1];
-                ListViewItem item;
+                
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
 
@@ -82,7 +88,28 @@ namespace lab6_yunoshev
                 }
             }
 
-            
+            else
+            {
+                dataSet = DisconnectedData.GetTableData(query);
+                DataTable dataTable = dataSet.Tables[0];
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    DataRow dataRow = dataTable.Rows[i];
+                    item = new ListViewItem(dataRow[0].ToString());
+                    for (int j = 1; j < dataTable.Columns.Count; j++)
+                    {
+                        if (j == 2)
+                        {
+                            double value = Convert.ToDouble(dataRow[j]);
+                            item.SubItems.Add(Math.Round(value, 2).ToString() + " грн");
+                        }
+
+                        else
+                            item.SubItems.Add(dataRow[j].ToString());
+                    }
+                    MedicationsListView.Items.Add(item);
+                }
+            }     
         }
 
         private void MedicationButtonAdd_Click(object sender, EventArgs e)
@@ -172,17 +199,18 @@ namespace lab6_yunoshev
 
         public void StorehouseFPrint(SortTypes sort, string name = "")
         {
+            StorehouseFListView.Items.Clear();
+            if (name != "") query = Commands.SelectStorehouseF(sort, name);
+            else query = Commands.SelectStorehouseF(sort);
+            ListViewItem item;
             if (connectionType == ConnectionTypes.Connected)
             {
-                StorehouseFListView.Items.Clear();
-                if (name != "") query = Commands.SelectStorehouseF(sort, name);
-                else query = Commands.SelectStorehouseF(sort);
+                
                 ConnectedData.SetCommand(query);
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
                 int row = size[0];
                 int column = size[1];
-                ListViewItem item;
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
 
@@ -200,6 +228,28 @@ namespace lab6_yunoshev
 
                         else
                             item.SubItems.Add(data[i, j]);
+                    }
+                    StorehouseFListView.Items.Add(item);
+                }
+            }
+            else
+            {
+                dataSet = DisconnectedData.GetTableData(query);
+                DataTable dataTable = dataSet.Tables[0];
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    DataRow dataRow = dataTable.Rows[i];
+                    item = new ListViewItem(dataRow[0].ToString());
+                    for (int j = 1; j < dataTable.Columns.Count; j++)
+                    {
+                        if (j == 5 || j == 6)
+                        {
+                            DateTime value = Convert.ToDateTime(dataRow[j]);
+                            item.SubItems.Add(value.ToShortDateString());
+                        }
+
+                        else
+                            item.SubItems.Add(dataRow[j].ToString());
                     }
                     StorehouseFListView.Items.Add(item);
                 }
@@ -297,24 +347,21 @@ namespace lab6_yunoshev
 
         public void PrescriptionsPrint(SortTypes sort, string name = "")
         {
-
+            PrescriptionsListView.Items.Clear();
+            if (name != "") query = Commands.SelectPrescriptions(sort, name);
+            else query = Commands.SelectPrescriptions(sort);
+            ListViewItem item;
+            Dictionary<int, string> list = GetPrescriptionsDiagnoses();
+            Dictionary<int, string> list2 = GetPrescriptionsMedications();
             if (connectionType == ConnectionTypes.Connected)
             {
-                PrescriptionsListView.Items.Clear();
-                if (name != "") query = Commands.SelectPrescriptions(sort, name);
-                else query = Commands.SelectPrescriptions(sort);
                 ConnectedData.SetCommand(query);
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
                 int row = size[0];
                 int column = size[1];
-                ListViewItem item;
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
-
-                Dictionary<int, string> list = GetPrescriptionsDiagnoses();
-                Dictionary<int, string> list2 = GetPrescriptionsMedications();
-
                 for (int i = 0; i < row; i++)
                 {
                     item = new ListViewItem(data[i, 0]);
@@ -346,28 +393,64 @@ namespace lab6_yunoshev
                     PrescriptionsListView.Items.Add(item);
                 }
             }
+            else
+            {
+                dataSet = DisconnectedData.GetTableData(query);
+                DataTable dataTable = dataSet.Tables[0];
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    DataRow dataRow = dataTable.Rows[i];
+                    item = new ListViewItem(dataRow[0].ToString());
+                    for (int j = 1; j < dataTable.Columns.Count; j++)
+                    {
+                        if (j == 4 || j == 5)
+                        {
+                            bool value = Convert.ToBoolean(dataRow[j]);
+                            if (value == true)
+                                item.SubItems.Add("+");
+                            else
+                                item.SubItems.Add("-");
+                        }
 
+                        else
+                            item.SubItems.Add(dataRow[j].ToString());
+                    }
+                    if (list.ContainsKey(Convert.ToInt32(dataRow[0])))
+                        item.SubItems.Add(list[Convert.ToInt32(dataRow[0])]);
+                    else
+                        item.SubItems.Add("-");
+
+                    if (list2.ContainsKey(Convert.ToInt32(dataRow[0])))
+                        item.SubItems.Add(list2[Convert.ToInt32(dataRow[0])]);
+                    else
+                        item.SubItems.Add("-");
+                    PrescriptionsListView.Items.Add(item);
+                }
+            }
                
         }
 
         public Dictionary<int, string> GetPrescriptionsDiagnoses()
         {
-
+            query = Commands.SelectPrescriptionsDiagnoses();
+            ConnectedData.SetCommand(query);
+            Dictionary<int, string> list = new Dictionary<int, string>();
             if (connectionType == ConnectionTypes.Connected)
             {
-                query = Commands.SelectPrescriptionsDiagnoses();
-                ConnectedData.SetCommand(query);
+               
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
                 int row = size[0];
                 int column = size[1];
-                Dictionary<int, string> list = new Dictionary<int, string>();
+               
 
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
 
                 int key = Convert.ToInt32(data[0, 0]);
                 string str = "";
+
+
 
                 for (int i = 0; i < row; i++)
                 {
@@ -385,32 +468,54 @@ namespace lab6_yunoshev
                     }
                 }
                 str = str.Remove(str.Length - 2);
-                list.Add(key, str);
-                return list;
+                list.Add(key, str);  
             }
 
             else
             {
-                Dictionary<int, string> list = new Dictionary<int, string>();
-                return list;
+                dataSet = DisconnectedData.GetTableData(query);
+                DataTable dataTable = dataSet.Tables[0];
+                DataRow dataRow = dataTable.Rows[0];
+                int key = Convert.ToInt32(dataRow[0]);
+                string str = "";
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    dataRow = dataTable.Rows[i];
+                    if (Convert.ToInt32(dataRow[0]) == key)
+                    {
+                        str += dataRow[1] + ", ";
+                    }
+                    else
+                    {
+                        str = str.Remove(str.Length - 2);
+                        list.Add(key, str);
+                        str = "";
+                        key = Convert.ToInt32(dataRow[0]);
+                        str += dataRow[1] + ", ";
+                    }
+                    
+                }         
+                str = str.Remove(str.Length - 2);
+                list.Add(key, str);
+
             }
 
-               
+            return list;
         }
 
         public Dictionary<int, string> GetPrescriptionsMedications()
         {
+            query = Commands.SelectPrescriptionsMedications();
+            ConnectedData.SetCommand(query);
+            Dictionary<int, string> list = new Dictionary<int, string>();
             if (connectionType == ConnectionTypes.Connected)
             {
-
-                query = Commands.SelectPrescriptionsMedications();
-                ConnectedData.SetCommand(query);
                 int[] size = new int[2];
                 size = ConnectedData.GetRowAndColumnCount();
                 int row = size[0];
                 int column = size[1];
-                Dictionary<int, string> list = new Dictionary<int, string>();
-
+     
                 string[,] data = new string[row, column];
                 data = ConnectedData.GetTableData();
 
@@ -434,14 +539,37 @@ namespace lab6_yunoshev
                 }
                 str = str.Remove(str.Length - 2);
                 list.Add(key, str);
-                return list;
+                
             }
 
             else
             {
-                Dictionary<int, string> list = new Dictionary<int, string>();
-                return list;
+                dataSet = DisconnectedData.GetTableData(query);
+                DataTable dataTable = dataSet.Tables[0];
+                DataRow dataRow = dataTable.Rows[0];
+                int key = Convert.ToInt32(dataRow[0]);
+                string str = "";
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    dataRow = dataTable.Rows[i];
+                    if (Convert.ToInt32(dataRow[0]) == key)
+                    {
+                        str += dataRow[1] + " " + dataRow[2] + "шт, ";
+                    }
+                    else
+                    {
+                        str = str.Remove(str.Length - 2);
+                        list.Add(key, str);
+                        str = "";
+                        key = Convert.ToInt32(dataRow[0]);
+                        str += dataRow[1] + " " + dataRow[2] + "шт, ";
+                    }
+
+                }
+                str = str.Remove(str.Length - 2);
+                list.Add(key, str);
             }
+            return list;
 
         }
 

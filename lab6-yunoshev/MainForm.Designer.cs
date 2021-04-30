@@ -362,7 +362,7 @@ namespace lab6_yunoshev
             this.tabPageStorehouse.ImageKey = "storehouse.png";
             this.tabPageStorehouse.Location = new System.Drawing.Point(4, 39);
             this.tabPageStorehouse.Name = "tabPageStorehouse";
-            this.tabPageStorehouse.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageStorehouse.Size = new System.Drawing.Size(1906, 671);
             this.tabPageStorehouse.TabIndex = 4;
             this.tabPageStorehouse.Text = "Склад";
             // 
@@ -569,7 +569,7 @@ namespace lab6_yunoshev
             this.tabPagePrescriptons.ImageKey = "prescription.png";
             this.tabPagePrescriptons.Location = new System.Drawing.Point(4, 39);
             this.tabPagePrescriptons.Name = "tabPagePrescriptons";
-            this.tabPagePrescriptons.Size = new System.Drawing.Size(1266, 671);
+            this.tabPagePrescriptons.Size = new System.Drawing.Size(1906, 671);
             this.tabPagePrescriptons.TabIndex = 2;
             this.tabPagePrescriptons.Text = "Рецепты";
             // 
@@ -652,7 +652,7 @@ namespace lab6_yunoshev
             // 
             this.PrescriptionsTextBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PrescriptionsTextBoxSearch.Depth = 0;
-            this.PrescriptionsTextBoxSearch.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PrescriptionsTextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PrescriptionsTextBoxSearch.Hint = "Введите имя доктора или пациента";
             this.PrescriptionsTextBoxSearch.Location = new System.Drawing.Point(255, 6);
             this.PrescriptionsTextBoxSearch.MaxLength = 50;
@@ -771,7 +771,7 @@ namespace lab6_yunoshev
             this.tabPageDiagnoses.ImageKey = "diagnoses.png";
             this.tabPageDiagnoses.Location = new System.Drawing.Point(4, 39);
             this.tabPageDiagnoses.Name = "tabPageDiagnoses";
-            this.tabPageDiagnoses.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageDiagnoses.Size = new System.Drawing.Size(1906, 671);
             this.tabPageDiagnoses.TabIndex = 5;
             this.tabPageDiagnoses.Text = "Диагнозы";
             // 
@@ -781,7 +781,7 @@ namespace lab6_yunoshev
             this.tabPageInventory.ImageKey = "inventory.png";
             this.tabPageInventory.Location = new System.Drawing.Point(4, 39);
             this.tabPageInventory.Name = "tabPageInventory";
-            this.tabPageInventory.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageInventory.Size = new System.Drawing.Size(1906, 671);
             this.tabPageInventory.TabIndex = 6;
             this.tabPageInventory.Text = "Инвентаризация";
             // 
@@ -791,7 +791,7 @@ namespace lab6_yunoshev
             this.tabPagePatients.ImageKey = "patient.png";
             this.tabPagePatients.Location = new System.Drawing.Point(4, 39);
             this.tabPagePatients.Name = "tabPagePatients";
-            this.tabPagePatients.Size = new System.Drawing.Size(1266, 671);
+            this.tabPagePatients.Size = new System.Drawing.Size(1906, 671);
             this.tabPagePatients.TabIndex = 1;
             this.tabPagePatients.Text = "Пациенты";
             // 
@@ -801,7 +801,7 @@ namespace lab6_yunoshev
             this.tabPageOrders.ImageKey = "orders.png";
             this.tabPageOrders.Location = new System.Drawing.Point(4, 39);
             this.tabPageOrders.Name = "tabPageOrders";
-            this.tabPageOrders.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageOrders.Size = new System.Drawing.Size(1906, 671);
             this.tabPageOrders.TabIndex = 3;
             this.tabPageOrders.Text = "Заказы";
             // 
@@ -811,7 +811,7 @@ namespace lab6_yunoshev
             this.tabPageSettings.ImageKey = "settings.png";
             this.tabPageSettings.Location = new System.Drawing.Point(4, 39);
             this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageSettings.Size = new System.Drawing.Size(1906, 671);
             this.tabPageSettings.TabIndex = 7;
             this.tabPageSettings.Text = "Настройки";
             // 
@@ -821,7 +821,7 @@ namespace lab6_yunoshev
             this.tabPageInformation.ImageKey = "information.png";
             this.tabPageInformation.Location = new System.Drawing.Point(4, 39);
             this.tabPageInformation.Name = "tabPageInformation";
-            this.tabPageInformation.Size = new System.Drawing.Size(1266, 671);
+            this.tabPageInformation.Size = new System.Drawing.Size(1906, 671);
             this.tabPageInformation.TabIndex = 8;
             this.tabPageInformation.Text = "Информация";
             // 

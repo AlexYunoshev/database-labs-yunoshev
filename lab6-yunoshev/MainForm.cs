@@ -114,22 +114,30 @@ namespace lab6_yunoshev
 
         private void MedicationButtonAdd_Click(object sender, EventArgs e)
         {
-            if (connectionType == ConnectionTypes.Connected)
+            AddMedications addMedications = new AddMedications();
+            DialogResult status = addMedications.ShowDialog();
+            if (status == DialogResult.OK)
             {
-                AddMedications addMedications = new AddMedications();
-                DialogResult status = addMedications.ShowDialog();
-                if (status == DialogResult.OK)
+                query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
+                        Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
+                        Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
+                MessageBox.Show(query);
+                int count;
+                if (connectionType == ConnectionTypes.Connected)
                 {
-                    query = Commands.InsertMedications(Models.Medications.Name, Models.Medications.Price, Models.Medications.Quantity,
-                            Models.Medications.Volume, Models.Medications.MedicationType, Models.Medications.UsesType, Models.Medications.ManufactureType,
-                            Models.Medications.MixableList, Models.Medications.PreparationTime, Models.Medications.FiltrationTime);
-                    //MessageBox.Show(query);
                     ConnectedData.SetCommand(query);
-                    int count = ConnectedData.UpdateData();
-                    //MessageBox.Show("Добавлено: " + count.ToString());
-                    MedicationsPrint(SortTypes.IdAsc);
+                    count = ConnectedData.UpdateData();
+                
                 }
+                else
+                {
+                    count = DisconnectedData.UpdateData(query);
+                }
+                MessageBox.Show("Добавлено: " + count.ToString());
+                MedicationsPrint(SortTypes.IdAsc);
             }
+
+            
 
                 
         }

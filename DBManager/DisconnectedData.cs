@@ -33,16 +33,16 @@ namespace DBManager
             return dataSet;
         }
 
-        public static DataSet UpdateData(string query)
+        public static int UpdateData(string query)
         {
             dataSet = new DataSet();
             connection.Open();
             dataAdapter = new SqlDataAdapter(query, connection);
-            sqlCommand.CommandText = query;
+            sqlCommand = new SqlCommand(query, connection);
             dataAdapter.InsertCommand = sqlCommand;
-            dataAdapter.InsertCommand.ExecuteNonQuery();
+            int count = dataAdapter.InsertCommand.ExecuteNonQuery();
             connection.Close();
-            return dataSet;
+            return count;
         }
     }
 }
